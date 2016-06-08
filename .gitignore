@@ -47,4 +47,4 @@ doc/
 
 # WebPack Modules / NodeJS Modules
 */node_modules
-data/webpack/node_modules/
+data/ej_webpack/node_modules/

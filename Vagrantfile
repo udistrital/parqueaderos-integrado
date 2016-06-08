@@ -70,6 +70,6 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   # Enable with vagrant provision
-  config.vm.provision "shell", path: "data/install_golang.sh"
-  config.vm.provision "shell", path: "data/install_nodejs.sh"
+  config.vm.provision "shell", path: "install_golang.sh"
+  config.vm.provision "shell", path: "install_nodejs.sh"
 end
