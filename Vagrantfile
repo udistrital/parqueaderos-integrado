@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+#http_proxy = ENV["http_proxy"] || ""
+
+pass_variables = ["HTTP_PROXY", "http_proxy", "HTTPS_PROXY", "https_proxy", "NO_PROXY", "no_proxy"]
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -70,6 +74,20 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   # Enable with vagrant provision
+
+  config.vm.provision "shell", inline: "echo $USER"
+  
+  string_sudoers="Defaults env_keep += \""
+  pass_variables.each do |pass_var|
+      config.vm.provision "shell", inline: "echo 'export #{pass_var}=\'#{(ENV[pass_var]||'')}'\' >> ~/.bashrc"
+      string_sudoers+="#{pass_var} "
+  end
+  string_sudoers+="\""
+  config.vm.provision "shell", inline: "source ~/.bashrc"
+  config.vm.provision "shell", inline: "echo '#{string_sudoers}' >> /etc/sudores"
+  config.vm.provision "shell", inline: "echo 'aqui estoy yo'"
+  config.vm.provision "shell", inline: "env | grep -i proxy"
+
   config.vm.provision "shell", path: "install_golang.sh"
   config.vm.provision "shell", path: "install_nodejs.sh"
 end
