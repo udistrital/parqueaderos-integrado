@@ -1,0 +1,3 @@
+SELINUX=permissive
+SELINUX=permissive
+HSELINUX=1
