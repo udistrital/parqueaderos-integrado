@@ -10,26 +10,28 @@ mount VBoxGuestAdditions.iso -o loop /mnt
 #rm -rf VBoxGuestAdditions.iso
 yum install -y golang
 "
-mkdir -p /home/$USER/golang
 sudo su -c "
+mkdir -p /home/$USER/golang
 echo 'export GOROOT=/usr/lib/golang
  export GOBIN=$GOROOT/bin
  export GOPATH=/home/$USER/golang
  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' > /etc/profile.d/go.sh
 "
+sudo su vagrant -c "
+mkdir -p /home/$USER/golang
 echo '# Golang Path
  export GOROOT=/usr/lib/golang
  export GOBIN=$GOROOT/bin
  export GOPATH=/home/$USER/golang
- export PATH=$PATH:$GOROOT/bin$GOPATH/bin' >> ~/.bashrc
+ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
 source ~/.bashrc
 source /etc/profile
+"
 sudo su -c "
 ldconfig
 "
+sudo su vagrant -c "
 go version
 go env
-sudo su -c "
-yum install -y git
 "
-go get github.com/gin-gonic/gin
+#go get github.com/gin-gonic/gin
