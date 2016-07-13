@@ -45,4 +45,5 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", path: "install_golang.sh"
   config.vm.provision "shell", path: "install_nodejs.sh"
+  config.vm.provision "shell", path: "install_utilities.sh"
 end
