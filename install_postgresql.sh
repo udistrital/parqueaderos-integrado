@@ -4,6 +4,7 @@ yum localinstall -y http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-cent
 yum install -y postgresql94-server
 /usr/pgsql-9.4/bin/postgresql94-setup initdb
 systemctl enable postgresql-9.4
+sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
 systemctl start postgresql-9.4.service
 "
 echo "Se ha terminado la instalación de Postgresql"
