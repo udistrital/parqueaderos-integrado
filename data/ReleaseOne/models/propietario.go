@@ -24,6 +24,7 @@ func (t *Propietario) TableName() string {
 
 func init() {
 	orm.RegisterModel(new(Propietario))
+
 }
 
 // AddPropietario insert a new Propietario into database and returns

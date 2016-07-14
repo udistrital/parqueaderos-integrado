@@ -11,6 +11,7 @@ import (
 
 func init() {
 	orm.RegisterDataBase("default", "mysql", "db_user:123Abcd#@tcp(127.0.0.1:3306)/ReleaseOne")
+	orm.RunCommand()
 }
 
 func main() {
@@ -20,4 +21,3 @@ func main() {
 	}
 	beego.Run()
 }
-
