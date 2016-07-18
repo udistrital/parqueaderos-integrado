@@ -5,6 +5,8 @@ yum install -y postgresql94-server
 /usr/pgsql-9.4/bin/postgresql94-setup initdb
 systemctl enable postgresql-9.4
 sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
+echo "host    all             all             0.0.0.0/0               md5" >> /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /var/lib/pgsql/9.4/data/postgresql.conf
 systemctl start postgresql-9.4.service
 "
 echo "Se ha terminado la instalación de Postgresql"
