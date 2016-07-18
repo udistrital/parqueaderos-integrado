@@ -2,16 +2,16 @@
 sudo su -c "
 yum install -y golang
 echo 'export GOROOT=/usr/lib/golang
- export GOBIN=$GOROOT/bin
- export GOPATH=/root
- export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' > /etc/profile.d/go.sh
+export GOBIN=$GOROOT/bin
+export GOPATH=/root
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' > /etc/profile.d/go.sh
 "
 sudo su vagrant -c "
 echo '# Golang Path
- export GOROOT=/usr/lib/golang
- export GOBIN=$GOROOT/bin
- export GOPATH=/home/$USER
- export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
+export GOROOT=/usr/lib/golang
+export GOBIN=$GOROOT/bin
+export GOPATH=/home/vagrant
+export PATH=\$PATH:\$GOROOT/bin:\$GOPATH/bin' >> ~/.bashrc
 source ~/.bashrc
 source /etc/profile
 "
