@@ -1,0 +1,4 @@
+# go get github.com/beego/bee
+cd ~/src
+bee api circe -driver=postgres -conn=postgres://uparqueaderos:abc123@127.0.0.1:5432/parqueaderos?sslmode=disable
+

@@ -9,14 +9,14 @@ Vagrant.configure(2) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"
 
-  config.vm.synced_folder "data", "/home/vagrant/data"
+  config.vm.synced_folder "src", "/home/vagrant/src"
 
   # config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
@@ -43,6 +43,8 @@ Vagrant.configure(2) do |config|
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
 
+  config.vm.provision "shell", path: "install_utilities.sh"
   config.vm.provision "shell", path: "install_golang.sh"
   config.vm.provision "shell", path: "install_nodejs.sh"
+  config.vm.provision "shell", path: "install_postgresql.sh"
 end
