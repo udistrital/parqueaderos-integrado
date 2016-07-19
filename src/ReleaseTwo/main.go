@@ -11,6 +11,7 @@ import (
 
 func init() {
 	orm.RegisterDataBase("default", "postgres", "postgres://olzambranop:123Abcd@127.0.0.1:5432/releasetwo?sslmode=disable")
+	orm.RunCommand()
 }
 
 func main() {
