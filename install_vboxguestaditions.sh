@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo su -c "
 yum –exclude=kernel* update -y
 yum install -y gcc
