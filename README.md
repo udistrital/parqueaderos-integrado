@@ -12,3 +12,8 @@ $ vagrant reload
 $ vagrant ssh
 ```
 
+¿MÁS FÁCIL?
+-----------
+```bash
+$ ./install.sh
+```

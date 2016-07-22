@@ -1,11 +1,11 @@
 #http_proxy = ENV["http_proxy"] || ""
 
-pass_variables = ["HTTP_PROXY", "http_proxy", "HTTPS_PROXY", "https_proxy", "NO_PROXY", "no_proxy"]
+pass_variables = ["HTTP_PROXY", "http_proxy", "FTP_PROXY", "ftp_proxy", "HTTPS_PROXY", "https_proxy", "NO_PROXY", "no_proxy"]
 
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
 
-  config.vm.network "forwarded_port", guest: 8080, host: 8090
+  # config.vm.network "forwarded_port", guest: 8080, host: 8090
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -44,7 +44,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
 
   config.vm.provision "shell", path: "install_utilities.sh"
+  config.vm.provider "virtualbox" do |vb|
+       config.vm.provision "shell", path: "install_vboxguestaditions.sh"
+  end
   config.vm.provision "shell", path: "install_golang.sh"
   config.vm.provision "shell", path: "install_nodejs.sh"
-  config.vm.provision "shell", path: "install_postgresql.sh"
+  config.vm.provision "shell", path: "install_postgresql_postgis.sh"
 end
