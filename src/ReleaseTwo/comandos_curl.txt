@@ -1,0 +1,14 @@
+// para realizar una consulta (GET) a la API:
+curl -X GET http://localhost:8080/v1/propietario/
+curl -X GET http://localhost:8080/v1/propietario/1
+
+// para crear un nuevo registro (POST):
+curl -H "Content-Type: application/json" -X POST -d '{"nombre":"Programador","descripcion":"Personal encargado en el desarrollo de aplicaciones"}' http://localhost:8080/v1/tipo_propietario
+
+// para realizar una eliminacion de un registro (DELETE):
+curl -X DELETE http://localhost:8080/v1/tipo_propietario/4
+
+// para realizar una modificacion de un registro (PUT):
+curl -H "Content-Type: application/json" -X PUT -d '{"nombre":"Desarrollador","descripcion":"Cambio entre programador y desarrollador"}' http://localhost:8080/v1/tipo_propietario/1 
+
+
