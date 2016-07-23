@@ -10,7 +10,7 @@ import (
 )
 
 type Vehiculo struct {
-	Id            int          `orm:"column(id);pk"`
+	Id            int          `orm:"column(id);pk;auto"`
 	IdNfc         int16        `orm:"column(id_nfc)"`
 	Placa         string       `orm:"column(placa)"`
 	IdPropietario *Propietario `orm:"column(id_propietario);rel(fk)"`
@@ -38,6 +38,7 @@ func GetVehiculoById(id int) (v *Vehiculo, err error) {
 	o := orm.NewOrm()
 	v = &Vehiculo{Id: id}
 	if err = o.Read(v); err == nil {
+		v.IdPropietario, _ = GetPropietarioById(v.IdPropietario.Id)
 		return v, nil
 	}
 	return nil, err
@@ -99,6 +100,7 @@ func GetAllVehiculo(query map[string]string, fields []string, sortby []string, o
 	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
+				v.IdPropietario, _ = GetPropietarioById(v.IdPropietario.Id)
 				ml = append(ml, v)
 			}
 		} else {

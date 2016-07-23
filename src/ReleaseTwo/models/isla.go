@@ -11,7 +11,7 @@ import (
 )
 
 type Isla struct {
-	Id          int        `orm:"column(id);pk"`
+	Id          int        `orm:"column(id);pk;auto"`
 	Estado      bool       `orm:"column(estado)"`
 	IdVehiculo  *Vehiculo  `orm:"column(id_vehiculo);rel(fk)"`
 	Geometria   string     `orm:"column(geometria)"`
@@ -42,6 +42,8 @@ func GetIslaById(id int) (v *Isla, err error) {
 	o := orm.NewOrm()
 	v = &Isla{Id: id}
 	if err = o.Read(v); err == nil {
+		v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
+		v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
 		return v, nil
 	}
 	return nil, err
@@ -103,6 +105,8 @@ func GetAllIsla(query map[string]string, fields []string, sortby []string, order
 	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
+				v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
+				v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
 				ml = append(ml, v)
 			}
 		} else {

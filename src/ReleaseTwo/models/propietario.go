@@ -10,7 +10,7 @@ import (
 )
 
 type Propietario struct {
-	Id                int              `orm:"column(id);pk"`
+	Id                int              `orm:"column(id);pk;auto"`
 	Documento         string           `orm:"column(documento)"`
 	PrimerNombre      string           `orm:"column(primer_nombre);null"`
 	SegundoNombre     string           `orm:"column(segundo_nombre);null"`
@@ -41,6 +41,7 @@ func GetPropietarioById(id int) (v *Propietario, err error) {
 	o := orm.NewOrm()
 	v = &Propietario{Id: id}
 	if err = o.Read(v); err == nil {
+		v.IdTipoPropietario, _ = GetTipoPropietarioById(v.IdTipoPropietario.Id)
 		return v, nil
 	}
 	return nil, err
@@ -102,6 +103,7 @@ func GetAllPropietario(query map[string]string, fields []string, sortby []string
 	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
+				v.IdTipoPropietario, _ = GetTipoPropietarioById(v.IdTipoPropietario.Id)
 				ml = append(ml, v)
 			}
 		} else {

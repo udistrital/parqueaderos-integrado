@@ -10,7 +10,7 @@ import (
 )
 
 type GrupoIsla struct {
-	Id           int    `orm:"column(id);pk"`
+	Id           int    `orm:"column(id);pk;auto"`
 	Geometria    string `orm:"column(geometria)"`
 	IdGrupoPadre int    `orm:"column(id_grupo_padre);null"`
 }
