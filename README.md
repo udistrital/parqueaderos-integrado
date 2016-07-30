@@ -15,5 +15,5 @@ $ vagrant ssh
 ¿MÁS FÁCIL?
 -----------
 ```bash
-$ ./install.sh
+$ ./install
 ```
