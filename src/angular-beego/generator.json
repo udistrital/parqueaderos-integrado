@@ -1,0 +1,8 @@
+{
+	"baseName": "glud",
+	"goBin": "/usr/lib/golang/bin",
+	"baseDir": "./",
+	"entities": [],
+	"resources": [],
+	"appPort": 8080
+}
