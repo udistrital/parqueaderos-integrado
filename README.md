@@ -17,3 +17,8 @@ $ vagrant ssh
 ```bash
 $ ./install
 ```
+
+MODELO
+------
+
+![Clan](https://raw.githubusercontent.com/udistrital/parqueaderos/master/images/modelo.png "ClanSIE")
