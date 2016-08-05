@@ -25,6 +25,7 @@ done
 
 rm -rf /home/vagrant/src/$repobee
 go get $repobee
+echo error normal de bee por permisos
 
 cd /home/vagrant/src/github.com/beego/bee/
 for i in "${archivos[@]}"; do
