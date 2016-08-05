@@ -45,6 +45,7 @@ Vagrant.configure(2) do |config|
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
 
+  config.vm.provision "shell", path: "set_permisive.sh"
   config.vm.provision "shell", path: "install_utilities.sh"
   config.vm.provider "virtualbox" do |vb|
        config.vm.provision "shell", path: "install_vboxguestaditions.sh"
