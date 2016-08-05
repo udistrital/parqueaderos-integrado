@@ -5,8 +5,10 @@ pass_variables = ["HTTP_PROXY", "http_proxy", "FTP_PROXY", "ftp_proxy", "HTTPS_P
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
 
-  # config.vm.network "forwarded_port", guest: 8080, host: 8090
-
+  config.vm.network "forwarded_port", guest: 3000, host: 13000
+  config.vm.network "forwarded_port", guest: 8000, host: 18000
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+  
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.10"
