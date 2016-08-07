@@ -20,6 +20,7 @@
   "author": "Jorge Ulises Useche Cuellar <naturalmenterjorge@gmail.com>, Omar Leonardo Zambrano Pulgarín <leonardoz.bta@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-webserver": "^0.9.1"
   }
 }

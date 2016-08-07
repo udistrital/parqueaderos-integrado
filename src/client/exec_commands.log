@@ -6,3 +6,6 @@ circe
 
 EOF
 cat install | yo angular-crud-custom-module
+sudo npm install --global gulp-cli
+npm install --save-dev gulp
+npm install --save-dev gulp-webserver
