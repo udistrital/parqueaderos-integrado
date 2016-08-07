@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo npm install -g generator-angular-crud-custom-module
+mkdir client; cd $_
+cat << 'EOF' >> install
+circe
+
+EOF
+cat install | yo angular-crud-custom-module
