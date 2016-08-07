@@ -21,4 +21,4 @@ $ ./install
 MODELO
 ------
 
-![Clan](https://raw.githubusercontent.com/udistrital/parqueaderos/master/images/modelo.png "ClanSIE")
+![Modelo Circe](https://raw.githubusercontent.com/udistrital/parqueaderos/master/images/modelo.png "Imagen Modelo Circe")
