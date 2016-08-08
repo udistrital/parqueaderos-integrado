@@ -1,0 +1,5 @@
+# go get github.com/beego/bee
+cd ~/src
+bee api circe -driver=postgres -conn=postgres://usercirce:oascirce@127.0.0.1:5432/circe?sslmode=disable
+bee generate docs
+bee run
