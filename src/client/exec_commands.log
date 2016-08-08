@@ -1,11 +1,32 @@
 #!/bin/bash
 sudo npm install -g generator-angular-crud-custom-module
 mkdir client; cd $_
-cat << 'EOF' >> install
-circe
 
+archivo=proyecto
+cat << 'EOF' >> $archivo
+circe
 EOF
-cat install | yo angular-crud-custom-module
+cat $archivo | yo angular-crud-custom-module
 sudo npm install --global gulp-cli
 npm install --save-dev gulp
 npm install --save-dev gulp-webserver
+
+archivo=tipo_propietario
+cat << 'EOF' >> $archivo
+tipo_propietario
+app/modules
+Y
+input
+Id:id:true
+text
+Y
+input
+text
+Y
+input
+Descripción:descripcion:false
+text
+n
+a
+EOF
+cat $archivo | yo angular-crud-custom-module:module
