@@ -18,13 +18,69 @@ app/modules
 Y
 input
 Id:id:true
-text
+number
 Y
 input
+Tipo:tipo:true
 text
 Y
 input
 Descripción:descripcion:false
+text
+n
+a
+EOF
+cat $archivo | yo angular-crud-custom-module:module
+
+archivo=propietario
+cat << 'EOF' >> $archivo
+propietario
+app/modules
+Y
+input
+Documento:documento:true
+text
+Y
+input
+Primer Nombre:primer_nombre:true
+text
+Y
+input
+Otros Nombres:otros_nombres:false
+text
+Y
+input
+Primer Apellido:primer_apellido:true
+text
+Y
+input
+Segundo Apellido:segundo_apellido:false
+text
+Y
+select
+Tipo Propietario:id_tipo_propietario:true
+Funcionario:1,Contratista:2,Docente Planta:3,Docente Cátedra:4,Estudiante:5
+n
+a
+EOF
+cat $archivo | yo angular-crud-custom-module:module
+
+
+archivo=vehiculo
+cat << 'EOF' >> $archivo
+vehiculo
+app/modules
+Y
+input
+Placa:placa:true
+text
+Y
+input
+ID NFC:id_nfc:true
+text
+Y
+input
+Propietario:id_propietario:true
 text
 n
 a
