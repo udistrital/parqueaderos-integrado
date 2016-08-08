@@ -1,0 +1,28 @@
+<div class="modal fade " id="updateTipo_propietario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog mediumModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title kpiCustomHeading">Actualizar Tipo Propietario</h4>
+            </div>
+            <form name="updateTipo_propietarioForm">
+                <div class="modal-body">
+                    <div class='row'>
+                        <div class='col-xs-12'>
+                            <formly-form model='currentTipo_propietario' fields='tipo_propietarioFields'></formly-form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary" ng-click="updateTipo_propietario()"
+                            ng-disabled="updateTipo_propietarioForm.$invalid">Guardar
+                    </button>
+                    <button class="btn" data-ng-click="emptyTipo_propietario()" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
