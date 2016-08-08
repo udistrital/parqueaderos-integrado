@@ -1,0 +1,139 @@
+<div>
+
+    <h2>Islas</h2>
+
+    <script type = "text/ng-template" id="Isla-save.html">
+        <form name="form" role="form" novalidate
+              class="ng-scope ng-invalid ng-invalid-required ng-dirty"
+              ng-submit="ok()">
+
+            <div class="modal-header">
+                <button type="button" class="close"
+                        ng-click="cancel()">&times;</button>
+                <h4 class="modal-title" id="myIslaLabel">Create or edit a Isla</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="id"
+                           ng-model="Isla.Id" readonly>
+                </div>
+
+                
+                <div class="form-group">
+                    <label>Ocupado:</label>
+                    
+                    <input type="checkbox" name="Ocupado" 
+                           ng-model="Isla.Ocupado" ng-required="false"/>
+                </div>
+                
+                <div class="form-group">
+                    <label>IdVehiculo:</label>
+                    
+                    <input type="number" class="form-control" name="IdVehiculo"
+                           ng-model="Isla.IdVehiculo.Id" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.IdVehiculo.$error.min">Must be greater than or equal to .</span>
+                    <span class="error" ng-show="form.IdVehiculo.$error.max">Must be less than or equal to .</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Geometria:</label>
+                    
+                    <input type="text" class="form-control" name="Geometria"
+                           ng-model="Isla.Geometria" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.Geometria.$error.minlength">Must be at least  characters.</span>
+                    <span class="error" ng-show="form.Geometria.$error.maxlength">Must be at most  characters.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>HoraEntrada:</label>
+                   
+                    <input type="datetime" class="form-control" name="HoraEntrada"
+                           ng-model="Isla.HoraEntrada" ng-required="false"/>
+                </div>
+                
+                <div class="form-group">
+                    <label>HoraSalida:</label>
+                    
+                    <input type="datetime" class="form-control" name="HoraSalida"                                 ng-model="Isla.HoraSalida" ng-required="false"/>
+                </div>
+                
+		<div class="form-group">
+                    <label>IdGrupoIsla:</label>
+                    
+                    <input type="number" class="form-control" name="IdGrupoIsla"
+                           ng-model="Isla.IdGrupoIsla.Id" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.IdGrupoIsla.$error.min">Must be greater than or equal to .</span>
+                    <span class="error" ng-show="form.IdGrupoIsla.$error.max">Must be less than or equal to .</span>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
+                </button>
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </script>
+
+    <button class="btn btn-primary btn-lg" ng-click="create()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new Isla
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>Ocupado</th>
+                
+                <th>IdVehiculo</th>
+                
+                <th>Geometria</th>
+                
+                <th>HoraEntrada</th>
+                
+                <th>HoraSalida</th>
+              
+		<th>IdGrupoIsla</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="Isla in Islas">
+                <td>{{Isla.Id}}</td>
+                
+                <td>{{Isla.Ocupado }}</td>
+                
+                <td>{{Isla.IdVehiculo.Id }}</td>
+                
+                <td>{{Isla.Geometria }}</td>
+                
+		<td>{{Isla.HoraEntrada.slice(0,19) | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+                
+                <td>{{Isla.HoraSalida.slice(0,19)  | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+                
+                <td>{{Isla.IdGrupoIsla.Id }}</td>
+
+                <td>
+			
+                    <button type="submit"
+                            ng-click="update(Isla.Id)"
+                            class="btn">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(Isla.Id)"
+                            class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
