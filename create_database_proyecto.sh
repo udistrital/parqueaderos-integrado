@@ -1,10 +1,14 @@
 #!/bin/bash
-file=circe.sql
+sql1=usercirce.sql
+sql2=circe.sql
 postgreshome=/var/lib/pgsql
 
-scriptsql=$postgreshome/$file
-sudo chown postgres:postgres $scriptsql
+scriptsql1=$postgreshome/$file
+scriptsql2=$postgreshome/$file
+sudo chown postgres:postgres $scriptsql1
+sudo chown postgres:postgres $scriptsql2
 sudo su postgres -c "
-psql -f $scriptsql
+psql -f $scriptsql1
+psql -f $scriptsql2
 "
 

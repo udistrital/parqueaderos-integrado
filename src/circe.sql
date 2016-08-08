@@ -12,7 +12,7 @@
 -- CREATE DATABASE new_database
 -- ;
 -- -- ddl-end --
--- 
+--
 
 -- object: public.propietario | type: TABLE --
 -- DROP TABLE IF EXISTS public.propietario CASCADE;
@@ -41,7 +41,7 @@ COMMENT ON COLUMN public.propietario.segundo_apellido IS 'Segundo Apellido del p
 -- ddl-end --
 COMMENT ON COLUMN public.propietario.id_tipo_propietario IS 'El propietario puede ser estudiante, funcionario, docente';
 -- ddl-end --
-ALTER TABLE public.propietario OWNER TO postgres;
+ALTER TABLE public.propietario OWNER TO usercirce;
 -- ddl-end --
 
 -- object: public.vehiculo | type: TABLE --
@@ -62,7 +62,7 @@ COMMENT ON COLUMN public.vehiculo.id_nfc IS 'Codigo que identifica al tag NFC';
 -- ddl-end --
 COMMENT ON COLUMN public.vehiculo.id_propietario IS 'El documento de identidad del propietario';
 -- ddl-end --
-ALTER TABLE public.vehiculo OWNER TO postgres;
+ALTER TABLE public.vehiculo OWNER TO usercirce;
 -- ddl-end --
 
 -- object: public.tipo_propietario | type: TABLE --
@@ -78,7 +78,7 @@ CREATE TABLE public.tipo_propietario(
 -- ddl-end --
 COMMENT ON TABLE public.tipo_propietario IS 'El propietario puede ser de muchos tipos que le provee de caractaristicas especiales, estos tipos inicialmente estudiante, docente, funcionario';
 -- ddl-end --
-ALTER TABLE public.tipo_propietario OWNER TO postgres;
+ALTER TABLE public.tipo_propietario OWNER TO usercirce;
 -- ddl-end --
 
 -- object: public.isla | type: TABLE --
@@ -111,7 +111,7 @@ COMMENT ON COLUMN public.isla.hora_salida IS 'Hora en que sale el vehiculo';
 -- ddl-end --
 COMMENT ON COLUMN public.isla.id_grupo_isla IS 'Identificador del grupo isla';
 -- ddl-end --
-ALTER TABLE public.isla OWNER TO postgres;
+ALTER TABLE public.isla OWNER TO usercirce;
 -- ddl-end --
 
 -- object: public.grupo_isla | type: TABLE --
@@ -132,7 +132,7 @@ COMMENT ON COLUMN public.grupo_isla.geometria IS 'Guarda el polygono que lo cont
 -- ddl-end --
 COMMENT ON COLUMN public.grupo_isla.id_grupo_padre IS 'Se podria decir que el grupo isla tiene un padre, asi como sotano1 tiene el padre parquedero ingenieria';
 -- ddl-end --
-ALTER TABLE public.grupo_isla OWNER TO postgres;
+ALTER TABLE public.grupo_isla OWNER TO usercirce;
 -- ddl-end --
 
 -- object: propietario_tipo_propietario_id_fkey | type: CONSTRAINT --
@@ -162,5 +162,3 @@ ALTER TABLE public.isla ADD CONSTRAINT isla_grupo_isla_id_grupo_isla_fkey FOREIG
 REFERENCES public.grupo_isla (id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
-
-
