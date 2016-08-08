@@ -1,0 +1,189 @@
+{
+	"baseName": "myapp",
+	"entities": [
+		{
+			"name": "Tipo_Propietario",
+			"attrs": [
+				{
+					"attrName": "Tipo",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "20",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "Descripcion",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				}
+			]
+		},
+		{
+			"name": "Propietario",
+			"attrs": [
+				{
+					"attrName": "Documento",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "20",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "Primer_nombre",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "Otros_nombres",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "Primer_apellido",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "Segundo_apellido",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "Id_tipo_propietario",
+					"attrType": "Integer",
+					"attrImplType": "int64",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "Vehiculo",
+			"attrs": [
+				{
+					"attrName": "placa",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "6",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "IdNfc",
+					"attrType": "Integer",
+					"attrImplType": "int64",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "IdPropietario",
+					"attrType": "Integer",
+					"attrImplType": "int64",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "Grupo_Isla",
+			"attrs": [
+				{
+					"attrName": "Geometria",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "IdGrupoPadre",
+					"attrType": "Integer",
+					"attrImplType": "int64",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": false
+				}
+			]
+		},
+		{
+			"name": "Isla",
+			"attrs": [
+				{
+					"attrName": "Ocupado",
+					"attrType": "Boolean",
+					"attrImplType": "bool",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "IdVehiculo",
+					"attrType": "Integer",
+					"attrImplType": "int64",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "Geometria",
+					"attrType": "String",
+					"attrImplType": "string",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "HoraEntrada",
+					"attrType": "Date",
+					"attrImplType": "JDate",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "HoraSalida",
+					"attrType": "Date",
+					"attrImplType": "JDate",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": false
+				}
+			]
+		}
+	],
+	"resources": []
+}
