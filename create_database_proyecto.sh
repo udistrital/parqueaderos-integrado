@@ -9,6 +9,6 @@ sudo chown postgres:postgres $scriptsql1
 sudo chown postgres:postgres $scriptsql2
 sudo su postgres -c "
 psql -f $scriptsql1
-psql -f $scriptsql2
+psql -f $scriptsql2 -d circe
 "
 
