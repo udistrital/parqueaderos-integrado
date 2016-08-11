@@ -1,7 +1,6 @@
 <div>
 
     <h2>Propietarios</h2>
-
     <script type = "text/ng-template" id="Propietario-save.html">
         <form name="form" role="form" novalidate
               class="ng-scope ng-invalid ng-invalid-required ng-dirty"
@@ -72,15 +71,11 @@
                 
                 <div class="form-group">
                     <label>Id_tipo_propietario:</label>
-                    
-                    <input type="number" class="form-control" name="Id_tipo_propietario"
-                           ng-model="Propietario.IdTipoPropietario.Id" ng-required="true"
-                           />
-                    <span class="error" ng-show="form.Id_tipo_propietario.$error.min">Must be greater than or equal to .</span>
-                    <span class="error" ng-show="form.Id_tipo_propietario.$error.max">Must be less than or equal to .</span>
-                </div>
-                
 
+                    <select class="form-control" name="Id_tipo_propietario"
+			ng-model="Propietario.IdTipoPropietario.Id" ng-options="x for x in PropietarioIds" 
+			ng-required="true"></select>
+                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
