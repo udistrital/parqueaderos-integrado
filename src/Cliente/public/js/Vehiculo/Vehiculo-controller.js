@@ -28,7 +28,7 @@ angular.module('myapp')
 		"Placa":		$scope.Vehiculo.Placa,
 		"IdNfc":		$scope.Vehiculo.IdNfc,
 		"IdPropietario":	{
-			"Id":			$scope.Vehiculo.IdPropietario.Id,
+			"Id":			$scope.Vehiculo.IdPropietario.Id.Id,
 			"Documento":		"",
 			"PrimerNombre":		"",
 			"OtrosNombres":		"",
@@ -87,12 +87,21 @@ angular.module('myapp')
         });
       };
     }])
-  .controller('VehiculoSaveController', ['$scope', '$modalInstance', 'Vehiculo',
-    function ($scope, $modalInstance, Vehiculo) {
+  .controller('VehiculoSaveController', ['$scope', '$http', '$modalInstance', 'Vehiculo',
+    function ($scope, $http, $modalInstance, Vehiculo) {
       $scope.Vehiculo = Vehiculo;
-
+	var f = [{}];
+	$http.get("/v1/propietario")
+		.success(function(data){
+			data.forEach(function(entry, index){
+				f[index] = {Id: entry.Id, Nombre: entry.PrimerNombre+' '+entry.PrimerApellido};
+			});
+			console.log(f);
+			$scope.VehiculosIds = f;
+		})
+		.error(function(err){
+		});
       
-
       $scope.ok = function () {
         $modalInstance.close($scope.Vehiculo);
       };
