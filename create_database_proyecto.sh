@@ -1,6 +1,6 @@
 #!/bin/bash
 sql1=usercirce.sql
-sql2=circe.sql
+sql2=script_tables.sql
 postgreshome=/var/lib/pgsql
 
 scriptsql1=$postgreshome/$file
