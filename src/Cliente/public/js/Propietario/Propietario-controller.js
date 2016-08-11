@@ -5,8 +5,7 @@ angular.module('myapp')
     function ($scope, $modal, resolvedPropietario, Propietario) {
 
       $scope.Propietarios = resolvedPropietario;
-
-      $scope.create = function () {
+        $scope.create = function () {
         $scope.clear();
         $scope.open();
       };
@@ -76,8 +75,9 @@ angular.module('myapp')
           controller: 'PropietarioSaveController',
           resolve: {
             Propietario: function () {
-              return $scope.Propietario;
+	      return $scope.Propietario;
             }
+	             
           }
         });
 
@@ -87,11 +87,20 @@ angular.module('myapp')
         });
       };
     }])
-  .controller('PropietarioSaveController', ['$scope', '$modalInstance', 'Propietario',
-    function ($scope, $modalInstance, Propietario) {
+  .controller('PropietarioSaveController', ['$scope', '$http', '$modalInstance', 'Propietario',
+    function ($scope, $http, $modalInstance, Propietario) {
       $scope.Propietario = Propietario;
-
-      
+	 var f = [];
+      	$http.get("/v1/tipo_propietario")
+	     	.success(function(data){
+		       data.forEach(function(entry, index){
+				f[index] = entry.Id; 
+      			});
+      			console.log(f);
+			$scope.PropietarioIds = f;
+	      	})
+      	      .error(function(err){
+	      });
 
       $scope.ok = function () {
         $modalInstance.close($scope.Propietario);
