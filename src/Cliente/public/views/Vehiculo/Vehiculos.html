@@ -42,12 +42,11 @@
                 
                 <div class="form-group">
                     <label>IdPropietario:</label>
+
+		    <select class="form-control" name="IdPropietario"
+		    ng-model="Vehiculo.IdPropietario.Id" ng-options="item as item.Nombre for item in VehiculosIds track by item.Id"
+		    ng-required="true"></select>
                     
-                    <input type="number" class="form-control" name="IdPropietario"
-                           ng-model="Vehiculo.IdPropietario.Id" ng-required="true"
-                           />
-                    <span class="error" ng-show="form.IdPropietario.$error.min">Must be greater than or equal to .</span>
-                    <span class="error" ng-show="form.IdPropietario.$error.max">Must be less than or equal to .</span>
                 </div>
                 
 
