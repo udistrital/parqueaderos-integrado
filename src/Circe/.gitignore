@@ -1,2 +1,5 @@
 #No binarios
 Circe
+node_modules
+npm-debug.log
+lastupdate.tmp
