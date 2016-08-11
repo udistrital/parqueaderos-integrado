@@ -1,2 +1,7 @@
-vagrant up
+#!/bin/bash
+if [ "$1" == 'r' ]; then
+ vagrant reload
+else
+ vagrant up
+fi
 vagrant ssh
