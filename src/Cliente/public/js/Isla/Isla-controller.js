@@ -102,10 +102,30 @@ angular.module('myapp')
         });
       };
     }])
-  .controller('IslaSaveController', ['$scope', '$modalInstance', 'Isla',
-    function ($scope, $modalInstance, Isla) {
+  .controller('IslaSaveController', ['$scope', '$http', '$modalInstance', 'Isla',
+    function ($scope, $http, $modalInstance, Isla) {
       $scope.Isla = Isla;
-
+	var f = [];
+	$http.get("v1/vehiculo")
+		.success(function(data){
+			data.forEach(function(entry, index){
+				f[index] = entry.Id;
+			});
+			console.log(f);
+		})
+		.error(function(err){
+		});
+	var f1 =[];
+	$http.get("v1/grupo_isla")
+		.success(function(data){
+			data.forEach(function(entry, index){
+				f1[index] = entry.Id;
+			});
+			console.log(f1);
+		})
+		.error(function(err){
+		});
+	
       $scope.ok = function () {
         $modalInstance.close($scope.Isla);
       };
