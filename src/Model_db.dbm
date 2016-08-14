@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2" last-position="632,81" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.1" last-position="354,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
 <role name="olzambranop"
       inherit="true"
@@ -24,7 +24,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<tablespace name="pg_default"/>
 </database>
 
-<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <extension name="postgis" cur-version="2.2.1">
@@ -53,7 +53,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro del propietario/persona dueña del vehiculo]]></comment>
-	<position x="696" y="258"/>
+	<position x="438" y="237"/>
 	<column name="id" not-null="true" sequence="public.propietario_id_seq">
 		<type name="integer"/>
 	</column>
@@ -101,7 +101,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro de la entidad vehiculo, por ahora automovil]]></comment>
-	<position x="1147" y="216"/>
+	<position x="1094" y="181"/>
 	<column name="id" not-null="true" sequence="public.vehiculo_id_seq">
 		<type name="integer"/>
 	</column>
@@ -134,7 +134,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El propietario puede ser de muchos tipos que le provee de caractaristicas especiales, estos tipos inicialmente estudiante, docente, funcionario]]></comment>
-	<position x="739" y="441"/>
+	<position x="491" y="550"/>
 	<column name="id" not-null="true" sequence="public.tipo_propietario_id_seq">
 		<type name="integer"/>
 	</column>
@@ -164,7 +164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es el espacio en que se pone el vehiculo]]></comment>
-	<position x="1541" y="189"/>
+	<position x="1644" y="147"/>
 	<column name="id" not-null="true" sequence="public.isla_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Autoincremental para islas, ya que por ahora no hay otra forma de identificarlos]]></comment>
@@ -178,7 +178,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment><![CDATA[placa del vehiculo]]></comment>
 	</column>
 	<column name="geometria" not-null="true">
-		<type name="geometry"/>
+		<type name="geometry" spatial-type="POLYGON" variation="0" srid="4326"/>
 		<comment><![CDATA[El poligono que representa a la isla espacialmente]]></comment>
 	</column>
 	<column name="hora_entrada">
@@ -210,13 +210,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es la entidad que representa agrupacion de islas, por ejemplo podria ser Sotano 1, como un grupo de islas, o parqueadero para un grupo de sotanos]]></comment>
-	<position x="1543" y="376"/>
+	<position x="1645" y="428"/>
 	<column name="id" not-null="true" sequence="public.grupo_isla_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador incremental ya que por el momento no hay nada mas que lo caracterice]]></comment>
 	</column>
 	<column name="geometria" not-null="true">
-		<type name="geometry"/>
+		<type name="geometry" spatial-type="POLYGON" variation="0" srid="4326"/>
 		<comment><![CDATA[Guarda el polygono que lo contiene. http://spatialreference.org/ref/epsg/4326/]]></comment>
 	</column>
 	<column name="id_grupo_padre">
