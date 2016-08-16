@@ -3,10 +3,12 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/validation"
 )
 
 type TipoPropietario struct {
@@ -27,7 +29,18 @@ func init() {
 // last inserted Id on success.
 func AddTipoPropietario(m *TipoPropietario) (id int64, err error) {
 	o := orm.NewOrm()
-	id, err = o.Insert(m)
+	valid := validation.Validation{}
+	valid.Required(m.Tipo, "Tipo")
+	valid.MaxSize(m.Tipo, 15, "TipoMax")
+	valid.Alpha(m.Tipo, "TipoAlpha")
+	if valid.HasErrors() {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
+		}
+	} else {
+		log.Println("Porque putas!")
+		id, err = o.Insert(m)
+	}
 	return
 }
 
