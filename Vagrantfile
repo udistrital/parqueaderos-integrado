@@ -44,14 +44,16 @@ Vagrant.configure(2) do |config|
 	echo '#{string_sudoers}' >> /etc/sudoers
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
-
-  config.vm.provision "shell", path: "set_permisive.sh"
-  config.vm.provision "shell", path: "install_utilities.sh"
+  
+  scripts_path="scripts/"
+  config.vm.provision "shell", path: scripts_path+"set_permisive.sh"
+  config.vm.provision "shell", path: scripts_path+"install_utilities.sh"
   config.vm.provider "virtualbox" do |vb|
-       config.vm.provision "shell", path: "install_vboxguestaditions.sh"
+       config.vm.provision "shell", path: scripts_path+"install_vboxguestaditions.sh"
   end
-  config.vm.provision "shell", path: "install_golang.sh"
-  config.vm.provision "shell", path: "install_nodejs.sh"
-  config.vm.provision "shell", path: "install_postgresql_postgis.sh"
-  config.vm.provision "file", source: "src/circe.sql", destination: "/var/lib/pgsql/circe.sql"
+  config.vm.provision "shell", path: scripts_path+"install_golang.sh"
+  config.vm.provision "shell", path: scripts_path+"install_nodejs.sh"
+  config.vm.provision "shell", path: scripts_path+"install_postgresql_postgis.sh"
+  config.vm.provision "file", source: "src/usercirce.sql", destination: "/var/lib/pgsql/usercirce.sql"
+  config.vm.provision "file", source: "src/scripts_tables.sql", destination: "/var/lib/pgsql/scripts_tables.sql"
 end

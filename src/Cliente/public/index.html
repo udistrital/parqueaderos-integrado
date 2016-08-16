@@ -1,56 +1,58 @@
 <!doctype html>
 <html lang="en" ng-app="myapp">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Myapp</title>
+  <title>Hermes</title>
   <link href="lib/bootstrap-css/css/bootstrap.css" rel="stylesheet">
-  <link href="lib/jquery-ui/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+  <link href="lib/jquery-ui/themes/smoothness/jquery-ui.css" rel="stylesheet" />
   <link href="css/app.css" rel="stylesheet">
 </head>
-<body>
- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-   <div class="container">
-     <div class="navbar-header">
-       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </button>
-       <a class="navbar-brand" href="/#/">Myapp</a>
-     </div>
 
-     <!-- Collect the nav links, forms, and other content for toggling -->
-     <div class="collapse navbar-collapse navbar-ex1-collapse">
-       <ul class="nav navbar-nav">
-         
-         <li>
-         <a href="/#/Tipo_propietarios">Tipo_propietarios</a>
-         </li>
-         
-         <li>
-         <a href="/#/Propietarios">Propietarios</a>
-         </li>
-         
-         <li>
-         <a href="/#/Vehiculos">Vehiculos</a>
-         </li>
-         
-         <li>
-         <a href="/#/Grupo_islas">Grupo_islas</a>
-         </li>
-         
-         <li>
-         <a href="/#/Islas">Islas</a>
-         </li>
-         
-       </ul>
-     </div>
-     <!-- /.navbar-collapse -->
-   </div>
-   <!-- /.container -->
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/">Hermes - Parqueaderos</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+
+          <li>
+            <a href="/#/Tipos_propietario">Tipos de Propietario</a>
+          </li>
+
+          <li>
+            <a href="/#/Propietarios">Propietarios</a>
+          </li>
+
+          <li>
+            <a href="/#/Vehiculos">Vehiculos</a>
+          </li>
+
+          <li>
+            <a href="/#/Grupo_islas">Grupos Isla</a>
+          </li>
+
+          <li>
+            <a href="/#/Islas">Islas</a>
+          </li>
+
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
   </nav>
   <div class="container" ng-view></div>
   <script src="lib/jquery/dist/jquery.js"></script>
@@ -64,26 +66,27 @@
 
   <script src="js/app.js"></script>
   <script src="js/home/home-controller.js"></script>
-  
+
   <script src="js/Tipo_Propietario/Tipo_Propietario-controller.js"></script>
   <script src="js/Tipo_Propietario/Tipo_Propietario-router.js"></script>
   <script src="js/Tipo_Propietario/Tipo_Propietario-service.js"></script>
-  
+
   <script src="js/Propietario/Propietario-controller.js"></script>
   <script src="js/Propietario/Propietario-router.js"></script>
   <script src="js/Propietario/Propietario-service.js"></script>
-  
+
   <script src="js/Vehiculo/Vehiculo-controller.js"></script>
   <script src="js/Vehiculo/Vehiculo-router.js"></script>
   <script src="js/Vehiculo/Vehiculo-service.js"></script>
-  
+
   <script src="js/Grupo_Isla/Grupo_Isla-controller.js"></script>
   <script src="js/Grupo_Isla/Grupo_Isla-router.js"></script>
   <script src="js/Grupo_Isla/Grupo_Isla-service.js"></script>
-  
+
   <script src="js/Isla/Isla-controller.js"></script>
   <script src="js/Isla/Isla-router.js"></script>
   <script src="js/Isla/Isla-service.js"></script>
-  
+
 </body>
+
 </html>
