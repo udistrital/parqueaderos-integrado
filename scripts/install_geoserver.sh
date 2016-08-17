@@ -14,5 +14,19 @@ sudo cp geoserver-2.9.1 /usr/share/geoserver -R
 echo "export GEOSERVER_HOME=/usr/share/geoserver" >> ~/.profile
 . ~/.profile
 sudo chown -R vagrant /usr/share/geoserver/
-/usr/share/geoserver/bin/startup.sh
+#/usr/share/geoserver/bin/startup.sh &
+tee /usr/lib/systemd/system/geoserver.service << 'EOF'
+[Unit]
+Description=geoserver
+After=network.target
+
+[Service]
+ExecStart=/usr/share/geoserver/bin/startup.sh
+Type=simple
+
+[Install]
+WantedBy=default.target
+EOF
+sudo systemctl enable geoserver
+sudo systemctl start geoserver
 fi
