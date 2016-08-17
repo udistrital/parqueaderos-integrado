@@ -1,4 +1,7 @@
 #!/bin/bash
+if npm --version&>/dev/null; then
+  echo 'NodeJS y NPM ya están instalados. Nada que hacer.'
+else
 sudo su -c "
 curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
 yum install -y gcc-c++ make
@@ -10,3 +13,4 @@ sudo su -c "
 sh install.sh
 "
 npm --version
+fi

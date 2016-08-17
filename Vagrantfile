@@ -41,7 +41,11 @@ Vagrant.configure(2) do |config|
   string_sudoers+="\""
   config.vm.provision "shell", inline: "source ~/.bashrc"
   config.vm.provision "shell", inline: <<-SHELL
-	echo '#{string_sudoers}' >> /etc/sudoers
+    if grep -i proxy /etc/sudoers; then
+      echo 'Archivo SUDORES con variables PROXY ya está configurado. Nada que hacer.'
+    else
+      echo '#{string_sudoers}' >> /etc/sudoers
+    fi
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
   
@@ -54,6 +58,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: scripts_path+"install_golang.sh"
   config.vm.provision "shell", path: scripts_path+"install_nodejs.sh"
   config.vm.provision "shell", path: scripts_path+"install_postgresql_postgis.sh"
-  config.vm.provision "file", source: "src/usercirce.sql", destination: "/var/lib/pgsql/usercirce.sql"
-  config.vm.provision "file", source: "src/script_tables.sql", destination: "/var/lib/pgsql/scripts_tables.sql"
+  config.vm.provision "file", source: "src/usercirce.sql", destination: "usercirce.sql"
+  config.vm.provision "file", source: "src/script_tables.sql", destination: "scripts_tables.sql"
+  config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
+  config.vm.provision "shell", path: scripts_path+"install_geoserver.sh"
+
 end

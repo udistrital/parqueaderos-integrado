@@ -1,4 +1,7 @@
 #!/bin/bash
+if go version&>/dev/null; then
+  echo 'Go ya está instalado. Nada que hacer.'
+else
 sudo su -c "
 yum install -y golang
 echo 'export GOROOT=/usr/lib/golang
@@ -22,4 +25,5 @@ sudo su vagrant -c "
 go version
 go env
 "
+fi
 #go get github.com/gin-gonic/gin

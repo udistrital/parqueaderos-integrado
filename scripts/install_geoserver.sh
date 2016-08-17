@@ -1,8 +1,12 @@
 #!/bin/bash
+if [ -f /usr/share/geoserver/bin/startup.sh ]; then
+  echo 'GeoServer ya está instalado. Nada que hacer.'
+else
 sudo yum install -y java-1.8.0-openjdk
 #sudo yum install -y maven
 sudo yum install -y unzip
-wget http://pilotfiber.dl.sourceforge.net/project/geoserver/GeoServer/2.9.1/geoserver-2.9.1-bin.zip
+echo 'Descargando GeoServer'
+wget http://pilotfiber.dl.sourceforge.net/project/geoserver/GeoServer/2.9.1/geoserver-2.9.1-bin.zip > /dev/null 2>&1
 unzip geoserver-*.zip
 #cd geoserver-2.9.1
 #mvn eclipse:eclipse -P wps
@@ -11,4 +15,4 @@ echo "export GEOSERVER_HOME=/usr/share/geoserver" >> ~/.profile
 . ~/.profile
 sudo chown -R vagrant /usr/share/geoserver/
 /usr/share/geoserver/bin/startup.sh
-
+fi
