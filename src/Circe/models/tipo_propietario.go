@@ -38,7 +38,7 @@ func AddTipoPropietario(m *TipoPropietario) (id int64, err error) {
 			log.Println(err.Key, err.Message)
 		}
 	} else {
-		log.Println("Porque putas!")
+		log.Println("Insert New Register")
 		id, err = o.Insert(m)
 	}
 	return
