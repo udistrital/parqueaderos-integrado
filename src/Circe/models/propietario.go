@@ -3,10 +3,12 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/validation"
 )
 
 type Propietario struct {
@@ -31,8 +33,26 @@ func init() {
 // last inserted Id on success.
 func AddPropietario(m *Propietario) (id int64, err error) {
 	o := orm.NewOrm()
-	m.IdTipoPropietario, _ = GetTipoPropietarioById(m.IdTipoPropietario.Id)
-	id, err = o.Insert(m)
+	valid := validation.Validation{}
+	valid.Required(m.Documento, "Documento")
+	valid.MaxSize(m.Documento, 12, "DocumentoMax")
+	valid.AlphaNumeric(m.Documento, "DocumentoAlphaNum")
+	valid.MaxSize(m.PrimerNombre, 12, "PrimerNombreMax")
+	valid.Alpha(m.PrimerNombre, "PrimerNombreAlpha")
+	valid.MaxSize(m.OtrosNombres, 15, "OtrosNombreMax")
+	valid.Alpha(m.PrimerApellido, "PrimerApellidoAlpha")
+	valid.MaxSize(m.PrimerApellido, 12, "PrimerApellidoMax")
+	valid.Alpha(m.SegundoApellido, "SegundoApellidoAlpha")
+	valid.MaxSize(m.SegundoApellido, 12, "SegundoApellidoMax")
+	if valid.HasErrors() {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
+		}
+	} else {
+		log.Println("Insert New Register")
+		m.IdTipoPropietario, _ = GetTipoPropietarioById(m.IdTipoPropietario.Id)
+		id, err = o.Insert(m)
+	}
 	return
 }
 
