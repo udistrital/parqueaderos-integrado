@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'Ejecutando: install_postgresql_postgis.sh'
+echo 'Ejecutando: create_database_proyecto.sh'
 sql1=usercirce.sql
 sql2=script_tables.sql
 
