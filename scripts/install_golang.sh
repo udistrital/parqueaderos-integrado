@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_golang.sh'
 if go version&>/dev/null; then
   echo 'Go ya está instalado. Nada que hacer.'
 else

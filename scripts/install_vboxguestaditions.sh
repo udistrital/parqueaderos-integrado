@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_vboxguestaditions.sh'
 if lsmod | grep -i vboxguest &> /dev/null; then
  echo 'VirtualBox Guest Additions ya está instalado. Nada que hacer.'
 else

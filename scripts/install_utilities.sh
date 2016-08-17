@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_utilities.sh'
 if which vim&>/dev/null; then
   echo 'Utilities ya están instalados. Nada que hacer.'
 else

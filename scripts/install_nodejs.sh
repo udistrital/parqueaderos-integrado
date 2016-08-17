@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_nodejs.sh'
 if npm --version&>/dev/null; then
   echo 'NodeJS y NPM ya están instalados. Nada que hacer.'
 else
