@@ -15,14 +15,18 @@ echo "export GEOSERVER_HOME=/usr/share/geoserver" >> ~/.profile
 . ~/.profile
 sudo chown -R vagrant /usr/share/geoserver/
 #/usr/share/geoserver/bin/startup.sh &
-tee /usr/lib/systemd/system/geoserver.service << 'EOF'
+sudo tee /usr/lib/systemd/system/geoserver.service << 'EOF'
 [Unit]
 Description=geoserver
 After=network.target
+#After=network.target remote-fs.target nss-lookup.target
 
 [Service]
+Environment=GEOSERVER_HOME=/usr/share/geoserver
 ExecStart=/usr/share/geoserver/bin/startup.sh
 Type=simple
+#ExecStop=/usr/lib/systemd/scripts/apachectl stop
+#RemainAfterExit=yes
 
 [Install]
 WantedBy=default.target
