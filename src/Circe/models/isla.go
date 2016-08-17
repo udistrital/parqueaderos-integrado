@@ -3,11 +3,13 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/validation"
 )
 
 type Isla struct {
@@ -32,9 +34,19 @@ func init() {
 // last inserted Id on success.
 func AddIsla(m *Isla) (id int64, err error) {
 	o := orm.NewOrm()
-	m.IdGrupoIsla, _ = GetGrupoIslaById(m.IdGrupoIsla.Id)
-	m.IdVehiculo, _ = GetVehiculoById(m.IdVehiculo.Id)
-	id, err = o.Insert(m)
+	valid := validation.Validation{}
+	valid.Required(m.Ocupado, "Ocupado")
+	valid.Required(m.Geometria, "Geometria")
+	if valid.HasErrors() {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
+		}
+	} else {
+		log.Println("Insert New Register")
+		m.IdGrupoIsla, _ = GetGrupoIslaById(m.IdGrupoIsla.Id)
+		m.IdVehiculo, _ = GetVehiculoById(m.IdVehiculo.Id)
+		id, err = o.Insert(m)
+	}
 	return
 }
 
