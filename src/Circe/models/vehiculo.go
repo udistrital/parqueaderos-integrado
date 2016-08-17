@@ -3,10 +3,12 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/validation"
 )
 
 type Vehiculo struct {
@@ -28,8 +30,20 @@ func init() {
 // last inserted Id on success.
 func AddVehiculo(m *Vehiculo) (id int64, err error) {
 	o := orm.NewOrm()
-	m.IdPropietario, _ = GetPropietarioById(m.IdPropietario.Id)
-	id, err = o.Insert(m)
+	valid := validation.Validation{}
+	valid.Required(m.Placa, "Placa")
+	valid.MaxSize(m.Placa, 6, "PlacaMax")
+	valid.Required(m.IdNfc, "IdNfc")
+	valid.AlphaNumeric(m.Placa, "PlacaAlphaNum")
+	if valid.HasErrors() {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
+		}
+	} else {
+		log.Println("Insert New Register")
+		m.IdPropietario, _ = GetPropietarioById(m.IdPropietario.Id)
+		id, err = o.Insert(m)
+	}
 	return
 }
 
