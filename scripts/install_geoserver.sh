@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_geoserver.sh'
 if [ -f /usr/share/geoserver/bin/startup.sh ]; then
   echo 'GeoServer ya está instalado. Nada que hacer.'
 else

@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'Ejecutando: install_postgresql_postgis.sh'
 if [ -f /usr/pgsql-9.4/bin/pg_ctl ]; then
   echo 'Postgres ya está instalado. Nada que hacer.'
 else

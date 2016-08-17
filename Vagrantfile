@@ -59,7 +59,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: scripts_path+"install_nodejs.sh"
   config.vm.provision "shell", path: scripts_path+"install_postgresql_postgis.sh"
   config.vm.provision "file", source: "src/usercirce.sql", destination: "usercirce.sql"
-  config.vm.provision "file", source: "src/script_tables.sql", destination: "scripts_tables.sql"
+  config.vm.provision "file", source: "src/script_tables.sql", destination: "script_tables.sql"
   config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
   config.vm.provision "shell", path: scripts_path+"install_geoserver.sh"
 

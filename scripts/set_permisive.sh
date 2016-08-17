@@ -1,3 +1,5 @@
+#!/bin/bash
+echo 'Ejecutando: set_permisive.sh'
 if egrep '^SELINUX=permissive' /etc/selinux/config &>/dev/null; then
   echo 'SELINUX permisivo y FIREWALLD desactivado. Nada que hacer.'
 else
