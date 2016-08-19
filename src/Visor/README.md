@@ -8,5 +8,7 @@
 - Bower: Gestor de Paquetes Web
 - NPM: Gestor de Paquetes de NodeJS, gestiona también bibliotecas JS del lado del Cliente
 
+##Utiliza recomendaciones de estilo estandard:
 
-
+- StandardJS: http://standardjs.com/rules.html
+- JSDoc: http://usejsdoc.org/about-getting-started.html

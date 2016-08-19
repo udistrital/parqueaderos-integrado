@@ -1,0 +1,26 @@
+{
+  "name": "parqueaderos",
+  "version": "0.0.1",
+  "description": "Aplicación de Parqueaderos Universidad Distrital",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "tape 'test/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udistrital/parqueaderos/tree/master/src/Visor"
+  },
+  "keywords": [
+    "automatizacion",
+    "parqueadero",
+    "sistema",
+    "gestion",
+    "geografico"
+  ],
+  "author": "Jorge Ulises Useche Cuellar <naturalmenterjorge@gmail.com>, Omar Leonardo Zambrano Pulgarín <leonardoz.bta@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-webserver": "^0.9.1"
+  }
+}

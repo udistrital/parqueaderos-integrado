@@ -1,2 +1,16 @@
 #!/bin/bash
-gulp
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+case "$1" in
+
+"--help" )
+  echo Ayuda en construcción
+  ;;
+
+*)
+  echo -e ${RED}gulp${NC}
+  gulp
+  ;;
+
+esac
