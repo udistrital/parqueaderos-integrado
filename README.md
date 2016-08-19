@@ -18,6 +18,20 @@ $ vagrant ssh
 $ ./install
 ```
 
+
+INICIAR
+-------
+```bash
+$ ./run
+```
+
+OTRAS OPCIONES
+--------------
+```bash
+$ ./run --help
+```
+
+
 MODELO
 ------
 
