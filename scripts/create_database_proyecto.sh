@@ -6,7 +6,9 @@ sql2=script_tables.sql
 if echo '\connect circe; SELECT * FROM public.grupo_isla;' | sudo psql -U postgres&>/dev/null;then
   echo 'La base de datos ya está creada. Nada que hacer.'
 else
-mv $sql2 /tmp
+
+cp $sql1 /tmp
+cp $sql2 /tmp
 scriptsql1=/tmp/$sql1
 scriptsql2=/tmp/$sql2
 sudo chown postgres:postgres $scriptsql1
