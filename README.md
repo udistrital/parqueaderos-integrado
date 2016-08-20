@@ -1,10 +1,11 @@
 #Parqueaderos
-Es el entorno de desarrollo para el sistema de parqueaderos.
+Es el entorno de desarrollo para el sistema de parqueaderos. Esta se inicia a través de un entorno de Vagrant.
+
+Para iniciar la máquina:
 ```bash
-#$ vagrant init centos/7
-#Para iniciar la máquina
 $ vagrant up
 ```
+
 Se ejecuta la provisión:
 ```bash
 $ vagrant provision
@@ -18,7 +19,6 @@ $ vagrant ssh
 $ ./install
 ```
 
-
 INICIAR
 -------
 ```bash
@@ -31,8 +31,6 @@ OTRAS OPCIONES
 $ ./run --help
 ```
 
-
 MODELO
 ------
-
 ![Modelo Circe](https://raw.githubusercontent.com/udistrital/parqueaderos/master/images/modelo.png "Imagen Modelo Circe")

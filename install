@@ -1,12 +1,19 @@
 #!/bin/bash
-RED='\033[0;31m'
-NC='\033[0m' # No Color
 
-echo -e ${RED}vagrant up${NC}
+function printc {
+  RED='\033[0;31m'
+  NC='\033[0m' # No Color
+  echo -e '>>> '${RED}"$1"${NC}
+}
+
+printc 'vagrant up'
 vagrant up
-echo -e ${RED}vagrant provision${NC}
+
+printc 'vagrant provision'
 vagrant provision
-echo -e ${RED}vagrant reload${NC}
+
+printc 'vagrant reload'
 vagrant reload
-echo -e ${RED}vagrant ssh${NC}
+
+printc 'vagrant ssh'
 vagrant ssh

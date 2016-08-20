@@ -1,6 +1,10 @@
 #!/bin/bash
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+
+function printc {
+  RED='\033[0;31m'
+  NC='\033[0m' # No Color
+  echo -e '>>> '${RED}"$1"${NC}
+}
 
 case "$1" in
 
@@ -9,7 +13,7 @@ case "$1" in
   ;;
 
 *)
-  echo -e ${RED}gulp${NC}
+  printc 'gulp'
   gulp
   ;;
 
