@@ -4,7 +4,7 @@ list=(vim git nmap tree wget)
 install=installed
 for p in ${list[*]}
 do
-  if which vim&>/dev/null
+  if which $p&>/dev/null
   then
     echo "$p ya está instalado."
   else
