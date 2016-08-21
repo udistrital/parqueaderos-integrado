@@ -1,11 +1,20 @@
 #!/bin/bash
 echo 'Ejecutando: install_utilities.sh'
-if which vim&>/dev/null; then
+list=(vim git nmap tree wget)
+install=installed
+for p in ${list[*]}
+do
+  if which vim&>/dev/null
+  then
+    echo "$p ya está instalado."
+  else
+    install=no_installed
+  fi
+done
+
+if [ "$install" = "installed" ]
+then
   echo 'Utilities ya están instalados. Nada que hacer.'
 else
-  sudo yum install -y vim
-  sudo yum install -y git
-  sudo yum install -y nmap
-  sudo yum install -y tree
-  #sudo yum install -y w3m
+  sudo yum install -y ${list[*]}
 fi
