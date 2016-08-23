@@ -9,6 +9,10 @@
   "license": "MIT",
   "homepage": "https://github.com/udistrital/parqueaderos",
   "dependencies": {
-    "ol3": "openlayers3-dist#^3.17.1"
+    "ol3": "openlayers3-dist#^3.17.1",
+    "jquery": "^3.1.0",
+    "sidebar-v2": "^0.3.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3"
   }
 }
