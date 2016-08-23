@@ -9,6 +9,6 @@
   "license": "MIT",
   "homepage": "https://github.com/udistrital/parqueaderos",
   "dependencies": {
-    "openlayers3.5": "^3.17.1"
+    "ol3": "openlayers3-dist#^3.17.1"
   }
 }
