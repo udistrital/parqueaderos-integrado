@@ -1,144 +1,124 @@
 <div>
 
-    <h2>Propietarios</h2>
-    <script type = "text/ng-template" id="Propietario-save.html">
-        <form name="form" role="form" novalidate
-              class="ng-scope ng-invalid ng-invalid-required ng-dirty"
-              ng-submit="ok()">
+  <h2>Propietarios</h2>
+  <script type="text/ng-template" id="Propietario-save.html">
+    <form name="form" role="form" novalidate class="ng-scope ng-invalid ng-invalid-required ng-dirty" ng-submit="ok()">
 
-            <div class="modal-header">
-                <button type="button" class="close"
-                        ng-click="cancel()">&times;</button>
-                <h4 class="modal-title" id="myPropietarioLabel">Crear o editar Propietario</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>ID</label>
-                    <input type="text" class="form-control" name="id"
-                           ng-model="Propietario.Id" readonly>
-                </div>
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myPropietarioLabel">Crear o editar Propietario</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>ID</label>
+          <input type="text" class="form-control" name="id" ng-model="Propietario.Id" readonly>
+        </div>
 
-                
-                <div class="form-group">
-                    <label>Documento:</label>
-                    
-                    <input type="text" class="form-control" name="Documento"
-                           ng-model="Propietario.Documento" ng-required="true"
-                           ng-maxlength=20/>
-                    <span class="error" ng-show="form.Documento.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.Documento.$error.maxlength">Must be at most 20 characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>Primer_nombre:</label>
-                    
-                    <input type="text" class="form-control" name="Primer_nombre"
-                           ng-model="Propietario.PrimerNombre" ng-required="false"
-                           />
-                    <span class="error" ng-show="form.Primer_nombre.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.Primer_nombre.$error.maxlength">Must be at most  characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>Otros_nombres:</label>
-                    
-                    <input type="text" class="form-control" name="Otros_nombres"
-                           ng-model="Propietario.OtrosNombres" ng-required="false"
-                           />
-                    <span class="error" ng-show="form.Otros_nombres.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.Otros_nombres.$error.maxlength">Must be at most  characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>Primer_apellido:</label>
-                    
-                    <input type="text" class="form-control" name="Primer_apellido"
-                           ng-model="Propietario.PrimerApellido" ng-required="false"
-                           />
-                    <span class="error" ng-show="form.Primer_apellido.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.Primer_apellido.$error.maxlength">Must be at most  characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>Segundo_apellido:</label>
-                    
-                    <input type="text" class="form-control" name="Segundo_apellido"
-                           ng-model="Propietario.SegundoApellido" ng-required="false"
-                           />
-                    <span class="error" ng-show="form.Segundo_apellido.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.Segundo_apellido.$error.maxlength">Must be at most  characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>Id_tipo_propietario:</label>
 
-                    <select class="form-control" name="Id_tipo_propietario"
-			ng-model="Propietario.IdTipoPropietario.Id" ng-options="x for x in PropietarioIds" 
-			ng-required="true"></select>
-                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar
-                </button>
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
-    </script>
+        <div class="form-group">
+          <label>Documento:</label>
 
-    <button class="btn btn-primary btn-lg" ng-click="create()">
-        <span class="glyphicon glyphicon-flash"></span> Crear un nuevo Propietario
-    </button>
+          <input type="text" class="form-control" name="Documento" ng-model="Propietario.Documento" ng-required="true" ng-maxlength=20/>
+          <span class="error" ng-show="form.Documento.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.Documento.$error.maxlength">Must be at most 20 characters.</span>
+        </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                
-                <th>Documento</th>
-                
-                <th>Primer_nombre</th>
-                
-                <th>Otros_nombres</th>
-                
-                <th>Primer_apellido</th>
-                
-                <th>Segundo_apellido</th>
-                
-                <th>Id_tipo_propietario</th>
-                
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="Propietario in Propietarios">
-                <td>{{Propietario.Id}}</td>
-                
-                <td>{{Propietario.Documento }}</td>
-                
-                <td>{{Propietario.PrimerNombre }}</td>
-                
-                <td>{{Propietario.OtrosNombres }}</td>
-                
-                <td>{{Propietario.PrimerApellido }}</td>
-                
-                <td>{{Propietario.SegundoApellido }}</td>
-                
-                <td>{{Propietario.IdTipoPropietario.Id }}</td>
-                
-                <td>
-                    <button type="submit"
-                            ng-click="update(Propietario.Id)"
-                            class="btn">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit
-                    </button>
-                    <button type="submit"
-                            ng-click="delete(Propietario.Id)"
-                            class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove-circle"></span> Delete
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="form-group">
+          <label>Primer Nombre:</label>
+
+          <input type="text" class="form-control" name="Primer_nombre" ng-model="Propietario.PrimerNombre" ng-required="false" />
+          <span class="error" ng-show="form.Primer_nombre.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.Primer_nombre.$error.maxlength">Must be at most characters.</span>
+        </div>
+
+        <div class="form-group">
+          <label>Otros Nombres:</label>
+
+          <input type="text" class="form-control" name="Otros_nombres" ng-model="Propietario.OtrosNombres" ng-required="false" />
+          <span class="error" ng-show="form.Otros_nombres.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.Otros_nombres.$error.maxlength">Must be at most characters.</span>
+        </div>
+
+        <div class="form-group">
+          <label>Primer Apellido:</label>
+
+          <input type="text" class="form-control" name="Primer_apellido" ng-model="Propietario.PrimerApellido" ng-required="false" />
+          <span class="error" ng-show="form.Primer_apellido.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.Primer_apellido.$error.maxlength">Must be at most characters.</span>
+        </div>
+
+        <div class="form-group">
+          <label>Segundo Apellido:</label>
+
+          <input type="text" class="form-control" name="Segundo_apellido" ng-model="Propietario.SegundoApellido" ng-required="false" />
+          <span class="error" ng-show="form.Segundo_apellido.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.Segundo_apellido.$error.maxlength">Must be at most characters.</span>
+        </div>
+
+        <div class="form-group">
+          <label>Id Tipo Propietario:</label>
+
+          <select class="form-control" name="Id_tipo_propietario" ng-model="Propietario.IdTipoPropietario.Id" ng-options="x for x in PropietarioIds" ng-required="true"></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar
+        </button>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </script>
+
+  <button class="btn btn-primary btn-lg" ng-click="create()">
+    <span class="glyphicon glyphicon-flash"></span> Crear un nuevo Propietario
+  </button>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+
+          <th>Documento</th>
+
+          <th>Primer Nombre</th>
+
+          <th>Otros Nombres</th>
+
+          <th>Primer Apellido</th>
+
+          <th>Segundo Apellido</th>
+
+          <th>Id Tipo Propietario</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="Propietario in Propietarios">
+          <td>{{Propietario.Id}}</td>
+
+          <td>{{Propietario.Documento }}</td>
+
+          <td>{{Propietario.PrimerNombre }}</td>
+
+          <td>{{Propietario.OtrosNombres }}</td>
+
+          <td>{{Propietario.PrimerApellido }}</td>
+
+          <td>{{Propietario.SegundoApellido }}</td>
+
+          <td>{{Propietario.IdTipoPropietario.Id }}</td>
+
+          <td>
+            <button type="submit" ng-click="update(Propietario.Id)" class="btn">
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+            <button type="submit" ng-click="delete(Propietario.Id)" class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove-circle"></span> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

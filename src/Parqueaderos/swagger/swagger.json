@@ -1,0 +1,1006 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Url http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/grupo_isla/": {
+            "get": {
+                "tags": [
+                    "grupo_isla"
+                ],
+                "description": "get GrupoIsla",
+                "operationId": "GrupoIslaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.GrupoIsla",
+                        "schema": {
+                            "$ref": "#/definitions/GrupoIsla"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "grupo_isla"
+                ],
+                "description": "create GrupoIsla",
+                "operationId": "GrupoIslaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for GrupoIsla content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoIsla"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.GrupoIsla"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/grupo_isla/{id}": {
+            "get": {
+                "tags": [
+                    "grupo_isla"
+                ],
+                "description": "get GrupoIsla by id",
+                "operationId": "GrupoIslaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.GrupoIsla",
+                        "schema": {
+                            "$ref": "#/definitions/GrupoIsla"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "grupo_isla"
+                ],
+                "description": "update the GrupoIsla",
+                "operationId": "GrupoIslaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for GrupoIsla content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoIsla"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.GrupoIsla",
+                        "schema": {
+                            "$ref": "#/definitions/GrupoIsla"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "grupo_isla"
+                ],
+                "description": "delete the GrupoIsla",
+                "operationId": "GrupoIslaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/isla/": {
+            "get": {
+                "tags": [
+                    "isla"
+                ],
+                "description": "get Isla",
+                "operationId": "IslaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Isla",
+                        "schema": {
+                            "$ref": "#/definitions/Isla"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "isla"
+                ],
+                "description": "create Isla",
+                "operationId": "IslaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Isla content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Isla"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.Isla"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/isla/{id}": {
+            "get": {
+                "tags": [
+                    "isla"
+                ],
+                "description": "get Isla by id",
+                "operationId": "IslaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Isla",
+                        "schema": {
+                            "$ref": "#/definitions/Isla"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "isla"
+                ],
+                "description": "update the Isla",
+                "operationId": "IslaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Isla content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Isla"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Isla",
+                        "schema": {
+                            "$ref": "#/definitions/Isla"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "isla"
+                ],
+                "description": "delete the Isla",
+                "operationId": "IslaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/propietario/": {
+            "get": {
+                "tags": [
+                    "propietario"
+                ],
+                "description": "get Propietario",
+                "operationId": "PropietarioController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Propietario",
+                        "schema": {
+                            "$ref": "#/definitions/Propietario"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "propietario"
+                ],
+                "description": "create Propietario",
+                "operationId": "PropietarioController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Propietario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Propietario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.Propietario"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/propietario/{id}": {
+            "get": {
+                "tags": [
+                    "propietario"
+                ],
+                "description": "get Propietario by id",
+                "operationId": "PropietarioController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Propietario",
+                        "schema": {
+                            "$ref": "#/definitions/Propietario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "propietario"
+                ],
+                "description": "update the Propietario",
+                "operationId": "PropietarioController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Propietario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Propietario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Propietario",
+                        "schema": {
+                            "$ref": "#/definitions/Propietario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "propietario"
+                ],
+                "description": "delete the Propietario",
+                "operationId": "PropietarioController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_propietario/": {
+            "get": {
+                "tags": [
+                    "tipo_propietario"
+                ],
+                "description": "get TipoPropietario",
+                "operationId": "TipoPropietarioController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.TipoPropietario",
+                        "schema": {
+                            "$ref": "#/definitions/TipoPropietario"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_propietario"
+                ],
+                "description": "create TipoPropietario",
+                "operationId": "TipoPropietarioController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoPropietario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoPropietario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.TipoPropietario"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_propietario/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_propietario"
+                ],
+                "description": "get TipoPropietario by id",
+                "operationId": "TipoPropietarioController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.TipoPropietario",
+                        "schema": {
+                            "$ref": "#/definitions/TipoPropietario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_propietario"
+                ],
+                "description": "update the TipoPropietario",
+                "operationId": "TipoPropietarioController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoPropietario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoPropietario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.TipoPropietario",
+                        "schema": {
+                            "$ref": "#/definitions/TipoPropietario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_propietario"
+                ],
+                "description": "delete the TipoPropietario",
+                "operationId": "TipoPropietarioController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/vehiculo/": {
+            "get": {
+                "tags": [
+                    "vehiculo"
+                ],
+                "description": "get Vehiculo",
+                "operationId": "VehiculoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Vehiculo",
+                        "schema": {
+                            "$ref": "#/definitions/Vehiculo"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "vehiculo"
+                ],
+                "description": "create Vehiculo",
+                "operationId": "VehiculoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Vehiculo content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Vehiculo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.Vehiculo"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/vehiculo/{id}": {
+            "get": {
+                "tags": [
+                    "vehiculo"
+                ],
+                "description": "get Vehiculo by id",
+                "operationId": "VehiculoController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Vehiculo",
+                        "schema": {
+                            "$ref": "#/definitions/Vehiculo"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "vehiculo"
+                ],
+                "description": "update the Vehiculo",
+                "operationId": "VehiculoController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Vehiculo content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Vehiculo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Vehiculo",
+                        "schema": {
+                            "$ref": "#/definitions/Vehiculo"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vehiculo"
+                ],
+                "description": "delete the Vehiculo",
+                "operationId": "VehiculoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GrupoIsla": {
+            "title": "GrupoIsla",
+            "type": "object",
+            "properties": {
+                "Geometria": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdGrupoPadre": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "Isla": {
+            "title": "Isla",
+            "type": "object",
+            "properties": {
+                "Geometria": {
+                    "type": "string"
+                },
+                "HoraEntrada": {
+                    "$ref": "#/definitions/\u0026{time Time}"
+                },
+                "HoraSalida": {
+                    "$ref": "#/definitions/\u0026{time Time}"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdGrupoIsla": {
+                    "$ref": "#/definitions/GrupoIsla"
+                },
+                "IdVehiculo": {
+                    "$ref": "#/definitions/Vehiculo"
+                },
+                "Ocupado": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Propietario": {
+            "title": "Propietario",
+            "type": "object",
+            "properties": {
+                "Documento": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipoPropietario": {
+                    "$ref": "#/definitions/TipoPropietario"
+                },
+                "OtrosNombres": {
+                    "type": "string"
+                },
+                "PrimerApellido": {
+                    "type": "string"
+                },
+                "PrimerNombre": {
+                    "type": "string"
+                },
+                "SegundoApellido": {
+                    "type": "string"
+                }
+            }
+        },
+        "TipoPropietario": {
+            "title": "TipoPropietario",
+            "type": "object",
+            "properties": {
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Tipo": {
+                    "type": "string"
+                }
+            }
+        },
+        "Vehiculo": {
+            "title": "Vehiculo",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdNfc": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPropietario": {
+                    "$ref": "#/definitions/Propietario"
+                },
+                "Placa": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "tipo_propietario",
+            "description": "oprations for TipoPropietario\n"
+        },
+        {
+            "name": "propietario",
+            "description": "oprations for Propietario\n"
+        },
+        {
+            "name": "vehiculo",
+            "description": "oprations for Vehiculo\n"
+        },
+        {
+            "name": "grupo_isla",
+            "description": "oprations for GrupoIsla\n"
+        },
+        {
+            "name": "isla",
+            "description": "oprations for Isla\n"
+        }
+    ]
+}

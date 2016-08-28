@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"Circe/controllers"
+	"Parqueaderos/controllers"
 
 	"github.com/astaxie/beego"
 )

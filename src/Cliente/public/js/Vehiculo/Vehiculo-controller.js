@@ -2,111 +2,121 @@
 
 angular.module('myapp')
   .controller('VehiculoController', ['$scope', '$modal', 'resolvedVehiculo', 'Vehiculo',
-    function ($scope, $modal, resolvedVehiculo, Vehiculo) {
+    function($scope, $modal, resolvedVehiculo, Vehiculo) {
 
       $scope.Vehiculos = resolvedVehiculo;
 
-      $scope.create = function () {
+      $scope.create = function() {
         $scope.clear();
         $scope.open();
       };
 
-      $scope.update = function (id) {
-        $scope.Vehiculo = Vehiculo.get({id: id});
+      $scope.update = function(id) {
+        $scope.Vehiculo = Vehiculo.get({
+          id: id
+        });
         $scope.open(id);
       };
 
-      $scope.delete = function (id) {
-        Vehiculo.delete({id: id},
-          function () {
+      $scope.delete = function(id) {
+        Vehiculo.delete({
+            id: id
+          },
+          function() {
             $scope.Vehiculos = Vehiculo.query();
           });
       };
 
-      $scope.save = function (id) {
-	var VehiculoSave = {
-		"Placa":		$scope.Vehiculo.Placa,
-		"IdNfc":		$scope.Vehiculo.IdNfc,
-		"IdPropietario":	{
-			"Id":			$scope.Vehiculo.IdPropietario.Id.Id,
-			"Documento":		"",
-			"PrimerNombre":		"",
-			"OtrosNombres":		"",
-			"PrimerApellido":	"",
-			"Segundo Apellido":	"",
-			"IdTipoPropietario":	{
-				"Id":		null,
-				"Tipo":		"",
-				"Descripcion":	""
-			}
-		}
+      $scope.save = function(id) {
+        var VehiculoSave = {
+          "Placa": $scope.Vehiculo.Placa,
+          "IdNfc": $scope.Vehiculo.IdNfc,
+          "IdPropietario": {
+            "Id": $scope.Vehiculo.IdPropietario.Id.Id,
+            "Documento": "",
+            "PrimerNombre": "",
+            "OtrosNombres": "",
+            "PrimerApellido": "",
+            "Segundo Apellido": "",
+            "IdTipoPropietario": {
+              "Id": null,
+              "Tipo": "",
+              "Descripcion": ""
+            }
+          }
 
-	};
+        };
         if (id) {
-          Vehiculo.update({id: id}, VehiculoSave,
-            function () {
+          Vehiculo.update({
+              id: id
+            }, VehiculoSave,
+            function() {
               $scope.Vehiculos = Vehiculo.query();
               $scope.clear();
             });
         } else {
           Vehiculo.save(VehiculoSave,
-            function () {
+            function() {
               $scope.Vehiculos = Vehiculo.query();
               $scope.clear();
             });
         }
       };
 
-      $scope.clear = function () {
+      $scope.clear = function() {
         $scope.Vehiculo = {
-          
+
           "Placa": "",
-          
+
           "IdNfc": "",
-          
+
           "IdPropietario": "",
-          
+
           "id": ""
         };
       };
 
-      $scope.open = function (id) {
+      $scope.open = function(id) {
         var VehiculoSave = $modal.open({
           templateUrl: 'Vehiculo-save.html',
           controller: 'VehiculoSaveController',
           resolve: {
-            Vehiculo: function () {
+            Vehiculo: function() {
               return $scope.Vehiculo;
             }
           }
         });
 
-        VehiculoSave.result.then(function (entity) {
+        VehiculoSave.result.then(function(entity) {
           $scope.Vehiculo = entity;
           $scope.save(id);
         });
       };
-    }])
+    }
+  ])
   .controller('VehiculoSaveController', ['$scope', '$http', '$modalInstance', 'Vehiculo',
-    function ($scope, $http, $modalInstance, Vehiculo) {
+    function($scope, $http, $modalInstance, Vehiculo) {
       $scope.Vehiculo = Vehiculo;
-	var f = [{}];
-	$http.get("/v1/propietario")
-		.success(function(data){
-			data.forEach(function(entry, index){
-				f[index] = {Id: entry.Id, Nombre: entry.PrimerNombre+' '+entry.PrimerApellido};
-			});
-			console.log(f);
-			$scope.VehiculosIds = f;
-		})
-		.error(function(err){
-		});
-      
-      $scope.ok = function () {
+      var f = [{}];
+      $http.get("/v1/propietario")
+        .success(function(data) {
+          data.forEach(function(entry, index) {
+            f[index] = {
+              Id: entry.Id,
+              Nombre: entry.PrimerNombre + ' ' + entry.PrimerApellido
+            };
+          });
+          console.log(f);
+          $scope.VehiculosIds = f;
+        })
+        .error(function(err) {});
+
+      $scope.ok = function() {
         $modalInstance.close($scope.Vehiculo);
       };
 
-      $scope.cancel = function () {
+      $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
-    }]);
+    }
+  ]);

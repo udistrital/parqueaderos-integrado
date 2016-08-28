@@ -1,106 +1,92 @@
 <div>
 
-    <h2>Vehiculos</h2>
+  <h2>Vehículos</h2>
 
-    <script type = "text/ng-template" id="Vehiculo-save.html">
-        <form name="form" role="form" novalidate
-              class="ng-scope ng-invalid ng-invalid-required ng-dirty"
-              ng-submit="ok()">
+  <script type="text/ng-template" id="Vehiculo-save.html">
+    <form name="form" role="form" novalidate class="ng-scope ng-invalid ng-invalid-required ng-dirty" ng-submit="ok()">
 
-            <div class="modal-header">
-                <button type="button" class="close"
-                        ng-click="cancel()">&times;</button>
-                <h4 class="modal-title" id="myVehiculoLabel">Crear o editar Vehiculo</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>ID</label>
-                    <input type="text" class="form-control" name="id"
-                           ng-model="Vehiculo.Id" readonly>
-                </div>
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myVehiculoLabel">Crear o editar Vehículo</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>ID</label>
+          <input type="text" class="form-control" name="id" ng-model="Vehiculo.Id" readonly>
+        </div>
 
-                
-                <div class="form-group">
-                    <label>placa:</label>
-                    
-                    <input type="text" class="form-control" name="placa"
-                           ng-model="Vehiculo.Placa" ng-required="true"
-                           ng-maxlength=6/>
-                    <span class="error" ng-show="form.placa.$error.minlength">Must be at least  characters.</span>
-                    <span class="error" ng-show="form.placa.$error.maxlength">Must be at most 6 characters.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>IdNfc:</label>
-                    
-                    <input type="number" class="form-control" name="IdNfc"
-                           ng-model="Vehiculo.IdNfc" ng-required="true"
-                           />
-                    <span class="error" ng-show="form.IdNfc.$error.min">Must be greater than or equal to .</span>
-                    <span class="error" ng-show="form.IdNfc.$error.max">Must be less than or equal to .</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>IdPropietario:</label>
 
-		    <select class="form-control" name="IdPropietario"
-		    ng-model="Vehiculo.IdPropietario.Id" ng-options="item as item.Nombre for item in VehiculosIds track by item.Id"
-		    ng-required="true"></select>
-                    
-                </div>
-                
+        <div class="form-group">
+          <label>Placa:</label>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar
-                </button>
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
-    </script>
+          <input type="text" class="form-control" name="placa" ng-model="Vehiculo.Placa" ng-required="true" ng-maxlength=6/>
+          <span class="error" ng-show="form.placa.$error.minlength">Must be at least characters.</span>
+          <span class="error" ng-show="form.placa.$error.maxlength">Must be at most 6 characters.</span>
+        </div>
 
-    <button class="btn btn-primary btn-lg" ng-click="create()">
-        <span class="glyphicon glyphicon-flash"></span> Crear un nuevo Vehiculo
-    </button>
+        <div class="form-group">
+          <label>Id NFC:</label>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                
-                <th>placa</th>
-                
-                <th>IdNfc</th>
-                
-                <th>IdPropietario</th>
-                
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="Vehiculo in Vehiculos">
-                <td>{{Vehiculo.Id}}</td>
-                
-                <td>{{Vehiculo.Placa }}</td>
-                
-                <td>{{Vehiculo.IdNfc }}</td>
-                
-                <td>{{Vehiculo.IdPropietario.Id }}</td>
-                
-                <td>
-                    <button type="submit"
-                            ng-click="update(Vehiculo.Id)"
-                            class="btn">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit
-                    </button>
-                    <button type="submit"
-                            ng-click="delete(Vehiculo.Id)"
-                            class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove-circle"></span> Delete
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+          <input type="number" class="form-control" name="IdNfc" ng-model="Vehiculo.IdNfc" ng-required="true" />
+          <span class="error" ng-show="form.IdNfc.$error.min">Must be greater than or equal to .</span>
+          <span class="error" ng-show="form.IdNfc.$error.max">Must be less than or equal to .</span>
+        </div>
+
+        <div class="form-group">
+          <label>Id Propietario:</label>
+
+          <select class="form-control" name="IdPropietario" ng-model="Vehiculo.IdPropietario.Id" ng-options="item as item.Nombre for item in VehiculosIds track by item.Id" ng-required="true"></select>
+
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar
+        </button>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </script>
+
+  <button class="btn btn-primary btn-lg" ng-click="create()">
+    <span class="glyphicon glyphicon-flash"></span> Crear un nuevo Vehículo
+  </button>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+
+          <th>Placa</th>
+
+          <th>Id Nfc</th>
+
+          <th>Id Propietario</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="Vehiculo in Vehiculos">
+          <td>{{Vehiculo.Id}}</td>
+
+          <td>{{Vehiculo.Placa }}</td>
+
+          <td>{{Vehiculo.IdNfc }}</td>
+
+          <td>{{Vehiculo.IdPropietario.Id }}</td>
+
+          <td>
+            <button type="submit" ng-click="update(Vehiculo.Id)" class="btn">
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+            <button type="submit" ng-click="delete(Vehiculo.Id)" class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove-circle"></span> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

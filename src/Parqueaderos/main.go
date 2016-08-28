@@ -1,8 +1,7 @@
 package main
 
 import (
-	_ "Circe/docs"
-	_ "Circe/routers"
+	_ "Parqueaderos/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
@@ -20,4 +19,3 @@ func main() {
 	}
 	beego.Run()
 }
-

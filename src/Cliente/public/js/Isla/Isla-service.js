@@ -1,10 +1,17 @@
 'use strict';
 
 angular.module('myapp')
-  .factory('Isla', ['$resource', function ($resource) {
-    return $resource('v1/isla/:id', {}, {
-      'query': { method: 'GET', isArray: true},
-      'get': { method: 'GET'},
-      'update': { method: 'PUT'}
+  .factory('Isla', ['$resource', "CONFIG", function($resource) {
+    return $resource(CONFIG.WS_URL + '/isla/:id', {}, {
+      'query': {
+        method: 'GET',
+        isArray: true
+      },
+      'get': {
+        method: 'GET'
+      },
+      'update': {
+        method: 'PUT'
+      }
     });
   }]);

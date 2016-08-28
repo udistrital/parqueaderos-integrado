@@ -14,7 +14,7 @@ import (
 type Vehiculo struct {
 	Id            int          `orm:"column(id);pk;auto"`
 	Placa         string       `orm:"column(placa)"`
-	IdNfc         int16        `orm:"column(id_nfc)"`
+	IdNfc         int          `orm:"column(id_nfc)"`
 	IdPropietario *Propietario `orm:"column(id_propietario);rel(fk)"`
 }
 

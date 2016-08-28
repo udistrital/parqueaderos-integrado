@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Circe/models"
+	"Parqueaderos/models"
 	"encoding/json"
 	"errors"
 	"strconv"
@@ -10,12 +10,12 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// oprations for Isla
-type IslaController struct {
+// oprations for TipoPropietario
+type TipoPropietarioController struct {
 	beego.Controller
 }
 
-func (c *IslaController) URLMapping() {
+func (c *TipoPropietarioController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -24,15 +24,15 @@ func (c *IslaController) URLMapping() {
 }
 
 // @Title Post
-// @Description create Isla
-// @Param	body		body 	models.Isla	true		"body for Isla content"
-// @Success 201 {int} models.Isla
+// @Description create TipoPropietario
+// @Param	body		body 	models.TipoPropietario	true		"body for TipoPropietario content"
+// @Success 201 {int} models.TipoPropietario
 // @Failure 403 body is empty
 // @router / [post]
-func (c *IslaController) Post() {
-	var v models.Isla
+func (c *TipoPropietarioController) Post() {
+	var v models.TipoPropietario
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddIsla(&v); err == nil {
+		if _, err := models.AddTipoPropietario(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -45,15 +45,15 @@ func (c *IslaController) Post() {
 }
 
 // @Title Get
-// @Description get Isla by id
+// @Description get TipoPropietario by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Isla
+// @Success 200 {object} models.TipoPropietario
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *IslaController) GetOne() {
+func (c *TipoPropietarioController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetIslaById(id)
+	v, err := models.GetTipoPropietarioById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -63,17 +63,17 @@ func (c *IslaController) GetOne() {
 }
 
 // @Title Get All
-// @Description get Isla
+// @Description get TipoPropietario
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Isla
+// @Success 200 {object} models.TipoPropietario
 // @Failure 403
 // @router / [get]
-func (c *IslaController) GetAll() {
+func (c *TipoPropietarioController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -115,7 +115,7 @@ func (c *IslaController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllIsla(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllTipoPropietario(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -125,18 +125,18 @@ func (c *IslaController) GetAll() {
 }
 
 // @Title Update
-// @Description update the Isla
+// @Description update the TipoPropietario
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Isla	true		"body for Isla content"
-// @Success 200 {object} models.Isla
+// @Param	body		body 	models.TipoPropietario	true		"body for TipoPropietario content"
+// @Success 200 {object} models.TipoPropietario
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *IslaController) Put() {
+func (c *TipoPropietarioController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Isla{Id: id}
+	v := models.TipoPropietario{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateIslaById(&v); err == nil {
+		if err := models.UpdateTipoPropietarioById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -148,15 +148,15 @@ func (c *IslaController) Put() {
 }
 
 // @Title Delete
-// @Description delete the Isla
+// @Description delete the TipoPropietario
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *IslaController) Delete() {
+func (c *TipoPropietarioController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteIsla(id); err == nil {
+	if err := models.DeleteTipoPropietario(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

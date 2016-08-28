@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Circe/models"
+	"Parqueaderos/models"
 	"encoding/json"
 	"errors"
 	"strconv"
@@ -10,12 +10,12 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// oprations for Propietario
-type PropietarioController struct {
+// oprations for Vehiculo
+type VehiculoController struct {
 	beego.Controller
 }
 
-func (c *PropietarioController) URLMapping() {
+func (c *VehiculoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -24,15 +24,15 @@ func (c *PropietarioController) URLMapping() {
 }
 
 // @Title Post
-// @Description create Propietario
-// @Param	body		body 	models.Propietario	true		"body for Propietario content"
-// @Success 201 {int} models.Propietario
+// @Description create Vehiculo
+// @Param	body		body 	models.Vehiculo	true		"body for Vehiculo content"
+// @Success 201 {int} models.Vehiculo
 // @Failure 403 body is empty
 // @router / [post]
-func (c *PropietarioController) Post() {
-	var v models.Propietario
+func (c *VehiculoController) Post() {
+	var v models.Vehiculo
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddPropietario(&v); err == nil {
+		if _, err := models.AddVehiculo(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -45,15 +45,15 @@ func (c *PropietarioController) Post() {
 }
 
 // @Title Get
-// @Description get Propietario by id
+// @Description get Vehiculo by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Propietario
+// @Success 200 {object} models.Vehiculo
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *PropietarioController) GetOne() {
+func (c *VehiculoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetPropietarioById(id)
+	v, err := models.GetVehiculoById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -63,17 +63,17 @@ func (c *PropietarioController) GetOne() {
 }
 
 // @Title Get All
-// @Description get Propietario
+// @Description get Vehiculo
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Propietario
+// @Success 200 {object} models.Vehiculo
 // @Failure 403
 // @router / [get]
-func (c *PropietarioController) GetAll() {
+func (c *VehiculoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -115,7 +115,7 @@ func (c *PropietarioController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllPropietario(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllVehiculo(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -125,18 +125,18 @@ func (c *PropietarioController) GetAll() {
 }
 
 // @Title Update
-// @Description update the Propietario
+// @Description update the Vehiculo
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Propietario	true		"body for Propietario content"
-// @Success 200 {object} models.Propietario
+// @Param	body		body 	models.Vehiculo	true		"body for Vehiculo content"
+// @Success 200 {object} models.Vehiculo
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *PropietarioController) Put() {
+func (c *VehiculoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Propietario{Id: id}
+	v := models.Vehiculo{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdatePropietarioById(&v); err == nil {
+		if err := models.UpdateVehiculoById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -148,15 +148,15 @@ func (c *PropietarioController) Put() {
 }
 
 // @Title Delete
-// @Description delete the Propietario
+// @Description delete the Vehiculo
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *PropietarioController) Delete() {
+func (c *VehiculoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeletePropietario(id); err == nil {
+	if err := models.DeleteVehiculo(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
