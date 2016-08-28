@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .factory('Propietario', ['$resource', "CONFIG", function($resource) {
+  .factory('Propietario', ['$resource', 'CONFIG', function($resource, CONFIG) {
     return $resource(CONFIG.WS_URL + '/propietario/:id', {}, {
       'query': {
         method: 'GET',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .factory('Isla', ['$resource', "CONFIG", function($resource) {
+  .factory('Isla', ['$resource', 'CONFIG', function($resource, CONFIG) {
     return $resource(CONFIG.WS_URL + '/isla/:id', {}, {
       'query': {
         method: 'GET',
