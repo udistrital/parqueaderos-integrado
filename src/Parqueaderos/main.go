@@ -6,17 +6,17 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
-	"io/ioutil"
 	"gopkg.in/yaml.v2"
+	"io/ioutil"
 	"log"
 )
 
 type Conexion struct {
-	database_host string
-	database_port	string
-	database_name	string
-	database_user	string
-	database_password	string
+	database_host     string
+	database_port     string
+	database_name     string
+	database_user     string
+	database_password string
 }
 
 func init() {
