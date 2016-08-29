@@ -11,14 +11,6 @@ import (
 	"log"
 )
 
-type Conexion struct {
-	database_host     string
-	database_port     string
-	database_name     string
-	database_user     string
-	database_password string
-}
-
 func init() {
 	data, err := ioutil.ReadFile("conexion.yml")
 	if err != nil {
