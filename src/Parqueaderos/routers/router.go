@@ -8,15 +8,14 @@
 package routers
 
 import (
-	"Parqueaderos/conf"
 	"Parqueaderos/controllers"
 
 	"github.com/astaxie/beego"
 )
 
 func init() {
-	p := conf.Parameters
-	ns := beego.NewNamespace(p.BEEGO_NAMESPACE,
+	nsc := beego.AppConfig.String("namespace")
+	ns := beego.NewNamespace(nsc,
 
 		beego.NSNamespace("/tipo_propietario",
 			beego.NSInclude(

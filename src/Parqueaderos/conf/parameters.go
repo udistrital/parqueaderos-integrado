@@ -12,7 +12,6 @@ type _Parameters struct {
 	DATABASE_NAME     string
 	DATABASE_USER     string
 	DATABASE_PASSWORD string
-	BEEGO_NAMESPACE   string
 }
 
 var (
@@ -20,6 +19,7 @@ var (
 )
 
 func init() {
+	//secret := beego.AppConfig.String("secret")
 	data, err := ioutil.ReadFile("parameters.yml")
 	if err != nil {
 		log.Fatal(err)
