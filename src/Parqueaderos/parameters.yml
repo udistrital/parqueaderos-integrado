@@ -1,0 +1,8 @@
+# This file is based in parameters.yml symfony
+database_host: localhost
+database_port: 5432
+database_name: circe
+database_user: usercirce
+database_password: oascirce
+beego_namespace: /parqueaderos/v1
+secret: ThisTokenIsNotSoSecretChangeIt

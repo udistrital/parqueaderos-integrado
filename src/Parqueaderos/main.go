@@ -1,37 +1,18 @@
 package main
 
 import (
+	"Parqueaderos/conf"
 	_ "Parqueaderos/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"log"
 )
 
 func init() {
-	data, err := ioutil.ReadFile("conexion.yml")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	m := make(map[interface{}]string)
-
-	err = yaml.Unmarshal([]byte(data), &m)
-	if err != nil {
-		log.Fatalf("error: %v", err)
-	}
-
-	var database_host string = m["database_host"]
-	var database_port string = m["database_port"]
-	var database_name string = m["database_name"]
-	var database_user string = m["database_user"]
-	var database_password string = m["database_password"]
-
+	p := conf.Parameters
 	orm.RegisterDataBase("default", "postgres",
-		"postgres://"+database_user+":"+database_password+"@"+database_host+":"+database_port+"/"+database_name+"?sslmode=disable")
+		"postgres://"+p.DATABASE_USER+":"+p.DATABASE_PASSWORD+"@"+p.DATABASE_HOST+":"+p.DATABASE_PORT+"/"+p.DATABASE_NAME+"?sslmode=disable")
 }
 
 func main() {
