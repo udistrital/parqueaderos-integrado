@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('PropietarioController', ['$scope', '$modal', 'resolvedPropietario', 'Propietario',
+  .controller('PropietarioController', ['$scope', '$uibModal', 'resolvedPropietario', 'Propietario',
     function($scope, $modal, resolvedPropietario, Propietario) {
 
       $scope.Propietarios = resolvedPropietario;
@@ -94,7 +94,7 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('PropietarioSaveController', ['$scope', '$http', '$modalInstance', 'Propietario',
+  .controller('PropietarioSaveController', ['$scope', '$http', '$uibModalInstance', 'Propietario',
     function($scope, $http, $modalInstance, Propietario) {
       $scope.Propietario = Propietario;
       var f = [];
