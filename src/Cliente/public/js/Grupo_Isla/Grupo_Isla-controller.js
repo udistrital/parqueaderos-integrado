@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('Grupo_IslaController', ['$scope', '$modal', 'resolvedGrupo_Isla', 'Grupo_Isla',
+  .controller('Grupo_IslaController', ['$scope', '$uibModal', 'resolvedGrupo_Isla', 'Grupo_Isla',
     function($scope, $modal, resolvedGrupo_Isla, Grupo_Isla) {
 
       $scope.Grupo_islas = resolvedGrupo_Isla;
@@ -78,7 +78,7 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('Grupo_IslaSaveController', ['$scope', '$modalInstance', 'Grupo_Isla',
+  .controller('Grupo_IslaSaveController', ['$scope', '$uibModalInstance', 'Grupo_Isla',
     function($scope, $modalInstance, Grupo_Isla) {
       $scope.Grupo_Isla = Grupo_Isla;
 
