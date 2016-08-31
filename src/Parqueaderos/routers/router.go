@@ -14,7 +14,8 @@ import (
 )
 
 func init() {
-	ns := beego.NewNamespace("/v1",
+	nsc := beego.AppConfig.String("namespace")
+	ns := beego.NewNamespace(nsc,
 
 		beego.NSNamespace("/tipo_propietario",
 			beego.NSInclude(

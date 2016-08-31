@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Parqueaderos/conf"
 	_ "Parqueaderos/routers"
 
 	"github.com/astaxie/beego"
@@ -9,7 +10,9 @@ import (
 )
 
 func init() {
-	orm.RegisterDataBase("default", "postgres", "postgres://usercirce:oascirce@localhost:5432/circe?sslmode=disable")
+	p := conf.Parameters
+	orm.RegisterDataBase("default", "postgres",
+		"postgres://"+p.DATABASE_USER+":"+p.DATABASE_PASSWORD+"@"+p.DATABASE_HOST+":"+p.DATABASE_PORT+"/"+p.DATABASE_NAME+"?sslmode=disable")
 }
 
 func main() {
