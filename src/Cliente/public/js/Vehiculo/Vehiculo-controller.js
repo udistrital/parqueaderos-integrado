@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('VehiculoController', ['$scope', '$modal', 'resolvedVehiculo', 'Vehiculo',
+  .controller('VehiculoController', ['$scope', '$uibModal', 'resolvedVehiculo', 'Vehiculo',
     function($scope, $modal, resolvedVehiculo, Vehiculo) {
 
       $scope.Vehiculos = resolvedVehiculo;
@@ -94,9 +94,10 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('VehiculoSaveController', ['$scope', '$http', '$modalInstance', 'Vehiculo',
+  .controller('VehiculoSaveController', ['$scope', '$http', '$uibModalInstance', 'Vehiculo',
     function($scope, $http, $modalInstance, Vehiculo) {
       $scope.Vehiculo = Vehiculo;
+      
       var f = [{}];
       $http.get("/v1/propietario")
         .success(function(data) {
