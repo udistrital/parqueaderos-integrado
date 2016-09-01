@@ -24,11 +24,8 @@
 
         <div class="form-group">
           <label>Id Vehículo:</label>
-
-          <input type="number" class="form-control" name="IdVehiculo" ng-model="Isla.IdVehiculo.Id" ng-required="true" />
-          <span class="error" ng-show="form.IdVehiculo.$error.min">Must be greater than or equal to .</span>
-          <span class="error" ng-show="form.IdVehiculo.$error.max">Must be less than or equal to .</span>
-        </div>
+<select class="form-control" name="IdVehiculo" ng-model="Isla.IdVehiculo.Id" ng-options="item as item.IdNfc for item in IslasVehIds track by item.Id" ng-required="true"></select>
+         </div>
 
         <div class="form-group">
           <label>Geometría:</label>
@@ -39,23 +36,8 @@
         </div>
 
         <div class="form-group">
-          <label>Hora Entrada:</label>
-
-          <input type="datetime" class="form-control" name="HoraEntrada" ng-model="Isla.HoraEntrada" ng-required="false" />
-        </div>
-
-        <div class="form-group">
-          <label>Hora Salida:</label>
-
-          <input type="datetime" class="form-control" name="HoraSalida" ng-model="Isla.HoraSalida" ng-required="false" />
-        </div>
-
-        <div class="form-group">
           <label>Id Grupo Isla:</label>
-
-          <input type="number" class="form-control" name="IdGrupoIsla" ng-model="Isla.IdGrupoIsla.Id" ng-required="true" />
-          <span class="error" ng-show="form.IdGrupoIsla.$error.min">Must be greater than or equal to .</span>
-          <span class="error" ng-show="form.IdGrupoIsla.$error.max">Must be less than or equal to .</span>
+	<select class="form-control" name="IdGrupoIsla" ng-model="Isla.IdGrupoIsla.Id" ng-options="x for x in IslasGrIds" ng-required="true"></select>
         </div>
 
       </div>
