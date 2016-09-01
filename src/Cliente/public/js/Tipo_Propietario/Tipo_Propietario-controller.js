@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('Tipo_PropietarioController', ['$scope', '$modal', 'resolvedTipo_Propietario', 'Tipo_Propietario',
+  .controller('Tipo_PropietarioController', ['$scope', '$uibModal', 'resolvedTipo_Propietario', 'Tipo_Propietario',
     function($scope, $modal, resolvedTipo_Propietario, Tipo_Propietario) {
 
       $scope.Tipo_propietarios = resolvedTipo_Propietario;
@@ -78,7 +78,7 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('Tipo_PropietarioSaveController', ['$scope', '$modalInstance', 'Tipo_Propietario',
+  .controller('Tipo_PropietarioSaveController', ['$scope', '$uibModalInstance', 'Tipo_Propietario',
     function($scope, $modalInstance, Tipo_Propietario) {
       $scope.Tipo_Propietario = Tipo_Propietario;
 
