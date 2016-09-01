@@ -34,6 +34,7 @@ func init() {
 // last inserted Id on success.
 func AddIsla(m *Isla) (id int64, err error) {
 	o := orm.NewOrm()
+	m.HoraEntrada = time.Now()
 	valid := validation.Validation{}
 	valid.Required(m.Ocupado, "Ocupado")
 	valid.Required(m.Geometria, "Geometria")
@@ -45,6 +46,7 @@ func AddIsla(m *Isla) (id int64, err error) {
 		log.Println("Insert New Register")
 		m.IdGrupoIsla, _ = GetGrupoIslaById(m.IdGrupoIsla.Id)
 		m.IdVehiculo, _ = GetVehiculoById(m.IdVehiculo.Id)
+		m.HoraEntrada = time.Now()
 		id, err = o.Insert(m)
 	}
 	return
@@ -144,12 +146,13 @@ func GetAllIsla(query map[string]string, fields []string, sortby []string, order
 func UpdateIslaById(m *Isla) (err error) {
 	o := orm.NewOrm()
 	v := Isla{Id: m.Id}
+	m.HoraSalida = time.Now()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
+		m.HoraEntrada = v.HoraEntrada
 		var num int64
 		if num, err = o.Update(m); err == nil {
 			fmt.Println("Number of records updated in database:", num)
-			fmt.Println(m.HoraEntrada)
 		}
 	}
 	return
