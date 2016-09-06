@@ -4,12 +4,16 @@ var geojsonFormat = new ol.format.GeoJSON()
 var islaSource = new ol.source.Vector({
   loader: function(extent, resolution, projection) {
     var url = '/geoserver/parqueaderos/ows?service=WFS&' +
-        'version=1.0.0&request=GetFeature&typename=parqueaderos:isla&' +
-        'outputFormat=application%2Fjson' +
-        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
+      'version=1.0.0&request=GetFeature&typename=parqueaderos:isla&' +
+      'outputFormat=application%2Fjson' +
+      '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
     // use jsonp: false to prevent jQuery from adding the "callback"
     // parameter to the URL
-    $.ajax({url: url, dataType: 'json', jsonp: false}).done(function(response) {
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      jsonp: false
+    }).done(function(response) {
       islaSource.addFeatures(geojsonFormat.readFeatures(response));
     });
   },
@@ -21,12 +25,16 @@ var islaSource = new ol.source.Vector({
 var grupoislaSource = new ol.source.Vector({
   loader: function(extent, resolution, projection) {
     var url = '/geoserver/parqueaderos/ows?service=WFS&' +
-        'version=1.0.0&request=GetFeature&typename=parqueaderos:grupo_isla&' +
-        'outputFormat=application%2Fjson' +
-        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
+      'version=1.0.0&request=GetFeature&typename=parqueaderos:grupo_isla&' +
+      'outputFormat=application%2Fjson' +
+      '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
     // use jsonp: false to prevent jQuery from adding the "callback"
     // parameter to the URL
-    $.ajax({url: url, dataType: 'json', jsonp: false}).done(function(response) {
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      jsonp: false
+    }).done(function(response) {
       islaSource.addFeatures(geojsonFormat.readFeatures(response));
     });
   },
@@ -55,13 +63,28 @@ var grupoislaLayer = new ol.layer.Vector({
   })
 })
 
-var osmLayer =  new ol.layer.Tile({
-    source: new ol.source.OSM()
+var wmsSource = new ol.source.TileWMS({
+  url: '/geoserver/wms',
+  params: {
+    'LAYERS': 'parqueaderos:sotano1.geo',
+    'FORMAT': 'image/png',
+    'TILED': true
+  },
+  serverType: 'geoserver',
+  crossOrigin: 'anonymous'
+})
+
+var wmsLayer = new ol.layer.Tile({
+  source: wmsSource
+})
+
+var osmLayer = new ol.layer.Tile({
+  source: new ol.source.OSM()
 })
 
 //document.body.onclick = function (e) {console.log(map.getEventCoordinate(e))}
 var map = new ol.Map({
-  layers: [osmLayer, grupoislaLayer, islaLayer],
+  layers: [osmLayer, wmsLayer, grupoislaLayer, islaLayer],
   target: document.getElementById('map'),
   view: new ol.View({
     center: [-8244952.014276695, 515728.84084898204],
