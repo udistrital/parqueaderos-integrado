@@ -16,16 +16,74 @@ var vectorSource = new ol.source.Vector({
   }))
 });
 
+var islaSource = new ol.source.Vector({
+  loader: function(extent, resolution, projection) {
+    var url = '/geoserver/parqueaderos/ows?service=WFS&' +
+        'version=1.0.0&request=GetFeature&typename=parqueaderos:isla&' +
+        'outputFormat=application%2Fjson' +
+        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
+    // use jsonp: false to prevent jQuery from adding the "callback"
+    // parameter to the URL
+    console.log(url)
+    $.ajax({url: url, dataType: 'json', jsonp: false}).done(function(response) {
+      islaSource.addFeatures(geojsonFormat.readFeatures(response));
+    });
+  },
+  strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+    maxZoom: 19
+  }))
+});
+
+var grupoislaSource = new ol.source.Vector({
+  loader: function(extent, resolution, projection) {
+    var url = '/geoserver/parqueaderos/ows?service=WFS&' +
+        'version=1.0.0&request=GetFeature&typename=parqueaderos:grupo_isla&' +
+        'outputFormat=application%2Fjson' +
+        '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
+    // use jsonp: false to prevent jQuery from adding the "callback"
+    // parameter to the URL
+    console.log(url)
+    $.ajax({url: url, dataType: 'json', jsonp: false}).done(function(response) {
+      islaSource.addFeatures(geojsonFormat.readFeatures(response));
+    });
+  },
+  strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+    maxZoom: 19
+  }))
+});
+
 /**
  * JSONP WFS callback function.
  * @param {Object} response The response object.
  */
 window.loadFeatures = function(response) {
-  vectorSource.addFeatures(geojsonFormat.readFeatures(response));
+  //vectorSource.addFeatures(geojsonFormat.readFeatures(response));
+  console.log(response);
+  islaSource.addFeatures(geojsonFormat.readFeatures(response));
 };
 
-var vector = new ol.layer.Vector({
+var vectorLayer = new ol.layer.Vector({
   source: vectorSource,
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: 'rgba(0, 0, 255, 1.0)',
+      width: 2
+    })
+  })
+});
+
+var islaLayer = new ol.layer.Vector({
+  source: islaSource,
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: 'rgba(0, 0, 255, 1.0)',
+      width: 2
+    })
+  })
+});
+
+var grupoislaLayer = new ol.layer.Vector({
+  source: grupoislaSource,
   style: new ol.style.Style({
     stroke: new ol.style.Stroke({
       color: 'rgba(0, 0, 255, 1.0)',
@@ -46,12 +104,12 @@ var raster = new ol.layer.Tile({
 });
 
 var map = new ol.Map({
-  layers: [osmLayer, raster, vector],
+  layers: [osmLayer, grupoislaLayer, islaLayer],
   target: document.getElementById('map'),
   view: new ol.View({
-    center: [-8908887.277395891, 5381918.072437216],
-    maxZoom: 19,
-    zoom: 12
+    center: [-8244996.503015813, 515748.5472703368],
+    maxZoom: 26,
+    zoom: 20
   })
 });
 
