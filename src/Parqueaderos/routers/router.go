@@ -35,6 +35,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/registro",
+			beego.NSInclude(
+				&controllers.VehiculoController{},
+			),
+		),
+
 		beego.NSNamespace("/grupo_isla",
 			beego.NSInclude(
 				&controllers.GrupoIslaController{},
