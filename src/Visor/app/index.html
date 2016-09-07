@@ -9,7 +9,6 @@
 
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="vendor/ol3/ol.css" rel="stylesheet" />
     <link href="vendor/sidebar-v2/css/ol3-sidebar.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
@@ -20,56 +19,91 @@
         <!-- Nav tabs -->
         <div class="sidebar-tabs">
             <ul role="tablist">
-                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="#toc" role="tab"><i class="material-icons">subject</i></a></li>
+                <li><a href="#profile" role="tab"><i class="material-icons">account_circle</i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="material-icons">new_releases</i></a></li>
             </ul>
 
             <ul role="tablist">
-                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+                <li><a href="#settings" role="tab"><i class="material-icons">settings</i></a></li>
             </ul>
         </div>
 
         <!-- Tab panes -->
         <div class="sidebar-content">
-            <div class="sidebar-pane" id="home">
-                <h1 class="sidebar-header">
-                    Proyecto Parqueaderos
-                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-
-                <p>
-                  Construir e implementar el componente sistema de gestión de parqueaderos, perteneciente
-                  al sistema de gestión administrativa del dominio de aplicaciones de la Universidad Distrital
-                  Francisco José de Caldas.
-                </p>
-                <ul>
-                  <li>
-                    Realizar una aplicación web para la interfaz del proyecto en donde se vea la disponibilidad de las zonas de parqueo.
-                  </li>
-                  <li>
-                    Implementar dispositivos de detección de vehículos para permitir el acceso o salida de vehículos que serán identificados a través de algún mecanismo que garantice su identidad.
-                  </li>
-                  <li>
-                    Realizar un trabajo de normalización de protocolos y seguridad para el registro y control de acceso de vehículos para que su implementación pueda ser progresiva en las sedes de la universidad.
-                  </li>
-                  <li>
-                    Generar un modelo de parqueadero en un sistema informático que permita la optimización del recurso espacial.
-                  </li>
+            <div class="sidebar-pane" id="toc">
+              <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="css/img/yuna.jpg" alt="" class="circle">
+                  <span class="title">Sotano 1</span>
+                  <p>First Line <br>
+                     Second Line
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="collection-item avatar">
+                  <i class="material-icons circle">folder</i>
+                  <span class="title">Title</span>
+                  <p>First Line <br>
+                     Second Line
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="collection-item avatar">
+                  <i class="material-icons circle green">insert_chart</i>
+                  <span class="title">Title</span>
+                  <p>First Line <br>
+                     Second Line
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                <li class="collection-item avatar">
+                  <i class="material-icons circle red">play_arrow</i>
+                  <span class="title">Title</span>
+                  <p>First Line <br>
+                     Second Line
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
             </div>
 
             <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Realizado Por<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                <p>
-                  Jorge Ulises Useche Cuellar<br>
-                  Omar Leonardo Zambrano Pulgarín
-                </p>
+              <div class="row">
+                <div class="col s12">
+                  <div class="card teal lighten-2 ">
+                    <div class="card-content white-text">
+                      <span class="card-title">Proyecto Parqueaderos</span>
+                      <p>Jorge Ulises Useche Cuellar<br> Omar Leonardo Zambrano Pulgarín</p>
+                    </div>
+                    <div class="card-action">
+                      <p>
+                          Construir e implementar el componente sistema de gestión de parqueaderos, perteneciente al sistema de gestión administrativa del dominio de aplicaciones de la Universidad Distrital Francisco José de Caldas.
+                      </p>
+                      <ul>
+                          <li>
+                              Realizar una aplicación web para la interfaz del proyecto en donde se vea la disponibilidad de las zonas de parqueo.
+                          </li>
+                          <li>
+                              Implementar dispositivos de detección de vehículos para permitir el acceso o salida de vehículos que serán identificados a través de algún mecanismo que garantice su identidad.
+                          </li>
+                          <li>
+                              Realizar un trabajo de normalización de protocolos y seguridad para el registro y control de acceso de vehículos para que su implementación pueda ser progresiva en las sedes de la universidad.
+                          </li>
+                          <li>
+                              Generar un modelo de parqueadero en un sistema informático que permita la optimización del recurso espacial.
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="sidebar-pane" id="messages">
                 <h1 class="sidebar-header">Mensajes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <p>
-                  Realizando Tracking
+                    Realizando Tracking
                 </p>
             </div>
 
@@ -81,15 +115,27 @@
 
     <div id="map" class="sidebar-map"></div>
     <!--https://design.google.com/icons/#ic_speaker_notes-->
-    <div id="btnDelete" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">delete</i></div>
-  	<div id="btnDrawLine" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">share</i></div>
-  	<div id="btnDrawPoly" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">signal_cellular_null</i></div>
-    <div id="btnDrawPoint" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">location_on</i></div>
-    <div id="btnEdit" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">edit</i></div>
-    <div id="btnSelect" class="btnMenu btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">speaker_notes</i></div>
+    <div id="btnDelete" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Eliminar">
+        <i class="large material-icons">delete</i>
+    </div>
+    <div id="btnDrawLine" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Línea">
+        <i class="large material-icons">share</i>
+    </div>
+    <div id="btnDrawPoly" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Polígono">
+        <i class="large material-icons">signal_cellular_null</i>
+    </div>
+    <div id="btnDrawPoint" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Punto">
+        <i class="large material-icons">location_on</i>
+    </div>
+    <div id="btnEdit" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Editar">
+        <i class="large material-icons">edit</i>
+    </div>
+    <div id="btnSelect" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Identificar">
+        <i class="large material-icons">speaker_notes</i>
+    </div>
 
-  	<div id="btnZoomIn" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">add</i></div>
-  	<div id="btnZoomOut" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">remove</i></div>
+    <div id="btnZoomIn" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">add</i></div>
+    <div id="btnZoomOut" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">remove</i></div>
 
     <script src="vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js" type="text/javascript"></script>

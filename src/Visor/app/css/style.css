@@ -8,6 +8,19 @@ html, body, #map {
   height: 100%;
   font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
+.sidebar-content, .sidebar-pane {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.sidebar-tabs, .ol-control button {
+  background-color: rgba(38, 166, 154, 0.5);
+}
+
+.sidebar-tabs > ul > li > a:hover, .ol-control button:hover {
+  background-color: rgb(38, 166, 154);
+}
 
 .sidebar-tabs, .sidebar-tabs>ul {
   width: 36px;

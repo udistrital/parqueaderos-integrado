@@ -66,7 +66,7 @@ var grupoislaLayer = new ol.layer.Vector({
 var wmsSource = new ol.source.TileWMS({
   url: '/geoserver/wms',
   params: {
-    'LAYERS': 'parqueaderos:sotano1.geo',
+    'LAYERS': 'parqueaderos:sotano1_geo',
     'FORMAT': 'image/png',
     'TILED': true
   },
