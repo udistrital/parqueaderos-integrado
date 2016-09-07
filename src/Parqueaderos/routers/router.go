@@ -37,7 +37,7 @@ func init() {
 
 		beego.NSNamespace("/registro",
 			beego.NSInclude(
-				&controllers.VehiculoController{},
+				&controllers.RegistroController{},
 			),
 		),
 
