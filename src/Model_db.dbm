@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="354,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.2" last-position="0,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
 <role name="olzambranop"
       inherit="true"
@@ -24,7 +24,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<tablespace name="pg_default"/>
 </database>
 
-<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <extension name="postgis" cur-version="2.2.1">
@@ -32,7 +32,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<comment><![CDATA[PostGIS geometry, geography, and raster spatial types and functions]]></comment>
 </extension>
 
-<schema name="topology" rect-visible="true" fill-color="#e620ae">
+<schema name="topology" rect-visible="true" fill-color="#e6b886">
 	<role name="postgres"/>
 </schema>
 
@@ -53,7 +53,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro del propietario/persona dueña del vehiculo]]></comment>
-	<position x="438" y="237"/>
+	<position x="50" y="50"/>
 	<column name="id" not-null="true" sequence="public.propietario_id_seq">
 		<type name="integer"/>
 	</column>
@@ -101,7 +101,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro de la entidad vehiculo, por ahora automovil]]></comment>
-	<position x="1094" y="181"/>
+	<position x="450" y="50"/>
 	<column name="id" not-null="true" sequence="public.vehiculo_id_seq">
 		<type name="integer"/>
 	</column>
@@ -134,7 +134,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El propietario puede ser de muchos tipos que le provee de caractaristicas especiales, estos tipos inicialmente estudiante, docente, funcionario]]></comment>
-	<position x="491" y="550"/>
+	<position x="807" y="50"/>
 	<column name="id" not-null="true" sequence="public.tipo_propietario_id_seq">
 		<type name="integer"/>
 	</column>
@@ -152,52 +152,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<sequence name="isla_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="usercirce"/>
-</sequence>
-
-<table name="isla">
-	<schema name="public"/>
-	<role name="usercirce"/>
-	<comment><![CDATA[Es el espacio en que se pone el vehiculo]]></comment>
-	<position x="1644" y="147"/>
-	<column name="id" not-null="true" sequence="public.isla_id_seq">
-		<type name="integer"/>
-		<comment><![CDATA[Autoincremental para islas, ya que por ahora no hay otra forma de identificarlos]]></comment>
-	</column>
-	<column name="ocupado" not-null="true">
-		<type name="boolean"/>
-		<comment><![CDATA[Estado que indica si el espacio esta ocupado o no]]></comment>
-	</column>
-	<column name="id_vehiculo" not-null="true">
-		<type name="integer"/>
-		<comment><![CDATA[placa del vehiculo]]></comment>
-	</column>
-	<column name="geometria" not-null="true">
-		<type name="geometry" spatial-type="POLYGON" variation="0" srid="4326"/>
-		<comment><![CDATA[El poligono que representa a la isla espacialmente]]></comment>
-	</column>
-	<column name="hora_entrada">
-		<type name="timestamp"/>
-		<comment><![CDATA[Hora en que ingresa el vehiculo]]></comment>
-	</column>
-	<column name="hora_salida">
-		<type name="timestamp"/>
-		<comment><![CDATA[Hora en que sale el vehiculo]]></comment>
-	</column>
-	<column name="id_grupo_isla">
-		<type name="integer"/>
-		<comment><![CDATA[Identificador del grupo isla]]></comment>
-	</column>
-	<constraint name="isla_id_pkey" type="pk-constr" table="public.isla">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <sequence name="grupo_isla_id_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
@@ -210,13 +164,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es la entidad que representa agrupacion de islas, por ejemplo podria ser Sotano 1, como un grupo de islas, o parqueadero para un grupo de sotanos]]></comment>
-	<position x="1645" y="428"/>
+	<position x="1163" y="50"/>
 	<column name="id" not-null="true" sequence="public.grupo_isla_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador incremental ya que por el momento no hay nada mas que lo caracterice]]></comment>
 	</column>
 	<column name="geometria" not-null="true">
-		<type name="geometry" spatial-type="POLYGON" variation="0" srid="4326"/>
+		<type name="geometry"/>
 		<comment><![CDATA[Guarda el polygono que lo contiene. http://spatialreference.org/ref/epsg/4326/]]></comment>
 	</column>
 	<column name="id_grupo_padre">
@@ -224,6 +178,119 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment><![CDATA[Se podria decir que el grupo isla tiene un padre, asi como sotano1 tiene el padre parquedero ingenieria]]></comment>
 	</column>
 	<constraint name="grupo_isla_id_pkey" type="pk-constr" table="public.grupo_isla">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="migrations_status" configuration="enumeration">
+	<schema name="public"/>
+	<role name="usercirce"/>
+	<enumeration values="update,rollback"/>
+</usertype>
+
+<sequence name="migrations_id_migration_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="usercirce"/>
+</sequence>
+
+<table name="migrations">
+	<schema name="public"/>
+	<role name="usercirce"/>
+	<position x="1445" y="50"/>
+	<column name="id_migration" not-null="true" sequence="public.migrations_id_migration_seq">
+		<type name="integer"/>
+	</column>
+	<column name="name" default-value="NULL::character varying">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp"/>
+	</column>
+	<column name="statements">
+		<type name="text"/>
+	</column>
+	<column name="rollback_statements">
+		<type name="text"/>
+	</column>
+	<column name="status">
+		<type name="public.migrations_status"/>
+	</column>
+	<constraint name="migrations_pkey" type="pk-constr" table="public.migrations">
+		<columns names="id_migration" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="registro_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="usercirce"/>
+</sequence>
+
+<table name="registro">
+	<schema name="public"/>
+	<role name="usercirce"/>
+	<comment><![CDATA[Es el espacio donde queda almacenado el registro de entrada y salida de un vehiculo al parqueadero]]></comment>
+	<position x="50" y="221.4"/>
+	<column name="id" not-null="true" sequence="public.registro_id_seq">
+		<type name="integer"/>
+		<comment><![CDATA[Autoincremental para registros, ya que por ahora no hay otra forma de identificarlos]]></comment>
+	</column>
+	<column name="id_vehiculo" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador del vehiculo y del propietario]]></comment>
+	</column>
+	<column name="id_isla" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador de la isla]]></comment>
+	</column>
+	<column name="hora_entrada">
+		<type name="timestamp"/>
+		<comment><![CDATA[Hora en que ingresa el vehiculo]]></comment>
+	</column>
+	<column name="hora_salida">
+		<type name="timestamp"/>
+		<comment><![CDATA[Hora en que sale el vehiculo]]></comment>
+	</column>
+	<constraint name="registro_pkey" type="pk-constr" table="public.registro">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="isla_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="usercirce"/>
+</sequence>
+
+<table name="isla">
+	<schema name="public"/>
+	<role name="usercirce"/>
+	<comment><![CDATA[Es el espacio en que se pone la isla]]></comment>
+	<position x="342" y="221.4"/>
+	<column name="id" not-null="true" sequence="public.isla_id_seq">
+		<type name="integer"/>
+		<comment><![CDATA[Autoincremental para islas, ya que por ahora no hay otra forma de identificarlos]]></comment>
+	</column>
+	<column name="ocupado" not-null="true">
+		<type name="boolean"/>
+		<comment><![CDATA[Estado que indica si el espacio esta ocupado o no]]></comment>
+	</column>
+	<column name="geometria" not-null="true">
+		<type name="geometry"/>
+		<comment><![CDATA[El poligono que representa a la isla espacialmente]]></comment>
+	</column>
+	<column name="id_grupo_isla">
+		<type name="integer"/>
+		<comment><![CDATA[Identificador del grupo isla]]></comment>
+	</column>
+	<constraint name="isla_id_pkey" type="pk-constr" table="public.isla">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -240,9 +307,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="isla_vehiculo_id_vehiculo_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.vehiculo" table="public.isla">
+<constraint name="registro_vehiculo_id_vehiculo_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.vehiculo" table="public.registro">
 	<columns names="id_vehiculo" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="registro_isla_id_isla_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.isla" table="public.registro">
+	<columns names="id_isla" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
@@ -253,25 +326,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <relationship name="rel_propietario_tipo_propietario" type="relfk"
-	 custom-color="#943dc2"
+	 custom-color="#3fcc01"
 	 src-table="public.propietario"
 	 dst-table="public.tipo_propietario"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_vehiculo_propietario" type="relfk"
-	 custom-color="#be9eaf"
+	 custom-color="#c33149"
 	 src-table="public.vehiculo"
 	 dst-table="public.propietario"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_isla_vehiculo" type="relfk"
-	 custom-color="#f20e65"
-	 src-table="public.isla"
+<relationship name="rel_registro_vehiculo" type="relfk"
+	 custom-color="#96a735"
+	 src-table="public.registro"
 	 dst-table="public.vehiculo"
 	 src-required="false" dst-required="false"/>
 
+<relationship name="rel_registro_isla" type="relfk"
+	 custom-color="#d51324"
+	 src-table="public.registro"
+	 dst-table="public.isla"
+	 src-required="false" dst-required="false"/>
+
 <relationship name="rel_isla_grupo_isla" type="relfk"
-	 custom-color="#ff3af8"
+	 custom-color="#aaa0ad"
 	 src-table="public.isla"
 	 dst-table="public.grupo_isla"
 	 src-required="false" dst-required="false"/>
