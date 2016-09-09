@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Circe/models/models"
+	"Parqueaderos/models"
 	"encoding/json"
 	"errors"
 	"strconv"
