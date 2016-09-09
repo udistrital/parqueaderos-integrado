@@ -62,5 +62,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "file", source: "src/script_tables.sql", destination: "script_tables.sql"
   config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
   config.vm.provision "shell", path: scripts_path+"install_geoserver.sh"
+  config.vm.provision "shell", path: scripts_path+"install_apache.sh"
 
 end
