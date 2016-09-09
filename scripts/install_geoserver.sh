@@ -35,6 +35,7 @@ Type=simple
 [Install]
 WantedBy=default.target
 EOF
+sudo sed -i.bak 's/jetty.port=8080/jetty.port=8000/g' /usr/share/geoserver/start.ini
 sudo systemctl enable geoserver
 sudo systemctl start geoserver
 
