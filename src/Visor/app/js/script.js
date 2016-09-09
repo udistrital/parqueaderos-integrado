@@ -26,8 +26,8 @@ var grupoislaSource = new ol.source.Vector({
   loader: function(extent, resolution, projection) {
     var url = '/geoserver/parqueaderos/ows?service=WFS&' +
       'version=1.0.0&request=GetFeature&typename=parqueaderos:grupo_isla&' +
-      'outputFormat=application%2Fjson' +
-      '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
+      'outputFormat=application%2Fjson&' +
+      'srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
     // use jsonp: false to prevent jQuery from adding the "callback"
     // parameter to the URL
     $.ajax({

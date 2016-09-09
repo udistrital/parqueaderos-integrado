@@ -1,12 +1,15 @@
 #!/bin/bash
 echo 'Ejecutando: install_geoserver.sh'
-if [ -f /usr/share/geoserver/bin/startup.sh ]; then
+
+if [ -f /usr/share/geoserver/bin/startup.sh ]
+then
   echo 'GeoServer ya está instalado. Nada que hacer.'
 else
+
 sudo yum install -y java-1.8.0-openjdk
 #sudo yum install -y maven
 sudo yum install -y unzip
-echo 'Descargando GeoServer'
+echo 'Descargando GeoServer... Espere un momento'
 wget http://pilotfiber.dl.sourceforge.net/project/geoserver/GeoServer/2.9.1/geoserver-2.9.1-bin.zip > /dev/null 2>&1
 unzip geoserver-*.zip
 #cd geoserver-2.9.1
@@ -34,4 +37,5 @@ WantedBy=default.target
 EOF
 sudo systemctl enable geoserver
 sudo systemctl start geoserver
+
 fi
