@@ -11,7 +11,7 @@ import (
 )
 
 type Registro struct {
-	Id          int       `orm:"column(id);pk"`
+	Id          int       `orm:"column(id);pk";auto`
 	IdVehiculo  *Vehiculo `orm:"column(id_vehiculo);rel(fk)"`
 	IdIsla      *Isla     `orm:"column(id_isla);rel(fk)"`
 	HoraEntrada time.Time `orm:"column(hora_entrada);type(timestamp without time zone);null"`
@@ -30,6 +30,9 @@ func init() {
 // last inserted Id on success.
 func AddRegistro(m *Registro) (id int64, err error) {
 	o := orm.NewOrm()
+	m.HoraEntrada = time.Now()
+	m.IdVehiculo, _ = GetVehiculoById(m.IdVehiculo.Id)
+	m.IdIsla, _ = GetIslaById(m.IdIsla.Id)
 	id, err = o.Insert(m)
 	return
 }
@@ -40,6 +43,8 @@ func GetRegistroById(id int) (v *Registro, err error) {
 	o := orm.NewOrm()
 	v = &Registro{Id: id}
 	if err = o.Read(v); err == nil {
+		v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
+		v.IdIsla, _ = GetIslaById(v.IdIsla.Id)
 		return v, nil
 	}
 	return nil, err
@@ -97,10 +102,12 @@ func GetAllRegistro(query map[string]string, fields []string, sortby []string, o
 	}
 
 	var l []Registro
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy("id")
 	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
+				v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
+				v.IdIsla, _ = GetIslaById(v.IdIsla.Id)
 				ml = append(ml, v)
 			}
 		} else {
@@ -124,8 +131,10 @@ func GetAllRegistro(query map[string]string, fields []string, sortby []string, o
 func UpdateRegistroById(m *Registro) (err error) {
 	o := orm.NewOrm()
 	v := Registro{Id: m.Id}
+	m.HoraSalida = time.Now()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
+		m.HoraEntrada = v.HoraEntrada
 		var num int64
 		if num, err = o.Update(m); err == nil {
 			fmt.Println("Number of records updated in database:", num)
