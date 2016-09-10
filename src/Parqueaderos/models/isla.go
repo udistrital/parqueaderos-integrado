@@ -6,7 +6,6 @@ import (
 	"log"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
@@ -17,8 +16,6 @@ type Isla struct {
 	Ocupado     bool       `orm:"column(ocupado)"`
 	IdVehiculo  *Vehiculo  `orm:"column(id_vehiculo);rel(fk)"`
 	Geometria   string     `orm:"column(geometria)"`
-	HoraEntrada time.Time  `orm:"column(hora_entrada);type(timestamp with time zone);null"`
-	HoraSalida  time.Time  `orm:"column(hora_salida);type(timestamp with time zone);null"`
 	IdGrupoIsla *GrupoIsla `orm:"column(id_grupo_isla);rel(fk)"`
 }
 
@@ -34,7 +31,6 @@ func init() {
 // last inserted Id on success.
 func AddIsla(m *Isla) (id int64, err error) {
 	o := orm.NewOrm()
-	m.HoraEntrada = time.Now()
 	valid := validation.Validation{}
 	valid.Required(m.Ocupado, "Ocupado")
 	valid.Required(m.Geometria, "Geometria")
@@ -45,8 +41,6 @@ func AddIsla(m *Isla) (id int64, err error) {
 	} else {
 		log.Println("Insert New Register")
 		m.IdGrupoIsla, _ = GetGrupoIslaById(m.IdGrupoIsla.Id)
-		m.IdVehiculo, _ = GetVehiculoById(m.IdVehiculo.Id)
-		m.HoraEntrada = time.Now()
 		id, err = o.Insert(m)
 	}
 	return
@@ -58,7 +52,6 @@ func GetIslaById(id int) (v *Isla, err error) {
 	o := orm.NewOrm()
 	v = &Isla{Id: id}
 	if err = o.Read(v); err == nil {
-		v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
 		v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
 		return v, nil
 	}
@@ -121,7 +114,6 @@ func GetAllIsla(query map[string]string, fields []string, sortby []string, order
 	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
-				v.IdVehiculo, _ = GetVehiculoById(v.IdVehiculo.Id)
 				v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
 				ml = append(ml, v)
 			}
@@ -146,10 +138,8 @@ func GetAllIsla(query map[string]string, fields []string, sortby []string, order
 func UpdateIslaById(m *Isla) (err error) {
 	o := orm.NewOrm()
 	v := Isla{Id: m.Id}
-	m.HoraSalida = time.Now()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
-		m.HoraEntrada = v.HoraEntrada
 		var num int64
 		if num, err = o.Update(m); err == nil {
 			fmt.Println("Number of records updated in database:", num)
