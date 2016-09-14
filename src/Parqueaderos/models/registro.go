@@ -11,7 +11,7 @@ import (
 )
 
 type Registro struct {
-	Id          int       `orm:"column(id);pk";auto`
+	Id          int       `orm:"column(id);pk;auto"`
 	IdVehiculo  *Vehiculo `orm:"column(id_vehiculo);rel(fk)"`
 	IdIsla      *Isla     `orm:"column(id_isla);rel(fk)"`
 	HoraEntrada time.Time `orm:"column(hora_entrada);type(timestamp without time zone);null"`
