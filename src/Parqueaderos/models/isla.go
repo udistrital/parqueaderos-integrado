@@ -14,7 +14,6 @@ import (
 type Isla struct {
 	Id          int        `orm:"column(id);pk;auto"`
 	Ocupado     bool       `orm:"column(ocupado)"`
-	IdVehiculo  *Vehiculo  `orm:"column(id_vehiculo);rel(fk)"`
 	Geometria   string     `orm:"column(geometria)"`
 	IdGrupoIsla *GrupoIsla `orm:"column(id_grupo_isla);rel(fk)"`
 }
