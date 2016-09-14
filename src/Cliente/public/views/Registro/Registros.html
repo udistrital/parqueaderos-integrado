@@ -1,0 +1,115 @@
+<div>
+
+    <h2>Registros</h2>
+
+    <script type = "text/ng-template" id="Registro-save.html">
+        <form name="form" role="form" novalidate
+              class="ng-scope ng-invalid ng-invalid-required ng-dirty"
+              ng-submit="ok()">
+
+            <div class="modal-header">
+                <button type="button" class="close"
+                        ng-click="cancel()">&times;</button>
+                <h4 class="modal-title" id="myRegistroLabel">Create or edit a Registro</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="id"
+                           ng-model="Registro.Id" readonly>
+                </div>
+
+                
+                <div class="form-group">
+                    <label>HoraEntrada:</label>
+                    
+                    <input type="text" class="form-control" name="HoraEntrada" ui-date="HoraEntradaDateOptions" ui-date-format="yy-mm-dd" 
+                           ng-model="Registro.HoraEntrada" ng-required="false"/>
+                </div>
+                
+                <div class="form-group">
+                    <label>HoraSalida:</label>
+                    
+                    <input type="text" class="form-control" name="HoraSalida" ui-date="HoraSalidaDateOptions" ui-date-format="yy-mm-dd" 
+                           ng-model="Registro.HoraSalida" ng-required="false"/>
+                </div>
+                
+                <div class="form-group">
+                    <label>IdIsla:</label>
+                    
+                    <input type="number" class="form-control" name="IdIsla"
+                           ng-model="Registro.IdIsla.Id" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.IdIsla.$error.min">Must be greater than or equal to .</span>
+                    <span class="error" ng-show="form.IdIsla.$error.max">Must be less than or equal to .</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>IdVehiculo:</label>
+                    
+                    <input type="number" class="form-control" name="IdVehiculo"
+                           ng-model="Registro.IdVehiculo.Id" ng-required="true"
+                           />
+                    <span class="error" ng-show="form.IdVehiculo.$error.min">Must be greater than or equal to .</span>
+                    <span class="error" ng-show="form.IdVehiculo.$error.max">Must be less than or equal to .</span>
+                </div>
+                
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
+                </button>
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </script>
+
+    <button class="btn btn-primary btn-lg" ng-click="create()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new Registro
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>HoraEntrada</th>
+                
+                <th>HoraSalida</th>
+                
+                <th>IdIsla</th>
+                
+                <th>IdVehiculo</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="Registro in Registros">
+                <td>{{Registro.Id}}</td>
+                
+		<td>{{Registro.HoraEntrada.slice(0,19) | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+		
+		<td>{{Registro.HoraSalida.slice(0,19) | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+	                
+                <td>{{Registro.IdIsla.Id }}</td>
+                
+                <td>{{Registro.IdVehiculo.Id }}</td>
+                
+                <td>
+                    <button type="submit"
+                            ng-click="update(Registro.id)"
+                            class="btn">
+                        <span class="glyphicon glyphicon-pencil"></span> Editar
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(Registro.id)"
+                            class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span> Eliminar
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
