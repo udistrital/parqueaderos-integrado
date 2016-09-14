@@ -23,12 +23,7 @@
         </div>
 
         <div class="form-group">
-          <label>Id Vehículo:</label>
-<select class="form-control" name="IdVehiculo" ng-model="Isla.IdVehiculo.Id" ng-options="item as item.IdNfc for item in IslasVehIds track by item.Id" ng-required="true"></select>
-         </div>
-
-        <div class="form-group">
-          <label>Geometría:</label>
+         <label>Geometría:</label>
 
           <input type="text" class="form-control" name="Geometria" ng-model="Isla.Geometria" ng-required="true" />
           <span class="error" ng-show="form.Geometria.$error.minlength">Must be at least characters.</span>
@@ -61,13 +56,7 @@
 
           <th>Ocupado</th>
 
-          <th>Id Vehículo</th>
-
           <th>Geometría</th>
-
-          <th>Hora Entrada</th>
-
-          <th>Hora Salida</th>
 
           <th>Id Grupo Isla</th>
 
@@ -78,8 +67,6 @@
           <td>{{Isla.Id}}</td>
 
           <td>{{Isla.Ocupado }}</td>
-
-          <td>{{Isla.IdVehiculo.Id }}</td>
 
           <td>{{Isla.Geometria }}</td>
 
