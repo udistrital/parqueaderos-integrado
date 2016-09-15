@@ -30,24 +30,6 @@ angular.module('myapp')
       $scope.save = function(id) {
         var IslaSave = {
           "Ocupado": $scope.Isla.Ocupado,
-          "IdVehiculo": {
-            "Id": $scope.Isla.IdVehiculo.Id.Id,
-            "Placa": "",
-            "IdNfc": null,
-            "IdPropietario": {
-              "Id": null,
-              "Documento": "",
-              "PrimerNombre": "",
-              "OtrosNombres": "",
-              "PrimerApellido": "",
-              "SegundoApellido": "",
-              "IdTipoPropietario": {
-                "Id": null,
-                "Tipo": "",
-                "Descripcion": "",
-              }
-            }
-          },
           "Geometria": $scope.Isla.Geometria,
           "IdGrupoIsla": {
             "Id": $scope.Isla.IdGrupoIsla.Id,
@@ -77,13 +59,9 @@ angular.module('myapp')
 
           "Ocupado": false,
 
-          "IdVehiculo": "",
+          "IdGrupoIsla": "",
 
           "Geometria": "",
-
-          "HoraEntrada": "",
-
-          "HoraSalida": "",
 
           "Id": ""
         };
@@ -114,7 +92,7 @@ angular.module('myapp')
       $http.get("v1/vehiculo")
         .success(function(data) {
           data.forEach(function(entry, index) {
-            f[index] ={ 
+            f[index] ={
 		    Id: entry.Id,
 		    IdNfc: entry.IdNfc
 	    };
@@ -143,4 +121,4 @@ angular.module('myapp')
         $modalInstance.dismiss('cancel');
       };
     }
-  ]);
+]);
