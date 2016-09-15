@@ -85,31 +85,18 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('IslaSaveController', ['$scope', '$http', '$uibModalInstance', 'Isla',
-    function($scope, $http, $modalInstance, Isla) {
+  .controller('IslaSaveController', ['$scope', '$http', '$uibModalInstance', 'Isla', 'CONFIG',
+    function($scope, $http, $modalInstance, Isla, CONFIG) {
       $scope.Isla = Isla;
+
       var f = [];
-      $http.get("v1/vehiculo")
+      $http.get(CONFIG.WS_URL + '/grupo_isla')
         .success(function(data) {
           data.forEach(function(entry, index) {
-            f[index] ={
-		    Id: entry.Id,
-		    IdNfc: entry.IdNfc
-	    };
+            f[index] = entry.Id;
           });
           console.log(f);
-	  $scope.IslasVehIds = f;
-        })
-        .error(function(err) {});
-
-      var f1 = [];
-      $http.get("v1/grupo_isla")
-        .success(function(data) {
-          data.forEach(function(entry, index) {
-            f1[index] = entry.Id;
-          });
-          console.log(f1);
-	  $scope.IslasGrIds = f1;
+	  $scope.IslasGrIds = f;
         })
         .error(function(err) {});
 
