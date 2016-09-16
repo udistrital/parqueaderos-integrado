@@ -72,7 +72,7 @@ angular.module('myapp')
 
           "IdPropietario": "",
 
-          "id": ""
+          "Id": ""
         };
       };
 
@@ -94,12 +94,12 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('VehiculoSaveController', ['$scope', '$http', '$uibModalInstance', 'Vehiculo',
-    function($scope, $http, $modalInstance, Vehiculo) {
+  .controller('VehiculoSaveController', ['$scope', '$http', '$uibModalInstance', 'Vehiculo', 'CONFIG',
+    function($scope, $http, $modalInstance, Vehiculo, CONFIG) {
       $scope.Vehiculo = Vehiculo;
       
       var f = [{}];
-      $http.get("/v1/propietario")
+      $http.get(CONFIG.WS_URL + '/propietario')
         .success(function(data) {
           data.forEach(function(entry, index) {
             f[index] = {
