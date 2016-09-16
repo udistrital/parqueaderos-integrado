@@ -94,11 +94,11 @@ angular.module('myapp')
       };
     }
   ])
-  .controller('PropietarioSaveController', ['$scope', '$http', '$uibModalInstance', 'Propietario',
-    function($scope, $http, $modalInstance, Propietario) {
+  .controller('PropietarioSaveController', ['$scope', '$http', '$uibModalInstance', 'Propietario', 'CONFIG',
+    function($scope, $http, $modalInstance, Propietario, CONFIG) {
       $scope.Propietario = Propietario;
       var f = [];
-      $http.get("/v1/tipo_propietario")
+      $http.get(CONFIG.WS_URL + '/tipo_propietario')
         .success(function(data) {
           data.forEach(function(entry, index) {
             f[index] = entry.Id;
