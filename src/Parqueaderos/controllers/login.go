@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego"
+	//"github.com/astaxie/beego/session"
 )
 
 // operations for Login
@@ -47,4 +48,17 @@ func (c *LoginController) Get() {
 	fmt.Println(tokenString)
 	c.ServeJSON(tokenString)
 
+}
+func (c *LoginController) ServeJSON(chkuser bool, encoding ...bool) {
+	var (
+		hasIndent   = true
+		hasEncoding = false
+	)
+	//	if BConfig.RunMode == PROD {
+	//		hasIndent = false
+	//	}
+	if len(encoding) > 0 && encoding[0] == true {
+		hasEncoding = true
+	}
+	c.Ctx.Output.JSON(c.Data["json"], hasIndent, hasEncoding, chkuser)
 }
