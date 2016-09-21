@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myapp')
-  .controller('LoginController', ['$http', '$scope', '$uibModal', 'Login',
-    function($http, $scope, $modal, Login) {
+  .controller('LoginController', ['$http', '$scope', '$uibModal',
+    function($http, $scope, $modal) {
       $scope.Login = ["admin", "admin"];
 
       var completeUrl = "http://localhost:8080/v1/login?" + "username="+ $scope.Login[0]
