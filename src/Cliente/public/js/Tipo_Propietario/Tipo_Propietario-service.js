@@ -5,24 +5,64 @@ angular.module('myapp')
     return $resource(CONFIG.WS_URL + '/tipo_propietario/:id', {}, {
       'query': {
         method: 'GET',
-        headers: { '_xsrf': document.cookie },
-        isArray: true
+        headers: {
+          '_xsrf': document.cookie
+        },
+        isArray: true,
+        interceptor: {
+          responseError: function(response) {
+            console.log(response)
+            window.alert(response.data)
+          }
+        }
       },
       'get': {
         method: 'GET',
-        headers: { 'something': 'anything' }
+        headers: {
+          'something': 'anything'
+        },
+        interceptor: {
+          responseError: function(response) {
+            console.log(response)
+            window.alert(response.data)
+          }
+        }
       },
       'save': {
-        method:'POST',
-        headers: { 'something': 'anything' }
+        method: 'POST',
+        headers: {
+          'something': 'anything'
+        },
+        interceptor: {
+          responseError: function(response) {
+            console.log(response)
+            window.alert(response.data)
+          }
+        }
       },
       'update': {
         method: 'PUT',
-        headers: { 'something': 'anything' }
+        headers: {
+          'something': 'anything'
+        },
+        interceptor: {
+          responseError: function(response) {
+            console.log(response)
+            window.alert(response.data)
+          }
+        }
       },
       'delete': {
-        method:'DELETE',
-        headers: { 'something': 'anything' }
+        method: 'DELETE',
+        headers: {
+          'something': 'anything'
+        },
+        interceptor: {
+          responseError: function(response) {
+            console.log(response)
+            window.alert(response.data)
+          }
+        }
       }
     });
   }]);
