@@ -36,9 +36,11 @@ func (c *PropietarioController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
+			c.Ctx.Output.SetStatus(400)
 			c.Data["json"] = err.Error()
 		}
 	} else {
+		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
@@ -55,6 +57,7 @@ func (c *PropietarioController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetPropietarioById(id)
 	if err != nil {
+		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	} else {
 		c.Data["json"] = v
@@ -106,6 +109,7 @@ func (c *PropietarioController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.Split(cond, ":")
 			if len(kv) != 2 {
+				c.Ctx.Output.SetStatus(400)
 				c.Data["json"] = errors.New("Error: invalid query key/value pair")
 				c.ServeJSON()
 				return
@@ -117,6 +121,7 @@ func (c *PropietarioController) GetAll() {
 
 	l, err := models.GetAllPropietario(query, fields, sortby, order, offset, limit)
 	if err != nil {
+		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	} else {
 		c.Data["json"] = l
@@ -139,9 +144,11 @@ func (c *PropietarioController) Put() {
 		if err := models.UpdatePropietarioById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
+			c.Ctx.Output.SetStatus(400)
 			c.Data["json"] = err.Error()
 		}
 	} else {
+		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
@@ -159,6 +166,7 @@ func (c *PropietarioController) Delete() {
 	if err := models.DeletePropietario(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
+		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
