@@ -5,13 +5,24 @@ angular.module('myapp')
     return $resource(CONFIG.WS_URL + '/tipo_propietario/:id', {}, {
       'query': {
         method: 'GET',
+        headers: { '_xsrf': document.cookie },
         isArray: true
       },
       'get': {
-        method: 'GET'
+        method: 'GET',
+        headers: { 'something': 'anything' }
+      },
+      'save': {
+        method:'POST',
+        headers: { 'something': 'anything' }
       },
       'update': {
-        method: 'PUT'
+        method: 'PUT',
+        headers: { 'something': 'anything' }
+      },
+      'delete': {
+        method:'DELETE',
+        headers: { 'something': 'anything' }
       }
     });
   }]);
