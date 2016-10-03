@@ -3,7 +3,7 @@
   Author: Jorge Ulises Useche Cuellar
 */
 
-digraph G {
+digraph SalidaVehiculo {
   inicio -> tag_nfc -> id_veh -> reg_salida -> es_disca;
   es_disca -> cupos_disc_l1 [label="si"];
   es_disca -> cupos_norm_l1 [label="no"];
@@ -29,6 +29,6 @@ digraph G {
   abrir_puertas [label="abrir puertas"];
 
   inicio [shape=circle];
-  es_disca [shape=diamond];
+  es_disca, resta_real_esper [shape=diamond];
   fin [shape=doublecircle];
 }

@@ -5,7 +5,7 @@
                    http://en.wikipedia.org/wiki/DOT_language
 */
 
-digraph G {
+digraph IngresoVehiculo {
   inicio -> tag_nfc -> id_veh -> usu_hab;
 
   usu_hab -> hor_corre [label=si];
