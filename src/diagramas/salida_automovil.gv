@@ -1,0 +1,34 @@
+/*
+  Proceso de Salida de Vehículo Automóvil.
+  Author: Jorge Ulises Useche Cuellar
+*/
+
+digraph G {
+  inicio -> tag_nfc -> id_veh -> reg_salida -> es_disca;
+  es_disca -> cupos_disc_l1 [label="si"];
+  es_disca -> cupos_norm_l1 [label="no"];
+
+  cupos_disc_l1 -> resta_real_esper;
+  cupos_norm_l1 -> resta_real_esper;
+
+  resta_real_esper -> reg_incidencia [label="si"];
+  resta_real_esper -> abrir_puertas [label="no"];
+
+  reg_incidencia -> abrir_puertas;
+
+  abrir_puertas -> fin;
+
+  tag_nfc [label="pasar tag NFC\nen lector de entrada"];
+  id_veh [label="identificar vehículo"];
+  reg_salida [label="registrar hora salida"];
+  es_disca [label="¿es discapacitado?"];
+  cupos_disc_l1 [label="disminuir cupos discapacitados"];
+  cupos_norm_l1 [label="disminutir cupos normales"];
+  resta_real_esper [label="¿hora real menos\nhora esperada es\nmayor a 1 hora?"];
+  reg_incidencia [label="registrar incidencia"];
+  abrir_puertas [label="abrir puertas"];
+
+  inicio [shape=circle];
+  es_disca [shape=diamond];
+  fin [shape=doublecircle];
+}

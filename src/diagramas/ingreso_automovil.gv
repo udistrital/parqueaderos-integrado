@@ -1,40 +1,38 @@
 /*
-  Huffman Tree DOT graph.
-
+  Proceso de Ingreso de Vehículo Automóvil.
+  Author: Jorge Ulises Useche Cuellar
   DOT Reference :  http://www.graphviz.org/doc/info/lang.html
                    http://en.wikipedia.org/wiki/DOT_language
-  Timestamp     :  1368947341
-  Phrase        :  'TO BE OR NOT TO BE'
-
-  Generated on http://huffman.ooz.ie/
 */
 
 digraph G {
   inicio -> tag_nfc -> id_veh -> usu_hab;
 
   usu_hab -> hor_corre [label=si];
-  usu_hab -> fin [label=no];
+  usu_hab -> denegar_acce [label=no];
 
   hor_corre -> es_disca [label=si];
-  hor_corre -> fin [label=no];
+  hor_corre -> denegar_acce [label=no];
 
   es_disca -> full_islas_disc [label=si];
   es_disca -> espa_reser [label=no];
 
-  full_islas_disc -> fin [label=si];
+  full_islas_disc -> denegar_acce [label=si];
   full_islas_disc -> islas_disc_m1 [label=no];
 
-  islas_disc_m1 -> fin;
+  islas_disc_m1 -> denegar_acce;
 
   espa_reser -> no_se [label=si];
   espa_reser -> full_islas_norm [label=no];
 
   full_islas_norm -> islas_norm_m1 [label=no];
-  full_islas_norm -> fin [label=si];
+  full_islas_norm -> denegar_acce [label=si];
 
   islas_norm_m1 -> reg_ingreso;
 
   reg_ingreso -> fin;
+
+  denegar_acce -> fin;
 
 
   tag_nfc [label="pasar tag NFC\nen lector de entrada"];
@@ -42,13 +40,17 @@ digraph G {
   usu_hab [label="¿usuario habilitado?"];
   hor_corre [label="¿horario corresponde\n a +/- 20min?"];
   es_disca [label="¿es discapacitado?"];
-  full_islas_disc [label="¿estan llenas\nislas discapacitados?"];
+  full_islas_disc [label="¿están llenas\nislas discapacitados?"];
   islas_disc_m1 [label="aumentar número\nde islas discapacitados"];
-  full_islas_norm [label="¿estan llenas\nislas normales?"];
+  espa_reser [label="¿tiene espacios reservados?"];
+  no_se [label="?"]
+  full_islas_norm [label="¿están llenas\nislas normales?"];
   islas_norm_m1 [label="aumentar número\nde islas normales"];
   reg_ingreso [label="registrar horar entrada\ny posible salida"];
+  denegar_acce [label="denegar acceso"];
 
   inicio [shape=circle];
   usu_hab, hor_corre, es_disca [shape=diamond];
+  full_islas_norm, full_islas_disc, espa_reser [shape=diamond];
   fin [shape=doublecircle];
 }
