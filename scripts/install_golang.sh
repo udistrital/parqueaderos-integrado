@@ -20,9 +20,9 @@ tee $file << 'EOF'
 export GOROOT=/usr/lib/golang
 export GOBIN=$GOROOT/bin
 export GOPATH=/home/vagrant
-export PATH=\$PATH:\$GOROOT/bin:\$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 EOF
-chown vagrant:vagrant $file
+sudo chown vagrant:vagrant $file
 
 source ~/.bashrc
 source /etc/profile

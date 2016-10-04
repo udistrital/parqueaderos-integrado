@@ -6,7 +6,7 @@ Para iniciar la máquina:
 $ vagrant up
 ```
 
-Se ejecuta la provisión:
+Se ejecuta el aprovisionamiento de software base a la máquina:
 ```bash
 $ vagrant provision
 $ vagrant reload
