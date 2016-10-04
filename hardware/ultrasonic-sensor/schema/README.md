@@ -1,0 +1,1 @@
+* Este esquema utiliza el componente Maxbotix MaxSonar Ultrasonic Sensor (Hi-Res) obtenido de: https://github.com/adafruit/Fritzing-Library/blob/master/parts/Maxbotix%20MaxSonar%20Ultrasonic%20Sensor%20(Hi-Res).fzpz
