@@ -33,4 +33,4 @@ $ ./run --help
 
 MODELO
 ------
-![Modelo Circe](https://raw.githubusercontent.com/udistrital/parqueaderos/master/images/modelo.png "Imagen Modelo Circe")
+![Modelo Circe](./images/modelo.png "Imagen Modelo Circe")
