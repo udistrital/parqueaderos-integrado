@@ -48,6 +48,7 @@
  Arduino, it should work fine.
 
 */
+// Se está usando https://github.com/Circuito-io/ESP8266_SoftwareSerial
 #include "ESP8266.h"
 
 const char *SSID = "Familia";
