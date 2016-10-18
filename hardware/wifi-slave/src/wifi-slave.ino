@@ -7,25 +7,84 @@ SoftwareSerial esp8266(2, 3); // rxPin, TxPin of Arduino rx-tx tx-rx
 static char response[255] = "\0"; // static vs const?
 
 void setup() {
-  Serial.begin(9600);
+  configSerial();
   configWIFI();
 }
 
-void loop() { redirSerialAT(); }
+void configSerial() { Serial.begin(115200); }
 
 void configWIFI() {
   esp8266.begin(115200);
-  esp8266.println(F("AT"));
-  showResponse();
+  esp8266.println(F("AT")); // Print both? NL & CR
+  saveAndShowResponse();
+  esp8266.println(F("AT+CWMODE=1"));
+  saveAndShowResponse();
   esp8266.println(F("AT+RST")); // for know state
-  showResponse();
+  saveAndShowResponse();
   delay(5000);
+  enviarDato();
 }
 
+void enviarDato() {
+  esp8266.println(F("AT+CWLAP"));
+  saveAndShowResponse();
+  esp8266.println(F("AT+CWJAP=\"Familia\",\"useche;)\""));
+  saveAndShowResponse();
+  esp8266.println(F("AT+CIFSR"));
+  saveAndShowResponse();
+  esp8266.println(F("AT+CIPMUX=0"));
+  saveAndShowResponse();
+  esp8266.println(F("AT+CIPSTART=\"TCP\",\"192.168.0.11\",8080"));
+  saveAndShowResponse();
+  String msj =
+      "GET / HTTP/1.1\r\nHost: 192.168.0.11\r\nConnection: close\r\n\r\n";
+  Serial.println(msj.length());
+  esp8266.println(F("AT+CIPSEND=57"));
+  saveAndShowResponse();
+  esp8266.print(msj);
+  saveAndShowResponse();
+  Serial.println("Terminé?");
+}
+
+void loop() {
+  enviarDato2();
+  redirSerialAT();
+}
+
+void enviarDato2() {
+  esp8266.println(F("AT+CIPSTART=\"TCP\",\"192.168.0.11\",8080"));
+  saveAndShowResponse();
+  String msj =
+      "GET / HTTP/1.1\r\nHost: 192.168.0.11\r\nConnection: close\r\n\r\n";
+  Serial.println(msj.length());
+  esp8266.println(F("AT+CIPSEND=57"));
+  saveAndShowResponse();
+  esp8266.print(msj);
+  saveAndShowResponse();
+}
+
+/**
+ * Solo se muestra la respuesta,
+ * la taza de muestreo debería ser la misma para que no ocurran problemas
+ */
 void showResponse() {
-  bufferSerial(response);
+  if (esp8266.available()) {
+    Serial.write(esp8266.read());
+  }
+}
+
+/**
+ * Se guarda la respuesta en Response y se imprime en serial
+ */
+void saveAndShowResponse() {
+  saveResponse();
   Serial.println(response);
 }
+
+/**
+ * Se guarda la respuesta en Response
+ */
+void saveResponse() { bufferSerial(response); }
 
 /**
  * Se utiliza para redirigir los comandos AT del serial del arduino

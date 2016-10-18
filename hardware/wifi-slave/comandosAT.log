@@ -1,0 +1,17 @@
+#Multiple Connection
+AT+CWLAP
+AT+CWJAP="Familia","useche;)"
+AT+CIFSR
+AT+CIPMUX=1
+AT+CIPSTART=4,"TCP","google.com",80
+AT+CIPSEND=4,18
+GET / HTTP/1.0
+
+#Single Connection
+AT+CWLAP
+AT+CWJAP="Familia","useche;)"
+AT+CIFSR
+AT+CIPMUX=0
+AT+CIPSTART="TCP","google.com",80
+AT+CIPSEND=18 // GET / HTTP/1.0\r\n\r\
+GET / HTTP/1.0
