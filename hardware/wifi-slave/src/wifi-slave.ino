@@ -1,116 +1,83 @@
-#include <SoftwareSerial.h>
+/*  Robo-Plan Technologies LTD: 08/2016
 
-// static or const is in read-only parts of the memory?
-// https://www.arduino.cc/en/Reference/SoftwareSerialConstructor
-SoftwareSerial esp8266(2, 3); // rxPin, TxPin of Arduino rx-tx tx-rx
+   The purpose of this Arduino Sketch is to check the ESP8266-01 as a peripheral
+ wifi board connected to
+   an Arduino Uno board via a 5-3.3 logic converter with SoftwareSerial using
+ ESP8266 AT command library created by ITEAD.
 
-static char response[255] = "\0"; // static vs const?
+   The original library can be found:
+ https://github.com/itead/ITEADLIB_Arduino_WeeESP8266
 
-void setup() {
-  configSerial();
-  configWIFI();
+   Our goal was to create an Esp8266 AT command library (based on ITEAD
+ library),
+   that would work well on software serial on most ESP8266 devices, no matter
+ the firmware, or the initial baudrate.
+
+   Therefore, we are distributing this preliminary library. Please connect the
+ Esp8266-01 and run this example.
+   Write to us about any bugs, comments, issues, improvement proposals, etc.
+
+   We have modified the original library due to Software serial baudrate
+ problems.
+   Now, the initialize function, when using software serial only, will set the
+ ESP8266 baudrate to 9600.
+
+   The sketch sets the ESP8266 baudrate to 9600 by default for software serial
+ and to 115200 with hardware serial.
+   Then it connects to your AP, checks the version of the ESP8266, sends a TCP
+ request to google.com and displays the response on the serial monitor.
+
+   Notes:
+   -  In order to run the example, first connect the ESP8266 via Software Serial
+ to your arduino board using a logic converter,
+        as shown in the wiring figure attached.
+   -  Enter your SSID and PASSWORD below.
+   -  If using SoftwareSerial make sure the line "#define
+ ESP8266_USE_SOFTWARE_SERIAL" in ESP8266.h is uncommented.
+
+
+ Troubleshooting:
+   -  If you receive partial response from the esp8266 when using software
+ serial -
+      go to C:\Program Files
+ (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\SoftwareSerial.h
+      Change line 42: #define _SS_MAX_RX_BUFF 64 // RX buffer size
+      To: #define _SS_MAX_RX_BUFF 256 // RX buffer size
+      this will enlarge the software serial buffer.
+   -  Sometime setting the baudrate on initialization fails, try resetting the
+ Arduino, it should work fine.
+
+*/
+#include "ESP8266.h"
+
+const char *SSID = "Familia";
+const char *PASSWORD = "useche;)";
+
+SoftwareSerial
+    mySerial(2, 3); // SoftwareSerial pins for MEGA/Uno. For other boards see:
+                    // https://www.arduino.cc/en/Reference/SoftwareSerial
+
+ESP8266 wifi(mySerial);
+
+void setup(void) {
+  // Start Serial Monitor at any BaudRate
+  Serial.begin(9600);
+  Serial.println("Begin");
+
+  if (!wifi.init(SSID, PASSWORD)) {
+    Serial.println("Wifi Init failed. Check configuration.");
+    while (true)
+      ; // loop eternally
+  }
 }
 
-void configSerial() { Serial.begin(115200); }
-
-void configWIFI() {
-  esp8266.begin(115200);
-  esp8266.println(F("AT")); // Print both? NL & CR
-  saveAndShowResponse();
-  esp8266.println(F("AT+CWMODE=1"));
-  saveAndShowResponse();
-  esp8266.println(F("AT+RST")); // for know state
-  saveAndShowResponse();
-  delay(5000);
-  enviarDato();
-}
-
-void enviarDato() {
-  esp8266.println(F("AT+CWLAP"));
-  saveAndShowResponse();
-  esp8266.println(F("AT+CWJAP=\"Familia\",\"useche;)\""));
-  saveAndShowResponse();
-  esp8266.println(F("AT+CIFSR"));
-  saveAndShowResponse();
-  esp8266.println(F("AT+CIPMUX=0"));
-  saveAndShowResponse();
-  esp8266.println(F("AT+CIPSTART=\"TCP\",\"192.168.0.11\",8080"));
-  saveAndShowResponse();
-  String msj =
+void loop(void) {
+  Serial.println("Sending Request to 192.168.0.11");
+  char *request =
       "GET / HTTP/1.1\r\nHost: 192.168.0.11\r\nConnection: close\r\n\r\n";
-  Serial.println(msj.length());
-  esp8266.println(F("AT+CIPSEND=57"));
-  saveAndShowResponse();
-  esp8266.print(msj);
-  saveAndShowResponse();
-  Serial.println("Terminé?");
-}
+  char *ip = "192.168.0.11";
+  uint32_t port = (uint32_t)8080;
+  wifi.httpGet(request, ip, port);
 
-void loop() {
-  enviarDato2();
-  redirSerialAT();
-}
-
-void enviarDato2() {
-  esp8266.println(F("AT+CIPSTART=\"TCP\",\"192.168.0.11\",8080"));
-  saveAndShowResponse();
-  String msj =
-      "GET / HTTP/1.1\r\nHost: 192.168.0.11\r\nConnection: close\r\n\r\n";
-  Serial.println(msj.length());
-  esp8266.println(F("AT+CIPSEND=57"));
-  saveAndShowResponse();
-  esp8266.print(msj);
-  saveAndShowResponse();
-}
-
-/**
- * Solo se muestra la respuesta,
- * la taza de muestreo debería ser la misma para que no ocurran problemas
- */
-void showResponse() {
-  if (esp8266.available()) {
-    Serial.write(esp8266.read());
-  }
-}
-
-/**
- * Se guarda la respuesta en Response y se imprime en serial
- */
-void saveAndShowResponse() {
-  saveResponse();
-  Serial.println(response);
-}
-
-/**
- * Se guarda la respuesta en Response
- */
-void saveResponse() { bufferSerial(response); }
-
-/**
- * Se utiliza para redirigir los comandos AT del serial del arduino
- * al puerto del módulo WIFI ESP8266
- */
-void redirSerialAT() {
-  if (esp8266.available()) {
-    Serial.write(esp8266.read());
-  }
-  if (Serial.available()) {
-    esp8266.write(Serial.read());
-  }
-}
-
-/**
- * Realiza la lectura del buffer del serial
- * caracteres hasta que la transmisión serial termina
- * Acumulador de caracteres recursivo
- */
-void bufferSerial(char *cad) {
-  int i = 0;
-  char c = '\0';
-  strcpy(cad, "");
-  while (esp8266.available()) {
-    c = esp8266.read();
-    cad[i] = c;
-    i++;
-  }
+  delay(4000);
 }

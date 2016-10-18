@@ -851,11 +851,8 @@ int ESP8266::recvSingle(uint8_t *buffer, int bufferLen) {
 
   return i - 1;
 }
-int ESP8266::httpGet() {
-  char *request =
-      "GET / HTTP/1.1\r\nHost: 192.168.0.11\r\nConnection: close\r\n\r\n";
-
-  if (createTCP("192.168.0.11", 8080)) {
+int ESP8266::httpGet(char *request, char *ip, uint32_t port) {
+  if (createTCP(ip, port)) {
     Serial.println(F("create tcp - OK"));
   } else {
     Serial.println(F("create tcp - ERROR"));
