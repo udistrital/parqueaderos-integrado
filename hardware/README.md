@@ -9,8 +9,12 @@ Este módulo se comunica por protocolo serial (UART http://www.mbedded.ninja/ele
 * Es el datasheet del integrado base, se destaca la muestra de potencia consumida en modo Transmisor, Receptor y en estados de hibernación. http://www.electroschematics.com/wp-content/uploads/2015/02/esp8266-datasheet.pdf
 * Muestra de otra forma la documentación habitual, tiene documentación de los comandos AT sin ejemplos. https://nurdspace.nl/ESP8266
 * Conexión del módulo for dummies (torpes). http://www.teomaragakis.com/hardware/electronics/how-to-connect-an-esp8266-to-an-arduino-uno/
+* Se muestra un mapa conceptual de los comandos AT con ejemplos y una lista extendida de ellos. Referencias de documentación, características técnicas y la forma de actualizar el firmware. https://www.itead.cc/wiki/ESP8266_Serial_WIFI_Module
+* Contiene información necesaria para configurar el módulo como un Access Point. http://dominicm.com/esp8266-configure-access-point/
+* La wiki definitiva para los comandos AT: https://github.com/espressif/ESP8266_AT/wiki
 
 #Módulo Ultrasonido MB1010 LV-MaxSonar®-EZ1
+-------------------------------------------
 Este módulo se utiliza para detectar la presencia o ausencia de objetos, este se puede controlar por medio de 3 métodos, el análogo, el PWM y con comunicación serial. El más acosejable es PWM (http://playground.arduino.cc/Main/MaxSonar).
 
 * Documentación oficial de implementación del sensor. http://www.maxbotix.com/articles/085.htm
