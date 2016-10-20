@@ -19,3 +19,15 @@ Este módulo se utiliza para detectar la presencia o ausencia de objetos, este s
 
 * Documentación oficial de implementación del sensor. http://www.maxbotix.com/articles/085.htm
 * Características técnicas del dispositivo sumado a enlaces del datasheet, explicaciones, guía de selección del sensores de la misma familia. https://www.sparkfun.com/products/8502
+
+#Módulo RF 433MHz Transmisor y Receptor
+* https://www.youtube.com/watch?v=h3OevEdl674 https://github.com/Simsso/Arduino-Wireless-Module-Multiple-Receivers
+* http://electronics.stackexchange.com/questions/74272/how-to-connect-20-wireless-sensors-in-one-receiver-with-arduino
+* http://www.electronicsmayhem.com/?p=68
+* https://www.sparkfun.com/products/10532
+* https://www.sparkfun.com/products/10534
+* http://www.electronicsmayhem.com/?p=68
+* http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/?ALLSTEPS
+* https://github.com/sui77/rc-switch
+* http://www.pjrc.com/teensy/td_libs_VirtualWire.html
+
