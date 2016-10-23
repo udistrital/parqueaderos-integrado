@@ -57,6 +57,11 @@ func init() {
 				&controllers.LoginController{},
 			),
 		),
+		beego.NSNamespace("/ingreso",
+			beego.NSInclude(
+				&controllers.IngresoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
