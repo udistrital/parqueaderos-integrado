@@ -57,6 +57,31 @@ func GetIslaById(id int) (v *Isla, err error) {
 	return nil, err
 }
 
+// GetIslaByOcu retrieves Isla by state Ocupado. Returns error if
+// Id doesn't exist
+func GetIslaByOcu(id bool) (v *Isla, err error) {
+	//func GetIslaByOcu(id bool) (ml []interface{}, err error) {
+	o := orm.NewOrm()
+
+	v = &Isla{Ocupado: id}
+	if err = o.Read(v, "Ocupado"); err == nil {
+		v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
+		return v, nil
+	}
+	return nil, err
+	// De la segunda manera se obtiene todas las islas desocupadas
+	// qs := o.QueryTable(new(Isla))
+	// var l []Isla
+	// if _, err := qs.Filter("Ocupado", id).All(&l); err == nil {
+	// 	for _, v := range l {
+	// 		v.IdGrupoIsla, _ = GetGrupoIslaById(v.IdGrupoIsla.Id)
+	// 		ml = append(ml, v)
+	// 	}
+	// 	return ml, nil
+	// }
+	// return nil, err
+}
+
 // GetAllIsla retrieves all Isla matches certain condition. Returns empty list if
 // no records exist
 func GetAllIsla(query map[string]string, fields []string, sortby []string, order []string,
