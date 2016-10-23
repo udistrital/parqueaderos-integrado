@@ -59,6 +59,18 @@ func GetVehiculoById(id int) (v *Vehiculo, err error) {
 	return nil, err
 }
 
+// GetVehiculoByIdNfc retrieves Vehiculo by IdNfc. Returns error if
+// Id doesn't exist
+func GetVehiculoByIdNfc(id int16) (v *Vehiculo, err error) {
+	o := orm.NewOrm()
+	v = &Vehiculo{IdNfc: id}
+	if err = o.Read(v, "IdNfc"); err == nil {
+		v.IdPropietario, _ = GetPropietarioById(v.IdPropietario.Id)
+		return v, nil
+	}
+	return nil, err
+}
+
 // GetAllVehiculo retrieves all Vehiculo matches certain condition. Returns empty list if
 // no records exist
 func GetAllVehiculo(query map[string]string, fields []string, sortby []string, order []string,
