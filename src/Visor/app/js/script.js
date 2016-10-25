@@ -93,4 +93,15 @@ var map = new ol.Map({
   })
 })
 
-var sidebar = $('#sidebar').sidebar();
+map.on('moveend', checknewzoom);
+
+function checknewzoom(evt) {
+  var newZoomLevel = map.getView().getZoom()
+  if (newZoomLevel > 20) {
+  	wmsLayer.setVisible(true)
+  } else {
+  	mmsLayer.setVisible(false)
+  }
+}
+
+var sidebar = $('#sidebar').sidebar()
