@@ -3,7 +3,7 @@ echo 'Ejecutando: create_database_proyecto.sh'
 
 sql1=usercirce.sql
 sql2=script_tables.sql
-db=sigma4c
+db=circe
 
 if echo 'SELECT * FROM public.grupo_isla;' | sudo psql -U postgres -d $db &>/dev/null
 then
