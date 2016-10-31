@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo yum install -y httpd
-sudo systemctl enable
+sudo systemctl enable httpd
 sudo tee /etc/httpd/conf.d/permisos.conf << 'EOF'
 User vagrant
 Group vagrant
@@ -20,3 +20,4 @@ Alias "/parqueaderos" "/home/vagrant/src/Cliente/public"
 </Directory>
 ProxyPass /parqueaderos/v1 http://localhost:8080/parqueaderos/v1
 EOF
+sudo systemctl start httpd
