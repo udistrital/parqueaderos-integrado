@@ -21,6 +21,6 @@ else
   sudo su postgres -c "
   cd /tmp
   psql -f $scriptsql1
-  psql -f $scriptsql2 -d circe
+  psql -f $scriptsql2 -d $db
   "
 fi
