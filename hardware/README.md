@@ -30,4 +30,4 @@ Este módulo se utiliza para detectar la presencia o ausencia de objetos, este s
 * http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/?ALLSTEPS
 * https://github.com/sui77/rc-switch
 * http://www.pjrc.com/teensy/td_libs_VirtualWire.html
-
+* Se destaca por tener una comparación de dispositivos de Radio Frecuencia económicos. http://www.raviyp.com/embedded/152-low-cost-zigbee-modules-for-using-in-projects
