@@ -5,7 +5,7 @@ angular.module('myapp')
     function($http, $scope, $modal, CONFIG) {
       $scope.Login = ["admin", "admin"];
 
-      var completeUrl = CONFIG.WS_URL + '/login ' + '?' + "username=" + $scope.Login[0]
+      var completeUrl = CONFIG.WS_URL + '/login?' + "username=" + $scope.Login[0]
                     + "&password=" + $scope.Login[1] //and the same for input 3
 $http({method: 'GET', url: completeUrl}).
 success(function(data, status, headers, config) {
