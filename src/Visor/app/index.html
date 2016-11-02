@@ -50,25 +50,33 @@
                   <img src="css/img/sotano1.png" alt="" class="circle">
                   <span class="title">Sotano 1</span>
                   <p>Cartografía Temática<br>Capa Raster</p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">visibility</i></a>
+                  <a href="#!" onclick="changeVisibility(this)" data-layer="sotano1_raster" class="secondary-content">
+                    <i class="material-icons btnEye">visibility</i>
+                  </a>
                 </li>
                 <li class="collection-item avatar">
                   <i class="material-icons circle">layers</i>
                   <span class="title">Sótano 1</span>
                   <p>Grupo Isla<br>Capa Vector</p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">visibility</i></a>
+                  <a href="#!" onclick="changeVisibility(this)" data-layer="sotano1_vector" class="secondary-content">
+                    <i class="material-icons btnEye">visibility</i>
+                  </a>
                 </li>
                 <li class="collection-item avatar">
                   <i class="material-icons circle green">local_parking</i>
                   <span class="title">Islas Sótano 1</span>
                   <p>Islas<br>Capa Vector</p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">visibility</i></a>
+                  <a href="#!" onclick="changeVisibility(this)" data-layer="sotano1_islas_vector" class="secondary-content">
+                    <i class="material-icons btnEye">visibility</i>
+                  </a>
                 </li>
                 <li class="collection-item avatar">
                   <i class="material-icons circle red">map</i>
                   <span class="title">Google Maps Spatial</span>
                   <p>Capa Raster</p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">visibility_off</i></a>
+                  <a href="#!" onclick="changeVisibility(this)" data-layer="" class="secondary-content">
+                    <i class="material-icons btnEye">visibility_off</i>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -121,6 +129,7 @@
 
     <div id="map" class="sidebar-map"></div>
     <!--https://design.google.com/icons/#ic_speaker_notes-->
+    <!--
     <div id="btnDelete" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Eliminar">
         <i class="large material-icons">delete</i>
     </div>
@@ -139,6 +148,7 @@
     <div id="btnSelect" class="btnMenu btn-floating btn-large waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Identificar">
         <i class="large material-icons">speaker_notes</i>
     </div>
+      -->
 
     <div id="btnZoomIn" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">add</i></div>
     <div id="btnZoomOut" class="hide btn-floating btn-large waves-effect waves-light teal"><i class="large material-icons">remove</i></div>
