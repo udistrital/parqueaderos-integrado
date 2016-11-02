@@ -28,6 +28,8 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+temporal_anterior = ''
+
 for archivo in archivos:
     index_ult_punto = archivo.rfind('.')
     arch_sin_num = archivo[:index_ult_punto]
@@ -48,10 +50,16 @@ for archivo in archivos:
     print('Archivo original: ' + archivo_original, end="")
     print(bcolors.ENDC)
     # Abrir archivo original para buscar
+    # Si el archivo temporal ya existe, comienza a reemplazar con base a este
+    temporal = archivo_original + '.new'
+    if temporal_anterior == temporal:
+        print('Ya existe fichero temporal. Se busca en este.')
+        archivo_original = temporal
+    temporal_anterior = temporal
     with open(archivo_original, 'r') as file :
         filedata = file.read()
 
-    # Reemplaza los strings
+    # Reemplaza las cadenas de texto
     print('Buscando:')
     print(bcolors.FAIL, end="")
     print(texto_busqueda, end="")
@@ -60,14 +68,13 @@ for archivo in archivos:
     print(bcolors.OKGREEN, end="")
     print(texto_reemplazo, end="")
     print(bcolors.ENDC)
-    print('Ocurrencias: ', end="")
+    print('Coincidencias: ', end="")
     print(bcolors.BOLD, end="")
     print(filedata.count(texto_busqueda), end="")
     print(bcolors.ENDC)
     filedata = filedata.replace(texto_busqueda, texto_reemplazo)
 
-    # Guarda en un nuevo archivo el restulado
-    temporal = archivo_original + '.new'
+    # Guarda en un nuevo archivo el resultado
     with open(temporal, 'w') as file:
         file.write(filedata)
     print('Escrito en archivo temporal:')
