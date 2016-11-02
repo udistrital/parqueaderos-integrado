@@ -41,10 +41,11 @@ for archivo in archivos:
 
     filedata = None
     archivo_original = directorio_a_reemplazar + arch_sin_num_sin_punto
-    print(bcolors.WARNING)
-    print('Archivo modificado: ' + archivo)
+    print('----------------------------------------------------------')
+    print(bcolors.WARNING, end="")
+    print('Archivo modificado: ' + archivo, end="")
     print(bcolors.OKBLUE)
-    print('Archivo original: ' + archivo_original)
+    print('Archivo original: ' + archivo_original, end="")
     print(bcolors.ENDC)
     # Abrir archivo original para buscar
     with open(archivo_original, 'r') as file :
@@ -52,15 +53,29 @@ for archivo in archivos:
 
     # Reemplaza los strings
     print('Buscando:')
-    print(bcolors.FAIL)
-    print(texto_busqueda)
+    print(bcolors.FAIL, end="")
+    print(texto_busqueda, end="")
     print(bcolors.ENDC)
     print('Reemplazando:')
-    print(bcolors.OKGREEN)
-    print(texto_reemplazo)
+    print(bcolors.OKGREEN, end="")
+    print(texto_reemplazo, end="")
+    print(bcolors.ENDC)
+    print('Ocurrencias: ', end="")
+    print(bcolors.BOLD, end="")
+    print(filedata.count(texto_busqueda), end="")
     print(bcolors.ENDC)
     filedata = filedata.replace(texto_busqueda, texto_reemplazo)
 
     # Guarda en un nuevo archivo el restulado
-    with open(archivo_original + '.new', 'w') as file:
+    temporal = archivo_original + '.new'
+    with open(temporal, 'w') as file:
         file.write(filedata)
+    print('Escrito en archivo temporal:')
+    print(temporal)
+
+    # print('Desea sobre-escribir original: si/no')
+    # prompt = '> '
+    # respuesta = input(prompt)
+    # if respuesta is 'si':
+    #     with open(original, 'w') as file:
+    #         file.write(filedata)
