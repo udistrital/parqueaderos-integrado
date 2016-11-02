@@ -1,7 +1,7 @@
 
 #Módulo WIFI ESP8266
 --------------------
-Este módulo se comunica por protocolo serial (UART http://www.mbedded.ninja/electronics/communication-protocols/uart-protocol) a una taza predeterminada de 115200 baudios (bits por segundo https://www.arduino.cc/en/Serial/Begin). 
+Este módulo se comunica por protocolo serial (UART http://www.mbedded.ninja/electronics/communication-protocols/uart-protocol) a una taza predeterminada de 115200 baudios (bits por segundo https://www.arduino.cc/en/Serial/Begin).
 
 * Guía rápida de inicio con el módulo WiFi ESP8266, contiene recomendaciones, conexiones y ejemplo de comandos AT se usa con Arduino UNO pero no se recomienda alimentación desde esta, se da alternativamente instrucciones para FTDI 3.3V Board. http://rancidbacon.com/files/kiwicon8/ESP8266_WiFi_Module_Quick_Start_Guide_v_1.0.4.pdf
 * Se da una presentación de conexión de pines completa para todo el módulo, se realiza también una forma de actualizar el firmware del dispositivo. http://www.instructables.com/id/The-First-Usage-of-ESP8266-With-Arduino-Uno/
@@ -21,13 +21,13 @@ Este módulo se utiliza para detectar la presencia o ausencia de objetos, este s
 * Características técnicas del dispositivo sumado a enlaces del datasheet, explicaciones, guía de selección del sensores de la misma familia. https://www.sparkfun.com/products/8502
 
 #Módulo RF 433MHz Transmisor y Receptor
-* https://www.youtube.com/watch?v=h3OevEdl674 https://github.com/Simsso/Arduino-Wireless-Module-Multiple-Receivers
-* http://electronics.stackexchange.com/questions/74272/how-to-connect-20-wireless-sensors-in-one-receiver-with-arduino
-* http://www.electronicsmayhem.com/?p=68
-* https://www.sparkfun.com/products/10532
-* https://www.sparkfun.com/products/10534
-* http://www.electronicsmayhem.com/?p=68
-* http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/?ALLSTEPS
-* https://github.com/sui77/rc-switch
-* http://www.pjrc.com/teensy/td_libs_VirtualWire.html
-* Se destaca por tener una comparación de dispositivos de Radio Frecuencia económicos. http://www.raviyp.com/embedded/152-low-cost-zigbee-modules-for-using-in-projects
+---------------------------------------
+* Enlaces de un transmisor RF dirigido a muchos Receptores. https://www.youtube.com/watch?v=h3OevEdl674 https://github.com/Simsso/Arduino-Wireless-Module-Multiple-Receivers
+* Ideas de cómo conectar 20 sensores wireless a un solo receptor. Un transmisor solo emite cuando es necesario y puede retransmitir algunas veces con base de tiempo aleatorio para asegurarse de la llegada del dato. Las colisiones son bajas si la concurrencia de eventos no es baja. Se puede también transmitir a diferentes bases de tiempo para reducir el número de colisiones. http://electronics.stackexchange.com/questions/74272/how-to-connect-20-wireless-sensors-in-one-receiver-with-arduino
+* Uso de la biblioteca rc-switch que sirve enviar códigos RC, sirve para controlar dispositivos de radio remoto. En este se consigue la información de 3 sensores de temperatura remotos para hacer un promedio de temperatura, se utilizan arduinos nano v3 y un display I2C, se muestra el código. http://www.electronicsmayhem.com/?p=68 https://github.com/sui77/rc-switch
+* RF Link Receiver - 4800bps (434MHz), 500ft (152.4m) rango (en las mejores condiciones), 4800bps data rate, 5V supply voltage. https://www.sparkfun.com/products/10532
+* RF Link Transmitter - 434MHz, 500ft (152.4m) rango (en las mejores condiciones), 4800bps data rate, 5V supply voltage. https://www.sparkfun.com/products/10534
+* Tutorial completo de módulos RF para Arduino, código, conexiones y vídeos. http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/?ALLSTEPS
+* Breve documentación de la biblioteca VirtualWire. http://www.pjrc.com/teensy/td_libs_VirtualWire.html
+* Se destaca por tener una comparación de dispositivos de Radio Frecuencia "económicos". http://www.raviyp.com/embedded/152-low-cost-zigbee-modules-for-using-in-projects
+* 11 protocolos de internet de las cosas (IoT) sobre los que usted necesita saber. https://www.rs-online.com/designspark/eleven-internet-of-things-iot-protocols-you-need-to-know-about

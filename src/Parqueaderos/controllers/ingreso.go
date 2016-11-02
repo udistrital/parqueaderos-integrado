@@ -48,8 +48,8 @@ func (c *IngresoController) GetOne() {
 		c.Ctx.Output.SetStatus(400)
 		c.Data["json"] = err.Error()
 	} else {
-		if err1 != nil
-		  c.Ctx.Output.SetStatus(400)
+		if err1 != nil {
+			c.Ctx.Output.SetStatus(400)
 			c.Data["json"] = err1.Error()
 		} else {
 			z := models.Registro{IdVehiculo: v, IdIsla: u}
