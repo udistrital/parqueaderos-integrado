@@ -1,0 +1,6 @@
+} else {
+		if !chkuser {
+			output.Context.ResponseWriter.Header().Del("Set-Cookie")
+		}
+		output.Header("Content-Length", strconv.Itoa(len(content)))
+	}

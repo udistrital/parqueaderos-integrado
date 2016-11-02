@@ -1,0 +1,5 @@
+if err != nil {
+		http.Error(output.Context.ResponseWriter, err.Error(), http.StatusInternalServerError)
+		return err
+	}
+	return output.Body(content, false)
