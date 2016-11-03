@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"Parqueaderos/models"
-	"encoding/json"
 	//	"errors"
 	"strconv"
 
@@ -55,9 +54,9 @@ func (c *IngresoController) GetOne() {
 			z := models.Registro{IdVehiculo: v, IdIsla: u}
 			if _, err := models.AddRegistro(&z); err == nil {
 				c.Ctx.Output.SetStatus(201)
+				res := []byte(z.IdVehiculo.IdPropietario.PrimerNombre + "," + z.IdVehiculo.IdPropietario.PrimerApellido + "," + strconv.Itoa(z.IdIsla.Id) + "," + strconv.Itoa(z.IdIsla.IdGrupoIsla.Id) + "," + z.HoraEntrada.String() + "," + z.HoraSalida.String())
 				key := []byte("LKHlhb899Y09olUi")
-				aux, _ := json.Marshal(z)
-				x, _ := models.Encrypt(key, aux)
+				x, _ := models.Encrypt(key, res)
 				c.Data["json"] = x
 			} else {
 				c.Ctx.Output.SetStatus(400)
