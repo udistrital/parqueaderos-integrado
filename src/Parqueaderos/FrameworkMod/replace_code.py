@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Requerimientos
+# python >= 3.4 
 # Este script busca en un directorio todos los archivos punto terminados en .#
 # por ejemplo .1 .2 .3 ... .100 y los reemplaza por el texto indicado
 # en el archivo del mismo nombre pero sin punto.

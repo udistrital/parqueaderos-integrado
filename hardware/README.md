@@ -31,3 +31,14 @@ Este módulo se utiliza para detectar la presencia o ausencia de objetos, este s
 * Breve documentación de la biblioteca VirtualWire. http://www.pjrc.com/teensy/td_libs_VirtualWire.html
 * Se destaca por tener una comparación de dispositivos de Radio Frecuencia "económicos". http://www.raviyp.com/embedded/152-low-cost-zigbee-modules-for-using-in-projects
 * 11 protocolos de internet de las cosas (IoT) sobre los que usted necesita saber. https://www.rs-online.com/designspark/eleven-internet-of-things-iot-protocols-you-need-to-know-about
+* Hardware abierto para internet de las cosas. http://www.postscapes.com/internet-of-things-hardware/
+
+# NRF24L01 transceptor 2.4-2.5GHz en la banda ISM (Industrial, Científico, Médico)
+Este módulo transmite y recibe datos. Tiene un bajo consumo de potencia y el rango de trabajo del tensión es de 1.9 hasta 3.6 voltios. Tiene multiples frecuencas (125 puntos).
+* https://hallard.me/nrf24l01-real-life-range-test/
+* https://github.com/maniacbug/RF24
+* https://harizanov.com/2013/06/nrf24l01-range-testing/
+* http://playground.arduino.cc/InterfacingWithHardware/Nrf24L01
+* https://arduino-info.wikispaces.com/Nrf24L01-Info
+* http://www.nordicsemi.com/eng/Products/2.4GHz-RF/nRF24L01
+
