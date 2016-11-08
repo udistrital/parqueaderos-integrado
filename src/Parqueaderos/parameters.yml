@@ -2,5 +2,6 @@
 database_host: localhost
 database_port: 5432
 database_name: circe
+database_schema: public
 database_user: usercirce
 database_password: oascirce
