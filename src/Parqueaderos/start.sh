@@ -1,7 +1,5 @@
 #!/bin/bash
-if [ ! -f Parqueaderos ]
-then
-  go build main.go
-fi
+export GOPATH=/home/parking/parqueaderos
+export PATH=$PATH:$GOPATH/bin
 cd /home/parking/parqueaderos/src/Parqueaderos
-./Parqueaderos
+bee run 

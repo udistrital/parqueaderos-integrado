@@ -1,0 +1,19 @@
+#/usr/lib/systemd/system/parqueaderos.service
+#systemctl enable parqueaderos
+#systemctl start parqueaderos
+[Unit]
+Description=parqueaderos
+After=network.target
+#After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+ExecStart=/home/parking/parqueaderos/src/Parqueaderos/start.sh
+Restart=always
+SyslogIdentifier=backend-parqueaderos
+#User=<alternate user>
+#Group=<alternate group>
+Environment=NODE_ENV=production PORT=1337
+
+[Install]
+WantedBy=multi-user.target
+
