@@ -1,5 +1,30 @@
 body {
-  margin-top: 60px;
-  padding: 10px;
-  background-color: #ECF0F1;
+    margin-top: 60px;
+    padding: 10px;
+    background-color: #ECF0F1;
+}
+
+#modal-text>iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.visor {
+    overflow: hidden;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 0;
+    height: 100vh;
+    /*
+      vw: 1/100th viewport width
+      vh: 1/100th viewport height
+      vmin: 1/100th of the smallest side
+      vmax: 1/100th of the largest side
+    */
 }

@@ -64,12 +64,35 @@
         <!-- /.container -->
     </nav>
     <div class="container" ng-view></div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Mensaje</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-text"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ./#myModal -->
+
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/jquery-ui/jquery-ui.js"></script>
     <script src="lib/lodash/dist/lodash.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="lib/angular-ui-date/src/date.js"></script>

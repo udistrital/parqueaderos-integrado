@@ -5,64 +5,58 @@ angular.module('myapp')
     return $resource(CONFIG.WS_URL + '/tipo_propietario/:id', {}, {
       'query': {
         method: 'GET',
-        headers: {
-          '_xsrf': document.cookie
-        },
         isArray: true,
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            window.alert(response.data)
+            api.showError(response.data)
           }
         }
       },
       'get': {
         method: 'GET',
-        headers: {
-          'something': 'anything'
-        },
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            window.alert(response.data)
+            api.showError(response.data)
           }
         }
       },
       'save': {
         method: 'POST',
         headers: {
-          'something': 'anything'
+          'X-Xsrftoken': window.xsrf
         },
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            window.alert(response.data)
+            api.showError(response.data)
           }
         }
       },
       'update': {
         method: 'PUT',
         headers: {
-          'something': 'anything'
+          'X-Xsrftoken': window.xsrf
         },
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            window.alert(response.data)
+            api.showError(response.data)
           }
         }
       },
       'delete': {
         method: 'DELETE',
         headers: {
-          'something': 'anything'
+          'X-Xsrftoken': window.xsrf
         },
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            window.alert(response.data)
+            api.showError(response.data)
           }
         }
       }
-    });
-  }]);
+    })
+  }])
