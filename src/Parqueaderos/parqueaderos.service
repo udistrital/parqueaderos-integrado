@@ -12,7 +12,7 @@ Restart=always
 SyslogIdentifier=backend-parqueaderos
 #User=<alternate user>
 #Group=<alternate group>
-Environment=NODE_ENV=development PORT=8083
+Environment=OAS_EXTERNAL_ENV=development PORT=8083
 
 [Install]
 WantedBy=multi-user.target
