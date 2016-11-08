@@ -1,5 +1,5 @@
 * Crear workspace parqueaderos
-* Crear Vector Data Source PostGIS Database
+* Crear Store en Vector Data Source PostGIS Database
   * dbtype postgis
   * host localhost
   * port 5432
