@@ -9,7 +9,7 @@ angular.module('myapp')
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            api.showError(response.data)
+            api.showError(response)
           }
         }
 
@@ -22,7 +22,7 @@ angular.module('myapp')
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            api.showError(response.data)
+            api.showError(response)
           }
         }
       },
@@ -31,7 +31,7 @@ angular.module('myapp')
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            api.showError(response.data)
+            api.showError(response)
           }
         }
       },
@@ -43,7 +43,7 @@ angular.module('myapp')
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            api.showError(response.data)
+            api.showError(response)
           }
         }
       },
@@ -55,7 +55,7 @@ angular.module('myapp')
         interceptor: {
           responseError: function(response) {
             console.log(response)
-            api.showError(response.data)
+            api.showError(response)
           }
         }
       }
