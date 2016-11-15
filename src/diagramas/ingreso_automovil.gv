@@ -20,7 +20,7 @@ digraph IngresoVehiculo {
   full_islas_disc -> denegar_acce [label=si];
   full_islas_disc -> islas_disc_m1 [label=no];
 
-  islas_disc_m1 -> denegar_acce;
+  islas_disc_m1 -> reg_ingreso;
 
   espa_reser -> no_se [label=si];
   espa_reser -> full_islas_norm [label=no];
@@ -41,11 +41,11 @@ digraph IngresoVehiculo {
   hor_corre [label="¿horario corresponde\n a +/- 20min?"];
   es_disca [label="¿es discapacitado?"];
   full_islas_disc [label="¿están llenas\nislas discapacitados?"];
-  islas_disc_m1 [label="aumentar número\nde islas discapacitados"];
+  islas_disc_m1 [label="disminuir cupos\nde islas discapacitados"];
   espa_reser [label="¿tiene espacios reservados?"];
   no_se [label="?"]
   full_islas_norm [label="¿están llenas\nislas normales?"];
-  islas_norm_m1 [label="aumentar número\nde islas normales"];
+  islas_norm_m1 [label="disminuir cupos\nde islas normales"];
   reg_ingreso [label="registrar horar entrada\ny posible salida"];
   denegar_acce [label="denegar acceso"];
 
