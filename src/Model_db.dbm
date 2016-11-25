@@ -3,15 +3,8 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2" last-position="0,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="0.9"
 	 default-schema="public" default-owner="postgres">
-<role name="olzambranop"
-      inherit="true"
-      login="true"
-      encrypted="true"
-      password="********">
-</role>
-
 <role name="usercirce"
       inherit="true"
       login="true"
@@ -19,16 +12,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
       password="********">
 </role>
 
-<database name="circe" encoding="UTF8" lc-collate="es_CO" lc-ctype="es_CO">
+<database name="udistrital" encoding="UTF8" lc-collate="es_CO" lc-ctype="es_CO">
 	<role name="usercirce"/>
 	<tablespace name="pg_default"/>
 </database>
 
-<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="parqueaderos" rect-visible="true" fill-color="#e1e1e1">
+	<role name="postgres"/>
 </schema>
 
 <extension name="postgis" cur-version="2.2.1">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<comment><![CDATA[PostGIS geometry, geography, and raster spatial types and functions]]></comment>
 </extension>
 
@@ -45,16 +42,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="propietario">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro del propietario/persona dueña del vehiculo]]></comment>
-	<position x="50" y="50"/>
-	<column name="id" not-null="true" sequence="public.propietario_id_seq">
+	<position x="27" y="116.133"/>
+	<column name="id" not-null="true" sequence="parqueaderos.propietario_id_seq">
 		<type name="integer"/>
 	</column>
 	<column name="documento" not-null="true">
@@ -81,10 +78,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 		<comment><![CDATA[El propietario puede ser estudiante, funcionario, docente]]></comment>
 	</column>
-	<constraint name="propietario_pkey" type="pk-constr" table="public.propietario">
+	<constraint name="propietario_pkey" type="pk-constr" table="parqueaderos.propietario">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
-	<constraint name="propietario_documento_uni" type="uq-constr" table="public.propietario">
+	<constraint name="propietario_documento_uni" type="uq-constr" table="parqueaderos.propietario">
 		<columns names="documento" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -93,16 +90,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="vehiculo">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El registro de la entidad vehiculo, por ahora automovil]]></comment>
-	<position x="450" y="50"/>
-	<column name="id" not-null="true" sequence="public.vehiculo_id_seq">
+	<position x="545.444" y="72.3333"/>
+	<column name="id" not-null="true" sequence="parqueaderos.vehiculo_id_seq">
 		<type name="integer"/>
 	</column>
 	<column name="placa" not-null="true">
@@ -110,14 +107,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment><![CDATA[Placa del vehiculo]]></comment>
 	</column>
 	<column name="id_nfc" not-null="true">
-		<type name="smallint"/>
+		<type name="bigint"/>
 		<comment><![CDATA[Codigo que identifica al tag NFC]]></comment>
 	</column>
 	<column name="id_propietario" not-null="true">
 		<type name="integer"/>
 		<comment><![CDATA[El documento de identidad del propietario]]></comment>
 	</column>
-	<constraint name="vehiculo_pkey" type="pk-constr" table="public.vehiculo">
+	<constraint name="vehiculo_pkey" type="pk-constr" table="parqueaderos.vehiculo">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -126,16 +123,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="tipo_propietario">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[El propietario puede ser de muchos tipos que le provee de caractaristicas especiales, estos tipos inicialmente estudiante, docente, funcionario]]></comment>
-	<position x="807" y="50"/>
-	<column name="id" not-null="true" sequence="public.tipo_propietario_id_seq">
+	<position x="73.4444" y="334.6"/>
+	<column name="id" not-null="true" sequence="parqueaderos.tipo_propietario_id_seq">
 		<type name="integer"/>
 	</column>
 	<column name="tipo" not-null="true">
@@ -144,10 +141,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="descripcion">
 		<type name="text"/>
 	</column>
-	<constraint name="tipo_propietario_pkey" type="pk-constr" table="public.tipo_propietario">
+	<constraint name="tipo_propietario_pkey" type="pk-constr" table="parqueaderos.tipo_propietario">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
-	<constraint name="tipo_propietario_tipo_uni" type="uq-constr" table="public.tipo_propietario">
+	<constraint name="tipo_propietario_tipo_uni" type="uq-constr" table="parqueaderos.tipo_propietario">
 		<columns names="tipo" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -156,16 +153,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="grupo_isla">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es la entidad que representa agrupacion de islas, por ejemplo podria ser Sotano 1, como un grupo de islas, o parqueadero para un grupo de sotanos]]></comment>
-	<position x="1163" y="50"/>
-	<column name="id" not-null="true" sequence="public.grupo_isla_id_seq">
+	<position x="655.889" y="273.377"/>
+	<column name="id" not-null="true" sequence="parqueaderos.grupo_isla_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Identificador incremental ya que por el momento no hay nada mas que lo caracterice]]></comment>
 	</column>
@@ -177,13 +174,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 		<comment><![CDATA[Se podria decir que el grupo isla tiene un padre, asi como sotano1 tiene el padre parquedero ingenieria]]></comment>
 	</column>
-	<constraint name="grupo_isla_id_pkey" type="pk-constr" table="public.grupo_isla">
+	<constraint name="grupo_isla_id_pkey" type="pk-constr" table="parqueaderos.grupo_isla">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
 <usertype name="migrations_status" configuration="enumeration">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<enumeration values="update,rollback"/>
 </usertype>
@@ -192,15 +189,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="migrations">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
-	<position x="1445" y="50"/>
-	<column name="id_migration" not-null="true" sequence="public.migrations_id_migration_seq">
+	<position x="891.333" y="378.622"/>
+	<column name="id_migration" not-null="true" sequence="parqueaderos.migrations_id_migration_seq">
 		<type name="integer"/>
 	</column>
 	<column name="name" default-value="NULL::character varying">
@@ -216,9 +213,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="text"/>
 	</column>
 	<column name="status">
-		<type name="public.migrations_status"/>
+		<type name="parqueaderos.migrations_status"/>
 	</column>
-	<constraint name="migrations_pkey" type="pk-constr" table="public.migrations">
+	<constraint name="migrations_pkey" type="pk-constr" table="parqueaderos.migrations">
 		<columns names="id_migration" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -227,16 +224,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="registro">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es el espacio donde queda almacenado el registro de entrada y salida de un vehiculo al parqueadero]]></comment>
-	<position x="50" y="221.4"/>
-	<column name="id" not-null="true" sequence="public.registro_id_seq">
+	<position x="1040.78" y="58.7553"/>
+	<column name="id" not-null="true" sequence="parqueaderos.registro_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Autoincremental para registros, ya que por ahora no hay otra forma de identificarlos]]></comment>
 	</column>
@@ -256,7 +253,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="timestamp"/>
 		<comment><![CDATA[Hora en que sale el vehiculo]]></comment>
 	</column>
-	<constraint name="registro_pkey" type="pk-constr" table="public.registro">
+	<constraint name="registro_pkey" type="pk-constr" table="parqueaderos.registro">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -265,16 +262,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 </sequence>
 
 <table name="isla">
-	<schema name="public"/>
+	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Es el espacio en que se pone la isla]]></comment>
-	<position x="342" y="221.4"/>
-	<column name="id" not-null="true" sequence="public.isla_id_seq">
+	<position x="1062.78" y="231.777"/>
+	<column name="id" not-null="true" sequence="parqueaderos.isla_id_seq">
 		<type name="integer"/>
 		<comment><![CDATA[Autoincremental para islas, ya que por ahora no hay otra forma de identificarlos]]></comment>
 	</column>
@@ -290,69 +287,69 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 		<comment><![CDATA[Identificador del grupo isla]]></comment>
 	</column>
-	<constraint name="isla_id_pkey" type="pk-constr" table="public.isla">
+	<constraint name="isla_id_pkey" type="pk-constr" table="parqueaderos.isla">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
 <constraint name="propietario_tipo_propietario_id_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipo_propietario" table="public.propietario">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.tipo_propietario" table="parqueaderos.propietario">
 	<columns names="id_tipo_propietario" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="vehiculo_propietario_id_propietario_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.propietario" table="public.vehiculo">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.propietario" table="parqueaderos.vehiculo">
 	<columns names="id_propietario" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="registro_vehiculo_id_vehiculo_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.vehiculo" table="public.registro">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.vehiculo" table="parqueaderos.registro">
 	<columns names="id_vehiculo" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="registro_isla_id_isla_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.isla" table="public.registro">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.isla" table="parqueaderos.registro">
 	<columns names="id_isla" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="isla_grupo_isla_id_grupo_isla_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.grupo_isla" table="public.isla">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.grupo_isla" table="parqueaderos.isla">
 	<columns names="id_grupo_isla" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <relationship name="rel_propietario_tipo_propietario" type="relfk"
 	 custom-color="#3fcc01"
-	 src-table="public.propietario"
-	 dst-table="public.tipo_propietario"
+	 src-table="parqueaderos.propietario"
+	 dst-table="parqueaderos.tipo_propietario"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_vehiculo_propietario" type="relfk"
 	 custom-color="#c33149"
-	 src-table="public.vehiculo"
-	 dst-table="public.propietario"
+	 src-table="parqueaderos.vehiculo"
+	 dst-table="parqueaderos.propietario"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_registro_vehiculo" type="relfk"
 	 custom-color="#96a735"
-	 src-table="public.registro"
-	 dst-table="public.vehiculo"
+	 src-table="parqueaderos.registro"
+	 dst-table="parqueaderos.vehiculo"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_registro_isla" type="relfk"
 	 custom-color="#d51324"
-	 src-table="public.registro"
-	 dst-table="public.isla"
+	 src-table="parqueaderos.registro"
+	 dst-table="parqueaderos.isla"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_isla_grupo_isla" type="relfk"
 	 custom-color="#aaa0ad"
-	 src-table="public.isla"
-	 dst-table="public.grupo_isla"
+	 src-table="parqueaderos.isla"
+	 dst-table="parqueaderos.grupo_isla"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
