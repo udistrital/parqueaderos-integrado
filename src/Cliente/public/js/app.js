@@ -31,7 +31,7 @@ angular.module('myapp', [
   .run(['$cookies',
     function($cookies) {
       var xsrf = $cookies.get('_xsrf')
-      if (xsrf != '') {
+      if (xsrf != undefined) {
         var xsrflist = xsrf.split("|")
         window.xsrf = atob(xsrflist[0])
       }
