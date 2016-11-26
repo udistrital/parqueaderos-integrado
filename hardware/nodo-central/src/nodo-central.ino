@@ -1,7 +1,15 @@
 /*
+Esta utiliza las bibliotecas:
 http://www.prometec.net/nrf2401/
 https://www.arduino.cc/en/Tutorial/WebClientRepeating
+https://github.com/DavyLandman/AESLib
  */
+/**
+ * Bibilioteca arduino
+ */
+#include <Arduino.h>
+/*Fin*/
+
 /**
  * Dependencias módulo de Ethernet
  */
@@ -18,6 +26,12 @@ https://www.arduino.cc/en/Tutorial/WebClientRepeating
 /*Fin*/
 
 /**
+ * Dependencias AES
+ */
+#include <AESLib.h>
+/*Fin*/
+
+/**
  * Variables módulo de Ethernet
  */
 // Enter a MAC address for your controller below.
@@ -26,12 +40,12 @@ byte mac[] = {0xDE, 0xBD, 0xBE, 0xEF, 0xFE, 0xED};
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 // IPAddress server(10, 145, 20, 62); // numeric IP for Google (no DNS)
-IPAddress server(10, 145, 20, 71);
+IPAddress server(192, 168, 0, 18);
 // char server[] = "192.168.1.238";    // name address for Google (using DNS)
 // IP Servicio Web Destino de Datos
 
 // Set the static IP address to use if the DHCP fails to assign
-IPAddress ip(10, 200, 101, 101); // IP Arduino
+IPAddress ip(192, 168, 0, 30); // IP Arduino
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -45,6 +59,14 @@ EthernetClient client;
 RF24 radio(9, 53);
 const uint64_t pipes[2] = {0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL};
 /*Fin*/
+
+/**
+ * Variables AES
+ */
+uint8_t key[] = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,
+                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+                 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+/*End*/
 
 void setup() {
   configSerial();
@@ -76,6 +98,7 @@ void configEthernet() {
 }
 
 void configRF() {
+  Serial.println("Config RF 2.4GHz");
   pinMode(53, OUTPUT);
   radio.begin();
   radio.setRetries(15, 15);
@@ -85,19 +108,71 @@ void configRF() {
   radio.openReadingPipe(1, pipes[0]);
 }
 
+// http://www.prometec.net/operaciones-bits/
+uint8_t GetFirst4Bits(uint8_t b) { return b >> 4; }
+uint8_t GetSecond4Bits(uint8_t b) {
+  // b = b << 4;
+  byte a = B00001111;
+  return b & a;
+}
+
+void convert2Hex(char input[], byte tamano, String &output) {
+  String hexa[] = {"0", "1", "2", "3", "4", "5", "6", "7",
+                   "8", "9", "A", "B", "C", "D", "E", "F"};
+  for (uint8_t i = 0; i < tamano; i++) {
+    /* code */
+    uint8_t b = (uint8_t)input[i];
+    // Serial.print("Bin: ");
+    // Serial.println(b, BIN);
+    // Serial.println(GetFirst4Bits(b), BIN);
+    // Serial.println(GetSecond4Bits(b), BIN);
+    String first = hexa[GetFirst4Bits(b)];
+    String second = hexa[GetSecond4Bits(b)];
+    // Serial.print(first);
+    // Serial.println(second);
+    output += first + second;
+    // String stringOne = String(input[i], HEX);
+    // Serial.println(stringOne);
+  }
+}
+
 void sendDataEthernet(int valor, int valor2) {
   // close any connection before send a new request.
   // This will free the socket on the WiFi shield
   client.stop();
-  if (client.connect(server, 8085)) {
+  if (client.connect(server, 3000)) {
     Serial.println("Connected");
     // Make a HTTP request:
-    client.println("GET "
-                   "/parking-change"
-                   "?id=" +
-                   String(valor) + "&st=" + String(valor2) + " HTTP/1.1");
+    char data[30] = {0};
+    sprintf(data, "id=%i&st=%i", valor, valor2);
+    // sprintf(data, "id=%i&st=%i&t=%i", valor, valor2, millis());
+    Serial.print("data: ");
+    Serial.println(data);
+
+    // char data[] = "id=" + (char)valor + "&st=" + (char)valor + "&t=";
+    aes256_enc_single(key, data);
+    Serial.print("encrypted: ");
+    Serial.println(data);
+    // aes256_dec_single(key, data);
+    // Serial.print("decrypted: ");
+    // Serial.println(data);
+    // encoding
+    String dataHEX = String(30);
+    byte tamano = sizeof(data);
+    // Serial.println(tamano);
+    convert2Hex(data, tamano, dataHEX);
+    Serial.print("hex: ");
+    Serial.println(dataHEX);
+
+    // client.println("GET /dev?data=hola HTTP/1.1");
+    // Serial.println("GET /dev?data=hola HTTP/1.1");
+    // client.println("GET /dev?data=" + String(encoded) + " HTTP/1.1");
+    // Serial.println("GET /dev?data=" + String(encoded) + " HTTP/1.1");
+    client.println("GET /dev?data=" + dataHEX + " HTTP/1.1");
+    Serial.println("GET /dev?data=" + dataHEX + " HTTP/1.1");
     // client.println("Host: 10.145.20.62");
     // client.println("Host: 10.145.20.71");
+    client.println("Host: 192.168.0.18:3000");
     client.println("Connection: close");
     client.println();
   } else {
@@ -118,6 +193,7 @@ void readEthernet() {
 void loop() {
   // interactEthernet();
   interactRF();
+  delay(1000);
   // sendDataEthernet(10, 1);
 }
 
@@ -141,7 +217,7 @@ void interactEthernet() {
 }
 
 void interactRF() {
-  if (radio.available()) { // Si hay datos disponibles
+  if (true || radio.available()) { // Si hay datos disponibles
     char got_isla[2];
     bool done = false;
     while (!done) {

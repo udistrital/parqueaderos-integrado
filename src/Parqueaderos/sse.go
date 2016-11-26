@@ -61,7 +61,7 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("Cache-Control", "no-cache")
 		rw.Header().Set("Connection", "close")
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
-		io.WriteString(rw, data + "\n") //Opcional
+		io.WriteString(rw, data+"\n") //Opcional
 	} else {
 		flusher, ok := rw.(http.Flusher)
 
