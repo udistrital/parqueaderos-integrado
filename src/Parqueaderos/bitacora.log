@@ -1,3 +1,4 @@
 #make migrations update
+bee generate migration update_nfc_type
 bee migrate -driver=postgres -conn=postgres://usercirce:oascirce@127.0.0.1:5432/circe?sslmode=disable
 bee migrate -driver=postgres "-conn=postgres://usercirce:oascirce@127.0.0.1:5432/circe?sslmode=disable&search_path=udistrital"
