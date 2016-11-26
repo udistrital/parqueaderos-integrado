@@ -43,6 +43,52 @@ func NewServer() (broker *Broker) {
 	return
 }
 
+func string2Byte(hex byte) byte {
+	switch hex {
+	case '0':
+		return 0
+	case '1':
+		return 1
+	case '2':
+		return 2
+	case '3':
+		return 3
+	case '4':
+		return 4
+	case '5':
+		return 5
+	case '6':
+		return 6
+	case '7':
+		return 7
+	case '8':
+		return 8
+	case '9':
+		return 9
+	case 'A':
+		return 10
+	case 'B':
+		return 11
+	case 'C':
+		return 12
+	case 'D':
+		return 13
+	case 'E':
+		return 14
+	case 'F':
+		return 15
+	}
+	return 0
+}
+
+func HEX2Byte(hex1 byte, hex2 byte) byte {
+	var a byte = string2Byte(hex1)
+	var b byte = string2Byte(hex2)
+	//fmt.Println(a, b)
+	a = a << 4
+	return a | b
+}
+
 func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 
 	u, err := url.Parse(req.RequestURI)
@@ -62,6 +108,21 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		rw.Header().Set("Connection", "close")
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
 		io.WriteString(rw, data+"\n") //Opcional
+		var count int = len(data) / 2
+		//fmt.Println(count)
+		var cadena [30]byte
+		for i := 0; i < count; i++ {
+			var a int = i * 2
+			var b int = a + 1
+			//fmt.Println(a, b, data[a], data[b])
+			var c byte = HEX2Byte(data[a], data[b])
+			//fmt.Println(c)
+			//fmt.Println(i)
+			cadena[i] = c
+		}
+		fmt.Println(cadena)
+		s := string(cadena[:])
+		fmt.Println(s)
 	} else {
 		flusher, ok := rw.(http.Flusher)
 

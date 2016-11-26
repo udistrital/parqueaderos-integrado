@@ -116,10 +116,11 @@ uint8_t GetSecond4Bits(uint8_t b) {
   return b & a;
 }
 
-void convert2Hex(char input[], byte tamano, String &output) {
+void convert2Hex(char input[], byte tamanoInput, String &output) {
   String hexa[] = {"0", "1", "2", "3", "4", "5", "6", "7",
                    "8", "9", "A", "B", "C", "D", "E", "F"};
-  for (uint8_t i = 0; i < tamano; i++) {
+  for (uint8_t i = 0; i < tamanoInput; i++) {
+    // Serial.println(i);
     /* code */
     uint8_t b = (uint8_t)input[i];
     // Serial.print("Bin: ");
@@ -157,9 +158,10 @@ void sendDataEthernet(int valor, int valor2) {
     // Serial.print("decrypted: ");
     // Serial.println(data);
     // encoding
-    String dataHEX = String(30);
+    String dataHEX = "";
     byte tamano = sizeof(data);
-    // Serial.println(tamano);
+    Serial.print("tamano: ");
+    Serial.println(tamano);
     convert2Hex(data, tamano, dataHEX);
     Serial.print("hex: ");
     Serial.println(dataHEX);
@@ -193,7 +195,7 @@ void readEthernet() {
 void loop() {
   // interactEthernet();
   interactRF();
-  delay(1000);
+  delay(1000); // Quitar, solo sirve para pruebas
   // sendDataEthernet(10, 1);
 }
 
@@ -217,6 +219,8 @@ void interactEthernet() {
 }
 
 void interactRF() {
+  // Importante!!! Borrar true
+  // if (radio.available()) { // Si hay datos disponibles
   if (true || radio.available()) { // Si hay datos disponibles
     char got_isla[2];
     bool done = false;
