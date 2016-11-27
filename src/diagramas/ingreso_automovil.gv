@@ -37,7 +37,7 @@ digraph IngresoVehiculo {
 
   tag_nfc [label="pasar tag NFC\nen lector de entrada"];
   id_veh [label="identificar vehículo"];
-  usu_hab [label="¿usuario habilitado?"];
+  usu_hab [label="¿usuario registrado, habilitado y sin pico y placa?"];
   hor_corre [label="¿horario corresponde\n a +/- 20min?"];
   es_disca [label="¿es discapacitado?"];
   full_islas_disc [label="¿están llenas\nislas discapacitados?"];

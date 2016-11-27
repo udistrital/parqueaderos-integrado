@@ -4,7 +4,11 @@
 */
 
 digraph SalidaVehiculo {
-  inicio -> tag_nfc -> id_veh -> reg_salida -> es_disca;
+  inicio -> tag_nfc -> es_veh_reg;
+
+  es_veh_reg -> reg_salida -> es_disca [label="si"];
+  es_veh_reg -> denegar_sal [label="no"];
+
   es_disca -> cupos_disc_l1 [label="si"];
   es_disca -> cupos_norm_l1 [label="no"];
 
@@ -18,8 +22,10 @@ digraph SalidaVehiculo {
 
   abrir_puertas -> fin;
 
-  tag_nfc [label="pasar tag NFC\nen lector de entrada"];
-  id_veh [label="identificar vehículo"];
+  denegar_sal -> fin;
+
+  tag_nfc [label="pasar tag NFC\nen lector de salida"];
+  es_veh_reg [label="¿NFC corresponde con vehículo registrado?"];
   reg_salida [label="registrar hora salida"];
   es_disca [label="¿es discapacitado?"];
   cupos_disc_l1 [label="aumentar cupos discapacitados"];
@@ -27,6 +33,7 @@ digraph SalidaVehiculo {
   resta_real_esper [label="¿hora real menos\nhora esperada es\nmayor a 1 hora?"];
   reg_incidencia [label="registrar incidencia"];
   abrir_puertas [label="abrir puertas"];
+  denegar_sal [label="denegar salida"];
 
   inicio [shape=circle];
   es_disca, resta_real_esper [shape=diamond];
