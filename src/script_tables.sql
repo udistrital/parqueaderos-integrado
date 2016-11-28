@@ -329,9 +329,9 @@ COMMENT ON COLUMN parqueaderos.isla.id_grupo_isla IS 'Identificador del grupo is
 ALTER TABLE parqueaderos.isla OWNER TO usercirce;
 -- ddl-end --
 
--- object: parqueaderos.incidencias | type: TABLE --
--- DROP TABLE IF EXISTS parqueaderos.incidencias CASCADE;
-CREATE TABLE parqueaderos.incidencias(
+-- object: parqueaderos.incidencia | type: TABLE --
+-- DROP TABLE IF EXISTS parqueaderos.incidencia CASCADE;
+CREATE TABLE parqueaderos.incidencia(
 	id serial NOT NULL,
 	id_propietario integer NOT NULL,
 	id_tipo_incidencia integer NOT NULL,
@@ -340,17 +340,17 @@ CREATE TABLE parqueaderos.incidencias(
 
 );
 -- ddl-end --
-COMMENT ON TABLE parqueaderos.incidencias IS 'Guarda todas las incidencias que puede registrar el usuario.';
+COMMENT ON TABLE parqueaderos.incidencia IS 'Guarda todas las incidencias que puede registrar el usuario.';
 -- ddl-end --
-COMMENT ON COLUMN parqueaderos.incidencias.id IS 'Identificador de la tabla incidencias';
+COMMENT ON COLUMN parqueaderos.incidencia.id IS 'Identificador de la tabla incidencias';
 -- ddl-end --
-COMMENT ON COLUMN parqueaderos.incidencias.id_propietario IS 'El identificador del propietario quien comete la falta y se reporta como incidencia.';
+COMMENT ON COLUMN parqueaderos.incidencia.id_propietario IS 'El identificador del propietario quien comete la falta y se reporta como incidencia.';
 -- ddl-end --
-COMMENT ON COLUMN parqueaderos.incidencias.id_tipo_incidencia IS 'Es el atributio que relaciona el tipo de incidencia, hay muchos tipos de incidencia que se registran en esa tabla';
+COMMENT ON COLUMN parqueaderos.incidencia.id_tipo_incidencia IS 'Es el atributio que relaciona el tipo de incidencia, hay muchos tipos de incidencia que se registran en esa tabla';
 -- ddl-end --
-COMMENT ON COLUMN parqueaderos.incidencias.observaciones IS 'En esta se describe exactamente que paso con la incidencia, el motivo y demas datos que ayuden a identificar la eventualidad';
+COMMENT ON COLUMN parqueaderos.incidencia.observaciones IS 'En esta se describe exactamente que paso con la incidencia, el motivo y demas datos que ayuden a identificar la eventualidad';
 -- ddl-end --
-ALTER TABLE parqueaderos.incidencias OWNER TO usercirce;
+ALTER TABLE parqueaderos.incidencia OWNER TO usercirce;
 -- ddl-end --
 
 -- object: parqueaderos.tipo_incidencia | type: TABLE --
@@ -406,15 +406,15 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: tipo_indicencia_fk | type: CONSTRAINT --
--- ALTER TABLE parqueaderos.incidencias DROP CONSTRAINT IF EXISTS tipo_indicencia_fk CASCADE;
-ALTER TABLE parqueaderos.incidencias ADD CONSTRAINT tipo_indicencia_fk FOREIGN KEY (id_tipo_incidencia)
+-- ALTER TABLE parqueaderos.incidencia DROP CONSTRAINT IF EXISTS tipo_indicencia_fk CASCADE;
+ALTER TABLE parqueaderos.incidencia ADD CONSTRAINT tipo_indicencia_fk FOREIGN KEY (id_tipo_incidencia)
 REFERENCES parqueaderos.tipo_incidencia (id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: propietario_fk | type: CONSTRAINT --
--- ALTER TABLE parqueaderos.incidencias DROP CONSTRAINT IF EXISTS propietario_fk CASCADE;
-ALTER TABLE parqueaderos.incidencias ADD CONSTRAINT propietario_fk FOREIGN KEY (id_propietario)
+-- ALTER TABLE parqueaderos.incidencia DROP CONSTRAINT IF EXISTS propietario_fk CASCADE;
+ALTER TABLE parqueaderos.incidencia ADD CONSTRAINT propietario_fk FOREIGN KEY (id_propietario)
 REFERENCES parqueaderos.propietario (id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --

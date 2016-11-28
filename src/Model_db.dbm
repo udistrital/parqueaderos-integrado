@@ -296,7 +296,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="incidencias">
+<table name="incidencia">
 	<schema name="parqueaderos"/>
 	<role name="usercirce"/>
 	<comment><![CDATA[Guarda todas las incidencias que puede registrar el usuario.]]></comment>
@@ -317,7 +317,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="varchar" length="2000"/>
 		<comment><![CDATA[En esta se describe exactamente que paso con la incidencia, el motivo y demas datos que ayuden a identificar la eventualidad]]></comment>
 	</column>
-	<constraint name="incidencia_pkey" type="pk-constr" table="parqueaderos.incidencias">
+	<constraint name="incidencia_pkey" type="pk-constr" table="parqueaderos.incidencia">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -373,13 +373,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="tipo_indicencia_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.tipo_incidencia" table="parqueaderos.incidencias">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.tipo_incidencia" table="parqueaderos.incidencia">
 	<columns names="id_tipo_incidencia" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="propietario_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.propietario" table="parqueaderos.incidencias">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="parqueaderos.propietario" table="parqueaderos.incidencia">
 	<columns names="id_propietario" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 		<comment><![CDATA[La llave foranea que relaciona al tipo propietario con la incidencia.]]></comment>
@@ -420,12 +420,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_incidencias_tipo_incidencia" type="relfk"
-	 src-table="parqueaderos.incidencias"
+	 src-table="parqueaderos.incidencia"
 	 dst-table="parqueaderos.tipo_incidencia"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_incidencias_propietario" type="relfk"
-	 src-table="parqueaderos.incidencias"
+	 src-table="parqueaderos.incidencia"
 	 dst-table="parqueaderos.propietario"
 	 src-required="false" dst-required="false"/>
 
