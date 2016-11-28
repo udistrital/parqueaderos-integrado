@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"net/url"
 	//"time"
+	"crypto/aes"
+	"crypto/cipher"
 )
 
 // Example SSE server in Golang.
@@ -89,6 +91,33 @@ func HEX2Byte(hex1 byte, hex2 byte) byte {
 	return a | b
 }
 
+var iv = []byte("3675356236753562")
+
+// func Encrypt(key, text string) string {
+//     fmt.Println(text)
+//     block, err := aes.NewCipher([]byte(key))
+//     if err != nil { panic(err) }
+//     plaintext := []byte(text)
+//     cfb := cipher.NewCFBEncrypter(block, iv)
+//     ciphertext := make([]byte, len(plaintext))
+//     cfb.XORKeyStream(ciphertext, plaintext)
+//     return string(ciphertext[:])
+// }
+
+func Decrypt(key, text string) string {
+	//fmt.Println(text)
+	block, err := aes.NewCipher([]byte(key))
+	if err != nil {
+		panic(err)
+	}
+	ciphertext := text
+	cfb := cipher.NewCFBEncrypter(block, iv)
+	plaintext := make([]byte, len(ciphertext))
+	cfb.XORKeyStream(plaintext, []byte(ciphertext))
+	//fmt.Println(plaintext)
+	return string(plaintext)
+}
+
 func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 
 	u, err := url.Parse(req.RequestURI)
@@ -98,31 +127,48 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	// Make sure that the writer supports flushing.
 	//
 	if u.EscapedPath() == "/dev" {
+		//Se trata la petición para obtener el parámetro data
 		q := u.Query()
 		//log.Println(u, q, u.String(), u.EscapedPath())
 		data := q["data"][0]
-		fmt.Println(data)
+		fmt.Println("Dato que llega: ", data)
+		//Se escribe sobre todos los otros navegadores
 		broker.Notifier <- []byte(data)
+		//Se responde al Microcontrolador con las cabeceras correspondientes
 		rw.Header().Set("Content-Type", "text/html; charset=UTF-8")
 		rw.Header().Set("Cache-Control", "no-cache")
 		rw.Header().Set("Connection", "close")
 		rw.Header().Set("Access-Control-Allow-Origin", "*")
 		io.WriteString(rw, data+"\n") //Opcional
+
+		//Se evalua el tamaño del mensaje para volverlo a caracteres codificados
 		var count int = len(data) / 2
-		//fmt.Println(count)
-		var cadena [30]byte
+		fmt.Println("Count: ", count, ", Length:", len(data))
+		cadena := make([]byte, count)
 		for i := 0; i < count; i++ {
 			var a int = i * 2
 			var b int = a + 1
-			//fmt.Println(a, b, data[a], data[b])
+			// fmt.Println(a, b, data[a], data[b])
 			var c byte = HEX2Byte(data[a], data[b])
-			//fmt.Println(c)
-			//fmt.Println(i)
+			// fmt.Println(c)
+			// fmt.Println(i)
 			cadena[i] = c
 		}
-		fmt.Println(cadena)
-		s := string(cadena[:])
-		fmt.Println(s)
+		//https://gist.github.com/kkirsche/e28da6754c39d5e7ea10
+		//https://gist.github.com/cannium/c167a19030f2a3c6adbb5a5174bea3ff
+		//fmt.Println("Cadena: ", cadena)
+		cadenaAES256 := string(cadena[:])
+		fmt.Println("Dato cifrado: ", cadenaAES256)
+		//Se comienza la decodificación
+
+		//key := []byte(keyB[:])
+		//cryptoText
+		var key = "0123456789010123"
+		text := Decrypt(key, cadenaAES256)
+
+		fmt.Printf("Text: %s\n", text)
+
+		fmt.Println()
 	} else {
 		flusher, ok := rw.(http.Flusher)
 
