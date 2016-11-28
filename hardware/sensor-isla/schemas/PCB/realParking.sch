@@ -8183,7 +8183,7 @@ Source: www.kingbright.com</description>
 <instance part="Q1" gate="G$1" x="27.94" y="63.5" rot="R90"/>
 <instance part="C1" gate="G$1" x="20.32" y="60.96" rot="R90"/>
 <instance part="C2" gate="G$1" x="20.32" y="66.04" rot="R90"/>
-<instance part="C3" gate="G$1" x="7.62" y="53.34" rot="R180"/>
+<instance part="C3" gate="G$1" x="7.62" y="106.68" rot="R180"/>
 <instance part="S2" gate="1" x="27.94" y="93.98"/>
 <instance part="GND6" gate="1" x="25.4" y="78.74" rot="R270"/>
 <instance part="JP1" gate="G$1" x="-10.16" y="114.3" rot="R180"/>
@@ -8206,10 +8206,6 @@ Source: www.kingbright.com</description>
 <pinref part="GND2" gate="1" pin="GND"/>
 <wire x1="17.78" y1="66.04" x2="12.7" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
-<pinref part="C3" gate="G$1" pin="2"/>
-<wire x1="7.62" y1="58.42" x2="7.62" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="66.04" x2="12.7" y2="66.04" width="0.1524" layer="91"/>
-<junction x="12.7" y="66.04"/>
 </segment>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
@@ -8238,6 +8234,9 @@ Source: www.kingbright.com</description>
 <wire x1="-27.94" y1="101.6" x2="0" y2="101.6" width="0.1524" layer="91"/>
 <junction x="-27.94" y="101.6"/>
 <junction x="0" y="101.6"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="7.62" y1="104.14" x2="7.62" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="101.6" x2="0" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="GND@1"/>
@@ -8253,11 +8252,12 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="ULTRASONIDO" gate="1" pin="4"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="93.98" y1="40.64" x2="93.98" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="93.98" y1="38.1" x2="93.98" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="17.78" x2="104.14" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="33.02" x2="93.98" y2="33.02" width="0.1524" layer="91"/>
 <junction x="93.98" y="33.02"/>
+<wire x1="93.98" y1="40.64" x2="93.98" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="MODULO" gate="G$1" pin="1"/>
@@ -8307,29 +8307,46 @@ Source: www.kingbright.com</description>
 <wire x1="30.48" y1="48.26" x2="7.62" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="AVCC"/>
 <wire x1="7.62" y1="48.26" x2="2.54" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="48.26" x2="-5.08" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="73.66" x2="2.54" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="73.66" x2="2.54" y2="48.26" width="0.1524" layer="91"/>
-<junction x="2.54" y="48.26"/>
-<pinref part="IC1" gate="G$1" pin="AREF"/>
-<wire x1="30.48" y1="76.2" x2="2.54" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="76.2" x2="2.54" y2="73.66" width="0.1524" layer="91"/>
-<junction x="2.54" y="73.66"/>
-<wire x1="7.62" y1="50.8" x2="7.62" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="73.66" x2="7.62" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="73.66" x2="7.62" y2="48.26" width="0.1524" layer="91"/>
 <junction x="7.62" y="48.26"/>
-<pinref part="C3" gate="G$1" pin="1"/>
-<label x="-5.08" y="48.26" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="IC1" gate="G$1" pin="AREF"/>
+<wire x1="30.48" y1="76.2" x2="7.62" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="76.2" x2="7.62" y2="73.66" width="0.1524" layer="91"/>
+<junction x="7.62" y="73.66"/>
+<label x="2.54" y="48.26" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="15.24" y1="83.82" x2="2.54" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="83.82" x2="2.54" y2="76.2" width="0.1524" layer="91"/>
-<junction x="2.54" y="76.2"/>
-<label x="93.98" y="53.34" size="1.778" layer="95" rot="R90" xref="yes"/>
-<label x="116.84" y="88.9" size="1.778" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
+<wire x1="15.24" y1="83.82" x2="12.7" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="83.82" x2="7.62" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="83.82" x2="7.62" y2="76.2" width="0.1524" layer="91"/>
+<junction x="7.62" y="76.2"/>
+<pinref part="MODULO" gate="G$1" pin="2"/>
+<wire x1="114.3" y1="83.82" x2="116.84" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="83.82" x2="116.84" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="88.9" x2="101.6" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="88.9" x2="101.6" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="96.52" x2="86.36" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="96.52" x2="43.18" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="96.52" x2="43.18" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="104.14" x2="12.7" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="104.14" x2="12.7" y2="83.82" width="0.1524" layer="91"/>
+<junction x="12.7" y="83.82"/>
+<pinref part="ULTRASONIDO" gate="1" pin="1"/>
+<wire x1="93.98" y1="48.26" x2="93.98" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="53.34" x2="86.36" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="53.34" x2="86.36" y2="96.52" width="0.1524" layer="91"/>
+<junction x="86.36" y="96.52"/>
 <pinref part="JP1" gate="G$1" pin="2"/>
-<wire x1="-7.62" y1="114.3" x2="0" y2="114.3" width="0.1524" layer="91"/>
-<label x="0" y="114.3" size="1.778" layer="95" xref="yes"/>
+<wire x1="-7.62" y1="114.3" x2="7.62" y2="114.3" width="0.1524" layer="91"/>
+<label x="22.86" y="114.3" size="1.778" layer="95" xref="yes"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<wire x1="7.62" y1="114.3" x2="12.7" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="114.3" x2="22.86" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="111.76" x2="7.62" y2="114.3" width="0.1524" layer="91"/>
+<junction x="7.62" y="114.3"/>
+<wire x1="12.7" y1="104.14" x2="12.7" y2="114.3" width="0.1524" layer="91"/>
+<junction x="12.7" y="104.14"/>
+<junction x="12.7" y="114.3"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -8361,12 +8378,6 @@ Source: www.kingbright.com</description>
 <wire x1="88.9" y1="48.26" x2="78.74" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="ULTRASONIDO" gate="1" pin="1"/>
-<wire x1="93.98" y1="48.26" x2="93.98" y2="53.34" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="LED1" gate="G$1" pin="C"/>
@@ -8380,13 +8391,6 @@ Source: www.kingbright.com</description>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <wire x1="78.74" y1="38.1" x2="86.36" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="38.1" x2="86.36" y2="25.4" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$7" class="0">
-<segment>
-<pinref part="MODULO" gate="G$1" pin="2"/>
-<wire x1="114.3" y1="83.82" x2="116.84" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="83.82" x2="116.84" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
