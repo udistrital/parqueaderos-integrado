@@ -5,7 +5,7 @@
     <id>UMLDeployment</id>
     <coordinates>
       <x>686</x>
-      <y>112</y>
+      <y>0</y>
       <w>119</w>
       <h>98</h>
     </coordinates>
@@ -16,7 +16,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>693</x>
-      <y>140</y>
+      <y>28</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -29,7 +29,7 @@ con PostGIS</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>280</x>
-      <y>147</y>
+      <y>35</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -41,7 +41,7 @@ Geoserver</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>266</x>
-      <y>119</y>
+      <y>7</y>
       <w>133</w>
       <h>98</h>
     </coordinates>
@@ -52,7 +52,7 @@ Geoserver</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>413</x>
-      <y>245</y>
+      <y>133</y>
       <w>252</w>
       <h>182</h>
     </coordinates>
@@ -63,7 +63,7 @@ Geoserver</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>553</x>
-      <y>273</y>
+      <y>161</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -76,7 +76,7 @@ con JWT</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>420</x>
-      <y>273</y>
+      <y>161</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -88,7 +88,7 @@ Apache</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>525</x>
-      <y>364</y>
+      <y>252</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -100,7 +100,7 @@ SSE Go</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>511</x>
-      <y>294</y>
+      <y>182</y>
       <w>56</w>
       <h>21</h>
     </coordinates>
@@ -111,7 +111,7 @@ SSE Go</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>140</x>
-      <y>525</y>
+      <y>413</y>
       <w>497</w>
       <h>245</h>
     </coordinates>
@@ -122,7 +122,7 @@ SSE Go</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>147</x>
-      <y>553</y>
+      <y>441</y>
       <w>476</w>
       <h>210</h>
     </coordinates>
@@ -133,8 +133,8 @@ Navegador Web HTML5</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>161</x>
-      <y>609</y>
+      <x>476</x>
+      <y>511</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -145,8 +145,8 @@ OpenLayers</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>203</x>
-      <y>693</y>
+      <x>175</x>
+      <y>497</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -157,8 +157,8 @@ Angular JS</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>364</x>
-      <y>693</y>
+      <x>175</x>
+      <y>574</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -169,8 +169,8 @@ JQuery-UI</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>301</x>
-      <y>609</y>
+      <x>322</x>
+      <y>497</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -182,8 +182,8 @@ Boostrap</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>441</x>
-      <y>609</y>
+      <x>476</x>
+      <y>581</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -195,8 +195,8 @@ CSS</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>511</x>
-      <y>693</y>
+      <x>322</x>
+      <y>574</y>
       <w>98</w>
       <h>56</h>
     </coordinates>
@@ -207,8 +207,8 @@ JQuery</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>455</x>
-      <y>721</y>
+      <x>266</x>
+      <y>602</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -218,19 +218,8 @@ JQuery</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>637</y>
-      <w>133</w>
-      <h>91</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;60.0;130.0;60.0;170.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>455</x>
-      <y>322</y>
+      <y>210</y>
       <w>84</w>
       <h>245</h>
     </coordinates>
@@ -241,7 +230,7 @@ JQuery</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>819</x>
-      <y>427</y>
+      <y>315</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -253,7 +242,7 @@ ETHERNET</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>945</x>
-      <y>427</y>
+      <y>315</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -265,7 +254,7 @@ Mega 2560</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>875</x>
-      <y>504</y>
+      <y>392</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -277,7 +266,7 @@ Transceptor</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>889</x>
-      <y>434</y>
+      <y>322</y>
       <w>70</w>
       <h>28</h>
     </coordinates>
@@ -288,7 +277,7 @@ Transceptor</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>945</x>
-      <y>455</y>
+      <y>343</y>
       <w>49</w>
       <h>77</h>
     </coordinates>
@@ -299,7 +288,7 @@ Transceptor</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>777</x>
-      <y>392</y>
+      <y>280</y>
       <w>280</w>
       <h>161</h>
     </coordinates>
@@ -311,7 +300,7 @@ Nodo Central</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>875</x>
-      <y>637</y>
+      <y>539</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -323,7 +312,7 @@ Transceptor</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>994</x>
-      <y>637</y>
+      <y>539</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -335,7 +324,7 @@ Transceptor</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>994</x>
-      <y>700</y>
+      <y>602</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -347,7 +336,7 @@ Ultrasonido</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>945</x>
-      <y>644</y>
+      <y>546</y>
       <w>63</w>
       <h>28</h>
     </coordinates>
@@ -358,7 +347,7 @@ Ultrasonido</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1022</x>
-      <y>665</y>
+      <y>567</y>
       <w>35</w>
       <h>49</h>
     </coordinates>
@@ -369,7 +358,7 @@ Ultrasonido</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>847</x>
-      <y>609</y>
+      <y>497</y>
       <w>259</w>
       <h>147</h>
     </coordinates>
@@ -381,7 +370,7 @@ Sensor Isla</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>616</x>
-      <y>385</y>
+      <y>273</y>
       <w>217</w>
       <h>77</h>
     </coordinates>
@@ -392,18 +381,18 @@ Sensor Isla</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>903</x>
-      <y>532</y>
+      <y>420</y>
       <w>70</w>
-      <h>119</h>
+      <h>133</h>
     </coordinates>
     <panel_attributes>RF 2.4GHz</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
       <x>1106</x>
-      <y>742</y>
+      <y>630</y>
       <w>70</w>
       <h>49</h>
     </coordinates>
@@ -415,7 +404,7 @@ style=wordwrap</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>371</x>
-      <y>182</y>
+      <y>70</y>
       <w>119</w>
       <h>105</h>
     </coordinates>
@@ -426,7 +415,7 @@ style=wordwrap</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>371</x>
-      <y>154</y>
+      <y>42</y>
       <w>336</w>
       <h>28</h>
     </coordinates>
@@ -437,7 +426,7 @@ style=wordwrap</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>602</x>
-      <y>175</y>
+      <y>63</y>
       <w>119</w>
       <h>112</h>
     </coordinates>
@@ -448,11 +437,58 @@ style=wordwrap</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>567</x>
-      <y>322</y>
+      <y>210</y>
       <w>42</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>301</y>
+      <w>84</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>TCP/IP (WAN)</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>161</x>
+      <y>469</y>
+      <w>273</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Sitio Administración Parqueaderos</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>364</x>
+      <y>546</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>441</x>
+      <y>469</y>
+      <w>175</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Visor Geográfico
+Parqueaderos</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
