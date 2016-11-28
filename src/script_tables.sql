@@ -129,6 +129,7 @@ CREATE TABLE parqueaderos.vehiculo(
 	placa character varying(6) NOT NULL,
 	id_nfc bigint NOT NULL,
 	id_propietario integer NOT NULL,
+	area numeric,
 	CONSTRAINT vehiculo_pkey PRIMARY KEY (id)
 
 );
@@ -140,6 +141,8 @@ COMMENT ON COLUMN parqueaderos.vehiculo.placa IS 'Placa del vehiculo';
 COMMENT ON COLUMN parqueaderos.vehiculo.id_nfc IS 'Codigo que identifica al tag NFC';
 -- ddl-end --
 COMMENT ON COLUMN parqueaderos.vehiculo.id_propietario IS 'El documento de identidad del propietario';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.vehiculo.area IS 'Area superficial o de almacenamiento del vehiculo.';
 -- ddl-end --
 ALTER TABLE parqueaderos.vehiculo OWNER TO usercirce;
 -- ddl-end --
@@ -326,6 +329,47 @@ COMMENT ON COLUMN parqueaderos.isla.id_grupo_isla IS 'Identificador del grupo is
 ALTER TABLE parqueaderos.isla OWNER TO usercirce;
 -- ddl-end --
 
+-- object: parqueaderos.incidencias | type: TABLE --
+-- DROP TABLE IF EXISTS parqueaderos.incidencias CASCADE;
+CREATE TABLE parqueaderos.incidencias(
+	id serial NOT NULL,
+	id_propietario integer NOT NULL,
+	id_tipo_incidencia integer NOT NULL,
+	observaciones varchar(2000) NOT NULL,
+	CONSTRAINT incidencia_pkey PRIMARY KEY (id)
+
+);
+-- ddl-end --
+COMMENT ON TABLE parqueaderos.incidencias IS 'Guarda todas las incidencias que puede registrar el usuario.';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.incidencias.id IS 'Identificador de la tabla incidencias';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.incidencias.id_propietario IS 'El identificador del propietario quien comete la falta y se reporta como incidencia.';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.incidencias.id_tipo_incidencia IS 'Es el atributio que relaciona el tipo de incidencia, hay muchos tipos de incidencia que se registran en esa tabla';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.incidencias.observaciones IS 'En esta se describe exactamente que paso con la incidencia, el motivo y demas datos que ayuden a identificar la eventualidad';
+-- ddl-end --
+ALTER TABLE parqueaderos.incidencias OWNER TO usercirce;
+-- ddl-end --
+
+-- object: parqueaderos.tipo_incidencia | type: TABLE --
+-- DROP TABLE IF EXISTS parqueaderos.tipo_incidencia CASCADE;
+CREATE TABLE parqueaderos.tipo_incidencia(
+	id serial NOT NULL,
+	tipo varchar(25) NOT NULL,
+	CONSTRAINT tipo_incidencia_pkey PRIMARY KEY (id),
+	CONSTRAINT tipo_restriccion_tipo_uni UNIQUE (tipo)
+
+);
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.tipo_incidencia.id IS 'La llave primaria y serial de la tabla tipo_incidencia';
+-- ddl-end --
+COMMENT ON COLUMN parqueaderos.tipo_incidencia.tipo IS 'El nombre corto del tipo de incidencia';
+-- ddl-end --
+ALTER TABLE parqueaderos.tipo_incidencia OWNER TO usercirce;
+-- ddl-end --
+
 -- object: propietario_tipo_propietario_id_fkey | type: CONSTRAINT --
 -- ALTER TABLE parqueaderos.propietario DROP CONSTRAINT IF EXISTS propietario_tipo_propietario_id_fkey CASCADE;
 ALTER TABLE parqueaderos.propietario ADD CONSTRAINT propietario_tipo_propietario_id_fkey FOREIGN KEY (id_tipo_propietario)
@@ -358,6 +402,20 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE parqueaderos.isla DROP CONSTRAINT IF EXISTS isla_grupo_isla_id_grupo_isla_fkey CASCADE;
 ALTER TABLE parqueaderos.isla ADD CONSTRAINT isla_grupo_isla_id_grupo_isla_fkey FOREIGN KEY (id_grupo_isla)
 REFERENCES parqueaderos.grupo_isla (id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: tipo_indicencia_fk | type: CONSTRAINT --
+-- ALTER TABLE parqueaderos.incidencias DROP CONSTRAINT IF EXISTS tipo_indicencia_fk CASCADE;
+ALTER TABLE parqueaderos.incidencias ADD CONSTRAINT tipo_indicencia_fk FOREIGN KEY (id_tipo_incidencia)
+REFERENCES parqueaderos.tipo_incidencia (id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: propietario_fk | type: CONSTRAINT --
+-- ALTER TABLE parqueaderos.incidencias DROP CONSTRAINT IF EXISTS propietario_fk CASCADE;
+ALTER TABLE parqueaderos.incidencias ADD CONSTRAINT propietario_fk FOREIGN KEY (id_propietario)
+REFERENCES parqueaderos.propietario (id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
