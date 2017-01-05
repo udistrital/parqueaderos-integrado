@@ -12,7 +12,7 @@ if [ -f $file ]
 then
   echo "El archivo $file ya existe. Nada que hacer."
 else
-sudo tee  << 'EOF'
+sudo tee $file << 'EOF'
 User vagrant
 Group vagrant
 EOF
