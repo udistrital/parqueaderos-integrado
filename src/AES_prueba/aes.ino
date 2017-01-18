@@ -20,13 +20,12 @@ void setup()
         //Serial.println(sizeof(data));
         Serial.print("encrypted:");
         Serial.println(data);
-         for (int i=0; i<sizeof(data);i++)
-        {
-          //int x =int(data[i]);
-          uint8_t x = uint8_t(data[i]);
-          Serial.print(x);
-          Serial.print(" ");
-        }
+        String dataHEX = "";
+        byte tamano = sizeof(data)-1;
+        convert2Hex(data, tamano, dataHEX);
+        Serial.print("hex: ");
+        Serial.println(dataHEX);
+         
         Serial.println("");  
         
         aes128_cbc_dec(key, iv, data, strlen(data));
@@ -44,4 +43,20 @@ void loop()
 {
   
 }
+void convert2Hex(char input[], byte tamanoInput, String &output) {
+  String hexa[] = {"0", "1", "2", "3", "4", "5", "6", "7",
+                   "8", "9", "A", "B", "C", "D", "E", "F"};
+  for (uint8_t i = 0; i < tamanoInput; i++) {
+    uint8_t b = (uint8_t)input[i];
+    String first = hexa[GetFirst4Bits(b)];
+    String second = hexa[GetSecond4Bits(b)];
+    output += first + second;    
+  }
+}
 
+uint8_t GetFirst4Bits(uint8_t b) { return b >> 4; }
+uint8_t GetSecond4Bits(uint8_t b) {
+  // b = b << 4;
+  byte a = B00001111;
+  return b & a;
+}
