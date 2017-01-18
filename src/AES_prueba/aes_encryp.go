@@ -60,15 +60,15 @@ func decryptCBC(key []byte, text string) (string, error) {
 		return "", err
 	}
 
-	decodedMsg := []byte(text)
-	//fmt.Println((decodedMsg))
+	decodedMsg := []byte{165, 7, 155, 74, 5, 229, 106, 210, 117, 186, 190, 152, 215, 220, 227, 30}
+	fmt.Println((decodedMsg))
 	if (len(decodedMsg) % aes.BlockSize) != 0 {
 		return "", errors.New("blocksize must be multipe of decoded message length")
 	}
 
 	//iv := decodedMsg[:aes.BlockSize]
 	iv := []byte("abcdefghijklmnop")
-	msg := decodedMsg[aes.BlockSize:]
+	msg := decodedMsg
 	fmt.Println(iv)
 	cbc := cipher.NewCBCDecrypter(block, iv)
 	cbc.CryptBlocks(msg, msg)
