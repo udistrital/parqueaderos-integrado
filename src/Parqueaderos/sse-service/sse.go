@@ -9,6 +9,7 @@ import (
 	//"time"
 	"crypto/aes"
 	"crypto/cipher"
+	"errors"
 )
 
 // Example SSE server in Golang.
@@ -91,31 +92,32 @@ func HEX2Byte(hex1 byte, hex2 byte) byte {
 	return a | b
 }
 
-var iv = []byte("3675356236753562")
-
-// func Encrypt(key, text string) string {
-//     fmt.Println(text)
-//     block, err := aes.NewCipher([]byte(key))
-//     if err != nil { panic(err) }
-//     plaintext := []byte(text)
-//     cfb := cipher.NewCFBEncrypter(block, iv)
-//     ciphertext := make([]byte, len(plaintext))
-//     cfb.XORKeyStream(ciphertext, plaintext)
-//     return string(ciphertext[:])
-// }
-
-func Decrypt(key, text string) string {
-	//fmt.Println(text)
-	block, err := aes.NewCipher([]byte(key))
+func decryptCBC(key []byte, text string) (string, error) {
+	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
-	ciphertext := text
-	cfb := cipher.NewCFBEncrypter(block, iv)
-	plaintext := make([]byte, len(ciphertext))
-	cfb.XORKeyStream(plaintext, []byte(ciphertext))
-	//fmt.Println(plaintext)
-	return string(plaintext)
+
+	decodedMsg := []byte(text)
+	fmt.Println((decodedMsg))
+	if (len(decodedMsg) % aes.BlockSize) != 0 {
+		return "", errors.New("blocksize must be multipe of decoded message length")
+	}
+
+	//iv := decodedMsg[:aes.BlockSize]
+	iv := []byte("abcdefghijklmnop")
+	msg := decodedMsg
+	fmt.Println(iv)
+	cbc := cipher.NewCBCDecrypter(block, iv)
+	cbc.CryptBlocks(msg, msg)
+
+	//unpadMsg, err := Unpad(msg)
+	unpadMsg := (msg)
+	if err != nil {
+		return "", err
+	}
+
+	return string(unpadMsg), nil
 }
 
 func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
@@ -161,10 +163,8 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		fmt.Println("Dato cifrado: ", cadenaAES256)
 		//Se comienza la decodificación
 
-		//key := []byte(keyB[:])
-		//cryptoText
-		var key = "0123456789010123"
-		text := Decrypt(key, cadenaAES256)
+		var key = []byte("omarleonardozamb")
+		text, _ := decryptCBC(key, cadenaAES256)
 
 		fmt.Printf("Text: %s\n", text)
 
@@ -255,6 +255,7 @@ func main() {
 	// 	}
 	// }()
 	//localhost:3000, 192.168.33.10
+	fmt.Println("Para enviar peticionees: curl -v 192.168.0.18:3000")
 	log.Fatal("HTTP server error: ", http.ListenAndServe(":3000", broker))
 
 }
