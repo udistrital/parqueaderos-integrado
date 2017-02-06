@@ -13,7 +13,7 @@ import (
 )
 
 // Example SSE server in Golang.
-//     $ go run sse.go
+// $ go run sse.go
 // based on https://gist.github.com/ismasan/3fb75381cd2deb6bfa9c
 
 type Broker struct {
@@ -156,12 +156,12 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 			// fmt.Println(i)
 			cadena[i] = c
 		}
-		//https://gist.github.com/kkirsche/e28da6754c39d5e7ea10
-		//https://gist.github.com/cannium/c167a19030f2a3c6adbb5a5174bea3ff
-		//fmt.Println("Cadena: ", cadena)
+		// https://gist.github.com/kkirsche/e28da6754c39d5e7ea10
+		// https://gist.github.com/cannium/c167a19030f2a3c6adbb5a5174bea3ff
+		// fmt.Println("Cadena: ", cadena)
 		cadenaAES256 := string(cadena[:])
 		fmt.Println("Dato cifrado: ", cadenaAES256)
-		//Se comienza la decodificación
+		// Se comienza la decodificación
 
 		var key = []byte("omarleonardozamb")
 		text, _ := decryptCBC(key, cadenaAES256)
@@ -254,8 +254,16 @@ func main() {
 	// 		broker.Notifier <- []byte(eventString)
 	// 	}
 	// }()
-	//localhost:3000, 192.168.33.10
-	fmt.Println("Para enviar peticionees: curl -v 192.168.0.18:3000")
-	log.Fatal("HTTP server error: ", http.ListenAndServe(":3000", broker))
+	// localhost:3000, 192.168.33.10
+  //id=1&st=0&t=0000
+	fmt.Println("Para enviar peticiones dispositivos: curl -v 192.168.0.18:9000/dev?data=50FD7888D005DC5231C3474F844600AB")
+  //id=1&st=0&t=0000
+  fmt.Println("Para enviar peticiones dispositivos: curl -v 192.168.0.18:9000/dev?data=1D211AA948D6208B2F33BB632709C3C6")
+  //id=2&st=0&t=0000
+  fmt.Println("Para enviar peticiones dispositivos: curl -v 192.168.0.18:9000/dev?data=2E54E91F0812A12ACDD3C095A050C8C1")
+  //id=2&st=1&t=0000
+  fmt.Println("Para enviar peticiones dispositivos: curl -v 192.168.0.18:9000/dev?data=BA2211AF71E8FA145BCAAFA8E496542D")
+  fmt.Println("Para enviar peticiones cliente: curl -v 192.168.0.18:9000")
+	log.Fatal("HTTP server error: ", http.ListenAndServe(":9000", broker))
 
 }
