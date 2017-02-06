@@ -13,7 +13,16 @@ gulp.task('webserver', function() {
       port: 3000,
       livereload: true,
       directoryListing: false,
-      open: true
+      open: true,
+      proxies: [{
+        source: '/geoserver',
+        target: 'http://localhost:8000/geoserver',
+        options: {
+          headers: {
+            'DEVELOPER': 'juusechec'
+          }
+        }
+      }]
     }));
 });
 
