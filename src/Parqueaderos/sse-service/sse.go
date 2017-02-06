@@ -10,6 +10,8 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"errors"
+  "encoding/json"
+  "strconv"
 )
 
 // Example SSE server in Golang.
@@ -29,6 +31,11 @@ type Broker struct {
 
 	// Client connections registry
 	clients map[chan []byte]bool
+}
+
+type Isla struct {
+  Id string `json:"id"` // Identificador de la Isla
+  St int `json:"st"` // Estado de la Isla
 }
 
 func NewServer() (broker *Broker) {
@@ -121,7 +128,7 @@ func decryptCBC(key []byte, text string) (string, error) {
 }
 
 func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-
+  log.Println(req.RequestURI)
 	u, err := url.Parse(req.RequestURI)
 	if err != nil {
 		log.Fatal(err)
@@ -134,8 +141,8 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		//log.Println(u, q, u.String(), u.EscapedPath())
 		data := q["data"][0]
 		fmt.Println("Dato que llega: ", data)
-		//Se escribe sobre todos los otros navegadores
-		broker.Notifier <- []byte(data)
+    // //Se escribe sobre todos los otros navegadores
+		// broker.Notifier <- []byte(data)
 		//Se responde al Microcontrolador con las cabeceras correspondientes
 		rw.Header().Set("Content-Type", "text/html; charset=UTF-8")
 		rw.Header().Set("Cache-Control", "no-cache")
@@ -166,9 +173,23 @@ func (broker *Broker) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		var key = []byte("omarleonardozamb")
 		text, _ := decryptCBC(key, cadenaAES256)
 
-		fmt.Printf("Text: %s\n", text)
+    fmt.Printf("Dato descifrado: %s\n", text)
+    // Se lee el texto que llega como una URL se agrega siempre "?"
+    u, err = url.Parse("?" + text)
+    if err != nil{
+      log.Fatal(err)
+    }
+    //Se trata la petición para obtener el parámetro data
+		q = u.Query()
+    idIsla := q["id"][0]
+    stIsla, _ := strconv.Atoi(q["st"][0]) // Convertir de String a Int
+    isla := Isla{Id: idIsla, St: stIsla}
 
+    b, _ := json.Marshal(isla)
+    fmt.Println(string(b))
 		fmt.Println()
+    //Se escribe sobre todos los otros navegadores
+		broker.Notifier <- []byte(string(b))
 	} else {
 		flusher, ok := rw.(http.Flusher)
 
