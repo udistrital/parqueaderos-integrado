@@ -5,4 +5,4 @@
 * Click derecho sobre la capa y guardarla como GTiff con modo de salida Datos Crudos EPSG:4326, WGS 84
 * En geoserver crear un workspace llamado parqueaderos, luego crear un store de GeoTiff llamado sotano#_tematico
 * Luego publicar la nueva capa con EPSG:4326
-
+* Nombre de capa usada parqueaderos:sotano1_50ppp_georeferenced
