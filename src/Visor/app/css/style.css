@@ -1,138 +1,144 @@
 body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 html, body, #map {
-  height: 100%;
-  font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
+
 .sidebar-content, .sidebar-pane {
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
 }
 
 .sidebar-tabs, .ol-control button {
-  background-color: rgba(38, 166, 154, 0.5);
+    background-color: rgba(38, 166, 154, 0.5);
 }
 
-.sidebar-tabs > ul > li > a:hover,
-.ol-control button:hover,
-.sidebar-tabs > ul > li.active {
-  background-color: rgb(38, 166, 154);
+.sidebar-tabs>ul>li>a:hover, .ol-control button:hover, .sidebar-tabs>ul>li.active {
+    background-color: rgb(38, 166, 154);
 }
 
 .sidebar-tabs, .sidebar-tabs>ul {
-  width: 36px;
+    width: 36px;
 }
 
 .sidebar-header {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-floating {
-  background-color: #f44336;
+    background-color: #f44336;
 }
 
 .btnEye {
-  width: 25px;
+    width: 25px;
 }
 
 #btnSelect {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 #btnEdit {
-  position: absolute;
-  top: 20px;
-  right: 80px;
+    position: absolute;
+    top: 20px;
+    right: 80px;
 }
 
 #btnDrawPoint {
-  position: absolute;
-  top: 20px;
-  right: 140px;
+    position: absolute;
+    top: 20px;
+    right: 140px;
 }
 
 #btnDrawLine {
-  position: absolute;
-  top: 20px;
-  right: 200px;
+    position: absolute;
+    top: 20px;
+    right: 200px;
 }
 
 #btnDrawPoly {
-  position: absolute;
-  top: 20px;
-  right: 260px;
+    position: absolute;
+    top: 20px;
+    right: 260px;
 }
 
 #btnDelete {
-  position: absolute;
-  top: 20px;
-  right: 320px;
+    position: absolute;
+    top: 20px;
+    right: 320px;
 }
 
 #btnZoomIn {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 #btnZoomOut {
-  position: absolute;
-  top: 80px;
-  left: 20px;
+    position: absolute;
+    top: 80px;
+    left: 20px;
 }
 
 .ol-popup {
-  display: inline-block;
-  white-space: nowrap;
-  position: absolute;
-  background-color: white;
-  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-  padding: 15px;
-  /* border-radius: 10px; */
-  border: 1px solid #cccccc;
-  bottom: 12px;
-  left: -50px;
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
 }
 
 .ol-popup:after, .ol-popup:before {
-  top: 100%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
 }
 
 .ol-popup:after {
-  border-top-color: white;
-  border-width: 10px;
-  left: 48px;
-  margin-left: -10px;
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
 }
 
 .ol-popup:before {
-  border-top-color: #cccccc;
-  border-width: 11px;
-  left: 48px;
-  margin-left: -11px;
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
 }
 
 .ol-popup-closer {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
 }
 
-.ol-popup-closer:hover {
-  color: rgb(255, 56, 168);
+.ol-popup-closer:after {
+    content: "✖";
+}
+
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
 }

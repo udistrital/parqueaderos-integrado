@@ -82,9 +82,29 @@ var osmLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
 })
 
+/**
+ * Elements that make up the popup.
+ */
+var container = document.getElementById('popup')
+var content = document.getElementById('popup-content')
+var closer = document.getElementById('popup-closer')
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+var overlay = new ol.Overlay( /** @type {olx.OverlayOptions} */ ({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+        duration: 250
+    }
+}))
+
+
 //document.body.onclick = function (e) {console.log(map.getEventCoordinate(e))}
 var map = new ol.Map({
     layers: [osmLayer, wmsLayer, grupoislaLayer, islaLayer],
+    overlays: [overlay],
     target: document.getElementById('map'),
     view: new ol.View({
         center: [-8244952.014276695, 515728.84084898204],
@@ -145,21 +165,21 @@ function changeVisibilityLayer(opt, estado) {
 var islas = new Array()
 
 var highlightStyle = new ol.style.Style({
-  stroke: new ol.style.Stroke({
-    color: '#f00',
-    width: 1
-  }),
-  fill: new ol.style.Fill({
-    color: 'rgba(255,0,0,0.1)'
-  })
+    stroke: new ol.style.Stroke({
+        color: '#f00',
+        width: 1
+    }),
+    fill: new ol.style.Fill({
+        color: 'rgba(255,0,0,0.1)'
+    })
 })
 
 var createOverlay = function() {
-  return new ol.layer.Vector({
-    source: new ol.source.Vector(),
-    map: map,
-    style: highlightStyle
-  })
+    return new ol.layer.Vector({
+        source: new ol.source.Vector(),
+        map: map,
+        style: highlightStyle
+    })
 }
 
 
@@ -178,18 +198,57 @@ source.onmessage = function(event) {
             marked: false
         }
 
-        if (!islas[isla.id].feature){
-          islas[isla.id] = undefined
+        if (!islas[isla.id].feature) {
+            islas[isla.id] = undefined
         }
     }
 
     if (isla.st === 0 && islas[isla.id].marked) {
         islas[isla.id].overlay.getSource().removeFeature(islas[isla.id].feature)
-        islas[isla.id].marked = false;
+        islas[isla.id].marked = false
     }
 
     if (isla.st == 1 && !islas[isla.id].marked) {
         islas[isla.id].overlay.getSource().addFeature(islas[isla.id].feature)
-        islas[isla.id].marked = true;
+        islas[isla.id].marked = true
     }
 }
+
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function() {
+    overlay.setPosition(undefined)
+    closer.blur()
+    return false
+}
+
+var select_interaction = new ol.interaction.Select()
+select_interaction.on('select', function(evt) {
+    console.log(evt)
+    window.evt = evt
+    var coordinate = evt.mapBrowserEvent.coordinate
+    var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+        coordinate, 'EPSG:3857', 'EPSG:4326'))
+    var minAreaCar = 4.50 * 2.20 //http://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=2107
+    var uso = minAreaCar / lastArea
+    var porcentajeUso = (uso * 100) + ' %'
+    content.innerHTML = '<p>ID: <code>' + lastIsla + '</code></p>' +
+        '<p>Área: <code>' + lastArea + ' m<sup>2</sup></code></p>' +
+        '<p>Uso: <code>' + porcentajeUso + '</code></p>'
+    overlay.setPosition(coordinate)
+})
+
+var lastArea = -1
+var lastIsla = -1
+select_interaction.getFeatures().on("add", function(evt) {
+    console.log(evt)
+    window.evt2 = evt
+    var feature = evt.element //the feature selected
+    var area = feature.getProperties().geometry.getArea()
+    lastArea = area
+    lastIsla = evt2.element.getId()
+})
+
+map.addInteraction(select_interaction)
