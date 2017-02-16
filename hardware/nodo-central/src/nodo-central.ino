@@ -40,12 +40,12 @@ byte mac[] = {0xDE, 0xBD, 0xBE, 0xEF, 0xFE, 0xED};
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 // IPAddress server(10, 145, 20, 62); // numeric IP for Google (no DNS)
-IPAddress server(192, 168, 0, 18);
+IPAddress server(172, 16, 0, 1);
 // char server[] = "192.168.1.238";    // name address for Google (using DNS)
 // IP Servicio Web Destino de Datos
 
 // Set the static IP address to use if the DHCP fails to assign
-IPAddress ip(192, 168, 0, 30); // IP Arduino
+IPAddress ip(172, 16, 0, 2); // IP Arduino
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -63,9 +63,7 @@ const uint64_t pipes[2] = {0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL};
 /**
  * Variables AES
  */
-uint8_t key[] = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,
-                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-                 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+uint8_t key[] = {111, 109, 97, 114, 108, 101, 111, 110, 97, 114, 100, 111, 122, 97, 109, 98};
 /*End*/
 
 void setup() {
@@ -86,12 +84,12 @@ void configSerial() {
 void configEthernet() {
   // start the Ethernet connection:
   Serial.println("Try to config Ethernet using DHCP");
-  if (Ethernet.begin(mac) == 0) {
+  //if (Ethernet.begin(mac) == 0) {//uncomment
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
     // try to congifure using IP address instead of DHCP:
     Ethernet.begin(mac, ip);
-  }
+  //}
   // give the Ethernet shield a second to initialize:
   delay(100);
   Serial.println("Connecting...");
@@ -141,17 +139,24 @@ void sendDataEthernet(int valor, int valor2) {
   // close any connection before send a new request.
   // This will free the socket on the WiFi shield
   client.stop();
-  if (client.connect(server, 3000)) {
+  if (client.connect(server, 9000)) {
     Serial.println("Connected");
-    // Make a HTTP request:
-    char data[30] = {0};
-    sprintf(data, "id=%i&st=%i", valor, valor2);
-    // sprintf(data, "id=%i&st=%i&t=%i", valor, valor2, millis());
-    Serial.print("data: ");
-    Serial.println(data);
+    // // Make a HTTP request:
+    // char data[30] = {0};
+    // sprintf(data, "id=%i&st=%i", valor, valor2);
+    // // sprintf(data, "id=%i&st=%i&t=%i", valor, valor2, millis());
+    // Serial.print("data: ");
+    // Serial.println(data);
+
+    uint8_t iv[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112};
 
     // char data[] = "id=" + (char)valor + "&st=" + (char)valor + "&t=";
-    aes256_enc_single(key, data);
+    //char data[] = "id=2&st=1&t=0000";
+    char data[17] = {0};
+    sprintf(data, "id=%i&st=%i&t=0000", valor, valor2);
+    Serial.print("data: ");
+    Serial.println(data);
+    aes128_cbc_enc(key, iv, data, strlen(data));
     Serial.print("encrypted: ");
     Serial.println(data);
     // aes256_dec_single(key, data);
@@ -159,7 +164,7 @@ void sendDataEthernet(int valor, int valor2) {
     // Serial.println(data);
     // encoding
     String dataHEX = "";
-    byte tamano = sizeof(data);
+    byte tamano = sizeof(data) - 1;
     Serial.print("tamano: ");
     Serial.println(tamano);
     convert2Hex(data, tamano, dataHEX);
@@ -174,7 +179,7 @@ void sendDataEthernet(int valor, int valor2) {
     Serial.println("GET /dev?data=" + dataHEX + " HTTP/1.1");
     // client.println("Host: 10.145.20.62");
     // client.println("Host: 10.145.20.71");
-    client.println("Host: 192.168.0.18:3000");
+    client.println("Host: 172.16.0.1:9000");
     client.println("Connection: close");
     client.println();
   } else {
@@ -195,7 +200,7 @@ void readEthernet() {
 void loop() {
   // interactEthernet();
   interactRF();
-  delay(1000); // Quitar, solo sirve para pruebas
+  // delay(1000); // Quitar, solo sirve para pruebas
   // sendDataEthernet(10, 1);
 }
 
@@ -220,8 +225,8 @@ void interactEthernet() {
 
 void interactRF() {
   // Importante!!! Borrar true
-  // if (radio.available()) { // Si hay datos disponibles
-  if (true || radio.available()) { // Si hay datos disponibles
+  if (radio.available()) { // Si hay datos disponibles
+  //if (true || radio.available()) { // Solo para pruebas
     char got_isla[2];
     bool done = false;
     while (!done) {

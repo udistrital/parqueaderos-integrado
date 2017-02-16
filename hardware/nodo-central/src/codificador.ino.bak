@@ -1,0 +1,67 @@
+/*
+* Esta utiliza la biblioteca https://github.com/DavyLandman/AESLib
+*/
+
+#include <Arduino.h>
+#include <AESLib.h>
+
+const int BlockSize = 16;
+
+void setup()
+{
+       //  Usage example for AES256:
+       //Serial.begin(57600);
+       Serial.begin(9600);
+       uint8_t key[] = {111, 109, 97, 114, 108, 101, 111, 110, 97, 114, 100, 111, 122, 97, 109, 98};
+       //char data[] = "HelloWorldHolaMu";
+       //char data[] = "id=1&st=0&t=0000";
+       //char data[] = "id=1&st=1&t=0000";
+       //char data[] = "id=2&st=0&t=0000";
+       char data[] = "id=2&st=1&t=0000";
+       //Serial.println(strlen(data));
+       uint8_t iv[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112};
+
+       aes128_cbc_enc(key, iv, data, strlen(data));
+       //Serial.println(sizeof(data));
+       Serial.print("encrypted:");
+       Serial.println(data);
+       String dataHEX = "";
+       byte tamano = sizeof(data)-1;
+       convert2Hex(data, tamano, dataHEX);
+       Serial.print("hex: ");
+       Serial.println(dataHEX);
+
+       Serial.println("");
+
+       aes128_cbc_dec(key, iv, data, strlen(data));
+       Serial.print("decrypted:");
+       Serial.println(data);
+       Serial.print("iv:");
+       for (int i=0; i<sizeof(iv);i++)
+       {
+         Serial.print(char(iv[i]));
+       }
+       Serial.println("");
+}
+
+void loop()
+{
+
+}
+void convert2Hex(char input[], byte tamanoInput, String &output) {
+ String hexa[] = {"0", "1", "2", "3", "4", "5", "6", "7",
+                  "8", "9", "A", "B", "C", "D", "E", "F"};
+ for (uint8_t i = 0; i < tamanoInput; i++) {
+   uint8_t b = (uint8_t)input[i];
+   String first = hexa[GetFirst4Bits(b)];
+   String second = hexa[GetSecond4Bits(b)];
+   output += first + second;
+ }
+}
+
+uint8_t GetFirst4Bits(uint8_t b) { return b >> 4; }
+uint8_t GetSecond4Bits(uint8_t b) {
+ // b = b << 4;
+ byte a = B00001111;
+ return b & a;
+}

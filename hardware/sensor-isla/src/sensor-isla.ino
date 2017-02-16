@@ -31,7 +31,8 @@ const uint64_t pipes[2] = {0xF0F0F0F0E1LL,
 #define echoPin 5
 #define ledEstado 8 // Indicador para deteccion del vehículo
 
-int limite = 212; // Distancia max entre el suelo y el vehiculo (cms)
+//int limite = 212; // Distancia max entre el suelo y el vehiculo (cms)
+int limite = 20;
 // 212 cms Toyota Hilux
 long duracion, distancia;
 volatile byte estadoIsla = 0;
@@ -67,7 +68,7 @@ void configUltrasonido() {
 void loop(void) {
   enviarDatoRF();
   medirDistancia();
-  delay(1000);
+  delay(500);
 }
 
 void enviarDatoRF() {
@@ -86,7 +87,7 @@ void enviarDatoRF() {
   if (ok) {
     Serial.println("ok...");
   } else {
-    Serial.println("failedEstado");
+    Serial.println("failed: Estado");
   }
 
   radio.startListening(); // Volvemos a la escucha
@@ -123,12 +124,13 @@ void medirDistancia() {
   digitalWrite(trigPin, LOW); // Cortamos el pulso y a esperar el echo
   duracion = pulseIn(echoPin, HIGH);
   distancia = duracion / 2 / 29.1;
+  Serial.println(String(distancia) + " cm.");
   if (distancia < limite) {
-    Serial.println(String(distancia) + " cm.");
+    Serial.println("Ocupada");
     digitalWrite(ledEstado, HIGH);
     estadoIsla = 1;
   } else {
-    Serial.println(String(distancia) + " cm.");
+    Serial.println("Desocupada");
     digitalWrite(ledEstado, LOW);
     estadoIsla = 0;
   }
