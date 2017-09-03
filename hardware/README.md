@@ -1,5 +1,5 @@
 
-#Módulo WIFI ESP8266
+# Módulo WIFI ESP8266
 --------------------
 Este módulo se comunica por protocolo serial (UART http://www.mbedded.ninja/electronics/communication-protocols/uart-protocol) a una taza predeterminada de 115200 baudios (bits por segundo https://www.arduino.cc/en/Serial/Begin).
 
@@ -13,14 +13,14 @@ Este módulo se comunica por protocolo serial (UART http://www.mbedded.ninja/ele
 * Contiene información necesaria para configurar el módulo como un Access Point. http://dominicm.com/esp8266-configure-access-point/
 * La wiki definitiva para los comandos AT: https://github.com/espressif/ESP8266_AT/wiki
 
-#Módulo Ultrasonido MB1010 LV-MaxSonar®-EZ1
+# Módulo Ultrasonido MB1010 LV-MaxSonar®-EZ1
 -------------------------------------------
 Este módulo se utiliza para detectar la presencia o ausencia de objetos, este se puede controlar por medio de 3 métodos, el análogo, el PWM y con comunicación serial. El más acosejable es PWM (http://playground.arduino.cc/Main/MaxSonar).
 
 * Documentación oficial de implementación del sensor. http://www.maxbotix.com/articles/085.htm
 * Características técnicas del dispositivo sumado a enlaces del datasheet, explicaciones, guía de selección del sensores de la misma familia. https://www.sparkfun.com/products/8502
 
-#Módulo RF 433MHz Transmisor y Receptor
+# Módulo RF 433MHz Transmisor y Receptor
 ---------------------------------------
 * Enlaces de un transmisor RF dirigido a muchos Receptores. https://www.youtube.com/watch?v=h3OevEdl674 https://github.com/Simsso/Arduino-Wireless-Module-Multiple-Receivers
 * Ideas de cómo conectar 20 sensores wireless a un solo receptor. Un transmisor solo emite cuando es necesario y puede retransmitir algunas veces con base de tiempo aleatorio para asegurarse de la llegada del dato. Las colisiones son bajas si la concurrencia de eventos no es baja. Se puede también transmitir a diferentes bases de tiempo para reducir el número de colisiones. http://electronics.stackexchange.com/questions/74272/how-to-connect-20-wireless-sensors-in-one-receiver-with-arduino
@@ -41,4 +41,8 @@ Este módulo transmite y recibe datos. Tiene un bajo consumo de potencia y el ra
 * http://playground.arduino.cc/InterfacingWithHardware/Nrf24L01
 * https://arduino-info.wikispaces.com/Nrf24L01-Info
 * http://www.nordicsemi.com/eng/Products/2.4GHz-RF/nRF24L01
+* https://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo?responseToken=fcd06dad835d084c7d89d1d4a147b989
+* http://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
+* http://projectsfromtech.blogspot.com.co/2013/05/nrf24l01-arduino-communication-on.html
+* http://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
 
