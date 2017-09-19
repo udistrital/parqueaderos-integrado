@@ -19,6 +19,7 @@ Este módulo se utiliza para detectar la presencia o ausencia de objetos, este s
 
 * Documentación oficial de implementación del sensor. http://www.maxbotix.com/articles/085.htm
 * Características técnicas del dispositivo sumado a enlaces del datasheet, explicaciones, guía de selección del sensores de la misma familia. https://www.sparkfun.com/products/8502
+* https://sheldondwill.wordpress.com/2014/02/04/using-an-ultrasonic-sensor-hc-sr04-with-a-3-3v-micro-controller-tiva-c-series/
 
 # Módulo RF 433MHz Transmisor y Receptor
 ---------------------------------------
