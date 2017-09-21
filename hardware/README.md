@@ -46,4 +46,6 @@ Este módulo transmite y recibe datos. Tiene un bajo consumo de potencia y el ra
 * http://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
 * http://projectsfromtech.blogspot.com.co/2013/05/nrf24l01-arduino-communication-on.html
 * http://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
+* http://projectsfromtech.blogspot.com.co/2013/05/nrf24l01-arduino-communication-on.html
+* http://forum.arduino.cc/index.php?topic=131078.msg1331019#msg1331019
 
