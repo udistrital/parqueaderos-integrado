@@ -4,7 +4,7 @@ if [ -f /usr/pgsql-9.5/bin/pg_ctl ]; then
   echo 'Postgres ya está instalado. Nada que hacer.'
 else
 echo "Instalando PostgreSQL"
-sudo yum localinstall -y http://yum.postgresql.org/9.5/redhat/rhel-6-x86_64/pgdg-centos95-9.5-1.noarch.rpm
+sudo yum localinstall -y http://yum.postgresql.org/9.5/redhat/rhel-6-x86_64/pgdg-centos95-9.5-2.noarch.rpm
 sudo yum install -y postgresql95-server
 sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
 sudo systemctl enable postgresql-9.5
